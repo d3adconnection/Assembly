@@ -238,12 +238,12 @@
 				<ToggleButton x:Name="ButtonSelectGeneral" Content="General" Margin="0,25,0,0" HorizontalAlignment="Left"
 							  Style="{DynamicResource ToggleTabChoser}"
 							  Tag="General" Click="ButtonTabSelection_OnClick" />
-				<ToggleButton x:Name="ButtonSelectXbox360Dev" Content="Xbox 360 Development" Margin="0,0,0,0" HorizontalAlignment="Left"
+				<!--<ToggleButton x:Name="ButtonSelectXbox360Dev" Content="Xbox 360 Development" Margin="0,0,0,0" HorizontalAlignment="Left"
 							  Style="{DynamicResource ToggleTabChoser}"
 							  Tag="XboxDev" Click="ButtonTabSelection_OnClick" />
 				<ToggleButton x:Name="ButtonSelectMapEdit" Content="Map Editor" Margin="0,0,0,0" HorizontalAlignment="Left"
 							  Style="{DynamicResource ToggleTabChoser}"
-							  Tag="MapEdit" Click="ButtonTabSelection_OnClick" />
+							  Tag="MapEdit" Click="ButtonTabSelection_OnClick" />-->
 				<ToggleButton x:Name="ButtonSelectStartPage" Content="Start Page" Margin="0,0,0,0" HorizontalAlignment="Left"
 							  Style="{DynamicResource ToggleTabChoser}"
 							  Tag="StartPage" Click="ButtonTabSelection_OnClick" />
@@ -276,28 +276,28 @@
 								  SelectedItem="{Binding Path=ApplicationAccent, Mode=TwoWay}" Width="250" />
 						</Grid>
 					</Grid>
+					<!--
+                    <Grid Style="{DynamicResource SettingEntry}">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="200" />
+                            <ColumnDefinition Width="20" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
 
-					<Grid Style="{DynamicResource SettingEntry}">
-						<Grid.ColumnDefinitions>
-							<ColumnDefinition Width="200" />
-							<ColumnDefinition Width="20" />
-							<ColumnDefinition Width="*" />
-						</Grid.ColumnDefinitions>
-
-						<StackPanel Grid.Column="0">
-							<TextBlock Text="Automatic Updates:" Style="{DynamicResource SettingName}" />
-							<TextBlock TextWrapping="Wrap" Style="{DynamicResource SettingDescription}">
+                        <StackPanel Grid.Column="0">
+                            <TextBlock Text="Automatic Updates:" Style="{DynamicResource SettingName}" />
+                            <TextBlock TextWrapping="Wrap" Style="{DynamicResource SettingDescription}">
 								Keep up-to-date and have Assembly automatically check for updates every time you start it.
-							</TextBlock>
-						</StackPanel>
-						<Grid Grid.Column="2">
-							<CheckBox VerticalAlignment="Top"
+                            </TextBlock>
+                        </StackPanel>
+                        <Grid Grid.Column="2">
+                            <CheckBox VerticalAlignment="Top"
 									  IsChecked="{Binding Path=ApplicationUpdateOnStartup, Mode=TwoWay}"
 									  Content="Check for updates on startup." />
-						</Grid>
-					</Grid>
+                        </Grid>
+                    </Grid>
 
-					<Grid Style="{DynamicResource SettingEntry}">
+                    <Grid Style="{DynamicResource SettingEntry}">
 						<Grid.ColumnDefinitions>
 							<ColumnDefinition Width="200" />
 							<ColumnDefinition Width="20" />
@@ -312,7 +312,7 @@
 							<ComboBox x:Name="ComboBoxUpdateChannel" HorizontalAlignment="Left" VerticalAlignment="Top"
 								  SelectedItem="{Binding Path=UpdateChannel, Mode=TwoWay}" Width="250" />
 						</Grid>
-					</Grid>
+					</Grid>-->
 
 					<Grid Style="{DynamicResource SettingEntry}">
 						<Grid.ColumnDefinitions>

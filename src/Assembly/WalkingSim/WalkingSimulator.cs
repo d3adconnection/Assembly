@@ -114,6 +114,8 @@ namespace Assembly.Windows
 		public float valFloaty;
 		public float valFloatz;
 		public int valInt;
+		public byte valUInt8;
+		public UInt32 valUInt;
 		public bool valFlagType;
 		public string valString;
 		public enum tfType : int
@@ -122,12 +124,14 @@ namespace Assembly.Windows
 			float32 = 0,
 			flags32 = 1,
 			int16 = 2,
-			enum8 = 3,
-			rangef = 4,
-			ranged = 5,
-			stringid = 6,
-			degree = 7,
-			vector3 = 8
+			uint32 = 3,
+			enum8 = 4,
+			rangef = 5,
+			ranged = 6,
+			stringid = 7,
+			degree = 8,
+			vector3 = 9,
+			uint8 = 10
 		}
 
 		public static WSTagField.tfType nameToEnum(String name)
@@ -137,6 +141,8 @@ namespace Assembly.Windows
 				case "float32": return tfType.float32;
 				case "flags32": return tfType.flags32;
 				case "int16": return tfType.int16;
+				case "uint8": return tfType.uint8;
+				case "uint32": return tfType.uint32;
 				case "enum8": return tfType.enum8;
 				case "rangef": return tfType.rangef;
 				case "ranged": return tfType.ranged;
@@ -154,6 +160,8 @@ namespace Assembly.Windows
 				case tfType.float32: return "Float32Data";
 				case tfType.flags32: return "FlagData";
 				case tfType.int16: return "Int16Data";
+				case tfType.uint8: return "Uint8Data";
+				case tfType.uint32: return "Uint32Data";
 				case tfType.enum8: return "EnumData";
 				case tfType.rangef: return "RangeFloat32Data";
 				case tfType.ranged: return "RangeDegreeData";
@@ -185,6 +193,12 @@ namespace Assembly.Windows
 					break;
 				case tfType.int16:
 					valInt = int.Parse(toks[3]);
+					break;
+				case tfType.uint8:
+					valUInt8 = byte.Parse(toks[3]);
+					break;
+				case tfType.uint32:
+					valUInt = UInt32.Parse(toks[3]);
 					break;
 				case tfType.flags32:
 					valInt = int.Parse(toks[3].Substring(1));
@@ -232,11 +246,13 @@ namespace Assembly.Windows
 
 	public partial class Home
 	{
+		public String genPath;
+
 		private Dictionary<String, WSTagGroup> loadWSSettings(HaloMap map)
 		{
 			Dictionary<String, WSTagGroup> tgDict = new Dictionary<string, WSTagGroup>();
-			String genPath = string.Format("g:\\th\\reach\\wsset\\{0}.txt", map.GetBuildInfo().GameModule);
-			String mapPath = string.Format("g:\\th\\reach\\wsset\\{0}_{1}.txt", map.GetBuildInfo().GameModule, map.GetCacheFile().InternalName);
+			//String genPath = string.Format("C:\\Projects\\halo\\{0}.txt", map.GetBuildInfo().GameModule);
+			//String mapPath = string.Format("C:\\Projects\\halo\\{0}_{1}.txt", map.GetBuildInfo().GameModule, map.GetCacheFile().InternalName);
 			if (System.IO.File.Exists(genPath))
 			{
 				String[] lines = System.IO.File.ReadAllLines(genPath);
@@ -265,7 +281,7 @@ namespace Assembly.Windows
 						te.addField(toks[2],false);
 					}
 				}
-			}
+			}/*
 			if (System.IO.File.Exists(mapPath))
 			{
 				String[] lines = System.IO.File.ReadAllLines(mapPath);
@@ -294,12 +310,22 @@ namespace Assembly.Windows
 						te.addField(toks[2],true);
 					}
 				}
-			}
+			}*/
 			return tgDict;
 		}
 
 		private void menuWalkingSim_Click(object sender, RoutedEventArgs e)
 		{
+			var OpenTemplateDialog = new OpenFileDialog
+			{
+				Title = "Assembly - Open Template File",
+				Multiselect = false,
+				Filter = "All files (*.*)|*.*"
+			};
+
+			if (!(bool)OpenTemplateDialog.ShowDialog(this)) return;
+			StatusUpdater.Update("Processing tags from template...");
+			genPath = string.Format(OpenTemplateDialog.FileName);
 			frmStatus frmStat = new frmStatus();
 			frmStat.Show();
 			int mapCnt = 0;
@@ -318,10 +344,10 @@ namespace Assembly.Windows
 					String mapMsg;
 					String mapPath = map.GetCacheLocation();
 					String bakPath = mapPath.Substring(0, mapPath.Length - 4) + ".bak";
-					if (!System.IO.File.Exists(bakPath)) {
+					/*if (!System.IO.File.Exists(bakPath)) {
 						mapMsg = string.Format("({0}/{1}) {2} - Creating backup", mapIdx, mapCnt, map.GetCacheFile().InternalName);
 						frmStat.UpdateMapStatus(mapIdx, mapCnt, mapMsg);
-						System.IO.File.Copy(mapPath, bakPath); }
+						System.IO.File.Copy(mapPath, bakPath); }*/
 					Dictionary<String, WSTagGroup> wsDict = loadWSSettings(map);
 					mapMsg= string.Format("({0}/{1}) {2} - Scanning Groups", mapIdx, mapCnt, map.GetCacheFile().InternalName);
 					frmStat.UpdateMapStatus(mapIdx, mapCnt, mapMsg);
@@ -386,7 +412,12 @@ namespace Assembly.Windows
 				System.Text.StringBuilder sbIssues = new System.Text.StringBuilder();
 				foreach (String curIssue in lstIssues) { sbIssues.AppendLine(curIssue); }
 				Clipboard.SetText(sbIssues.ToString());
-				MessageBox.Show("Some weapons/equipment were not included in the settings files. Copied to clipboard.");
+				//MessageBox.Show("Some weapons/equipment were not included in the settings files. Copied to clipboard.");
+				StatusUpdater.Update("Some tags could not be updated. Results have been copied to clipboard.");
+			}
+			else
+            {
+				StatusUpdater.Update("All tags have been updated.");
 			}
 		}
 
@@ -471,6 +502,30 @@ namespace Assembly.Windows
 									{
 										dirty = true;
 										dInt16.Value = (short)wstf.valInt;
+									}
+								}
+								break;
+							case WSTagField.tfType.uint8:
+								Uint8Data dUInt8 = (Uint8Data)mf;
+								if (dUInt8.Name == wstf.name)
+								{
+									wstf.hits += 1;
+									if (dUInt8.Value != wstf.valUInt8)
+									{
+										dirty = true;
+										dUInt8.Value = wstf.valUInt8;
+									}
+								}
+								break;
+							case WSTagField.tfType.uint32:
+								Uint32Data dUInt32 = (Uint32Data)mf;
+								if (dUInt32.Name == wstf.name)
+								{
+									wstf.hits += 1;
+									if (dUInt32.Value != wstf.valUInt)
+									{
+										dirty = true;
+										dUInt32.Value = wstf.valUInt;
 									}
 								}
 								break;

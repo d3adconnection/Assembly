@@ -100,7 +100,7 @@
             this.Controls.Add(this.pbMap);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "frmStatus";
-            this.Text = "Walking Sim Status";
+            this.Text = "Applying template to open maps...";
             this.Load += new System.EventHandler(this.frmStatus_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

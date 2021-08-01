@@ -222,7 +222,7 @@ namespace Assembly.Metro.Controls.PageTemplates.Games.Components
 			}
 		}
 
-		private void UpdateMeta(MetaWriter.SaveType type, bool onlyUpdateChanged, bool showActionDialog = true)
+		private void UpdateMeta(MetaWriter.SaveType type, bool onlyUpdateChanged, bool showActionDialog = false)
 		{
 			if (type == MetaWriter.SaveType.File)
 			{
@@ -263,13 +263,13 @@ namespace Assembly.Metro.Controls.PageTemplates.Games.Components
 							changes, _stringIdTrie);
 						metaUpdate.WriteFields(_pluginVisitor.Values);
 
-						if (showActionDialog)
-						{
+						//if (showActionDialog)
+						//{
 							if (onlyUpdateChanged)
-								StatusUpdater.Update("All changed fields have been poked to the game.");
-							else
-								StatusUpdater.Update("The changes have been poked to the game.");
-						}
+								StatusUpdater.Update("Tag changes successfully poked to " + _cache.FileName + " in memory!");
+						else
+								StatusUpdater.Update("Tag successfully saved in " + _cache.FileName + "!");
+						//}
 					}
 					else
 					{

@@ -482,7 +482,7 @@ namespace Assembly.Metro.Controls.PageTemplates.Games
 			Dispatcher.Invoke(new Action(delegate
 			{
 				lbLanguages.ItemsSource = _languages;
-				StatusUpdater.Update("Initialized Languages");
+				StatusUpdater.Update("Initialized languages.");
 			}));
 		}
 
@@ -495,7 +495,7 @@ namespace Assembly.Metro.Controls.PageTemplates.Games
 			{
 				tabScripts.Visibility = Visibility.Visible;
 				lbScripts.ItemsSource = _cacheFile.ScriptFiles;
-				StatusUpdater.Update("Initialized Scripts");
+				StatusUpdater.Update("Initialized scripts.");
 			}
 				));
 		}
@@ -2361,7 +2361,8 @@ namespace Assembly.Metro.Controls.PageTemplates.Games
 					((MetaContainer)tabItem.Content).ExternalSave();
 			}
 
-			MetroMessageBox.Show("Tags Saved", "The changes have been saved back to the original file.");
+			//MetroMessageBox.Show("Tags Saved", "The changes have been saved back to the original file.");
+			StatusUpdater.Update("Tag successfully saved in " + _cacheFile.FileName + "!");
 		}
 
 		private void SIDFreeButton_Click(object sender, RoutedEventArgs e)

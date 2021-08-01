@@ -43,7 +43,7 @@ namespace Assembly.Windows
 			DwmDropShadow.DropShadowToWindow(this);
 
 			UpdateTitleText("");
-			UpdateStatusText("Ready...");
+			UpdateStatusText("");
 
 			//Window_StateChanged(null, null);
 			ClearTabs();
@@ -811,14 +811,14 @@ namespace Assembly.Windows
 			Status.Text = status;
 
 			_statusUpdateTimer.Stop();
-			_statusUpdateTimer.Interval = new TimeSpan(0, 0, 0, 4);
+			_statusUpdateTimer.Interval = new TimeSpan(0, 0, 0, 8);
 			_statusUpdateTimer.Tick += statusUpdateCleaner_Clear;
 			_statusUpdateTimer.Start();
 		}
 
 		private void statusUpdateCleaner_Clear(object sender, EventArgs e)
 		{
-			Status.Text = "Ready...";
+			Status.Text = "";
 		}
 
 		#endregion
@@ -942,11 +942,12 @@ namespace Assembly.Windows
 
 		private void Window_Loaded(object sender, RoutedEventArgs e)
 		{
-			if (!App.AssemblyStorage.AssemblySettings.ShownCheatingDialog)
+			/*if (!App.AssemblyStorage.AssemblySettings.ShownCheatingDialog)
 			{
 				ShowCheatingDialog();
 				App.AssemblyStorage.AssemblySettings.ShownCheatingDialog = true;
 			}
+			No one's going to be cheating in this dojo */
 		}
 	}
 }

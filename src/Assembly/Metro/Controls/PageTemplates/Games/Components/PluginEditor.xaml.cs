@@ -105,6 +105,9 @@ namespace Assembly.Metro.Controls.PageTemplates.Games.Components
 				case Settings.Accents.Blue:
 					filename = "XMLBlue.xshd";
 					break;
+				case Settings.Accents.Pink:
+					filename = "XMLPink.xshd";
+					break;
 				case Settings.Accents.Green:
 					filename = "XMLGreen.xshd";
 					break;
@@ -128,6 +131,9 @@ namespace Assembly.Metro.Controls.PageTemplates.Games.Components
 			{
 				case Settings.Accents.Blue:
 					selbrsh = (System.Windows.Media.Brush)bconv.ConvertFromString("#1D98EB");
+					break;
+				case Settings.Accents.Pink:
+					selbrsh = (System.Windows.Media.Brush)bconv.ConvertFromString("#DB66BB");
 					break;
 				case Settings.Accents.Green:
 					selbrsh = (System.Windows.Media.Brush)bconv.ConvertFromString("#98e062");
