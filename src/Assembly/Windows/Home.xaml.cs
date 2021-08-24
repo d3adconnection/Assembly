@@ -811,7 +811,7 @@ namespace Assembly.Windows
 			Status.Text = status;
 
 			_statusUpdateTimer.Stop();
-			_statusUpdateTimer.Interval = new TimeSpan(0, 0, 0, 8);
+			_statusUpdateTimer.Interval = new TimeSpan(0, 0, 0, 16);
 			_statusUpdateTimer.Tick += statusUpdateCleaner_Clear;
 			_statusUpdateTimer.Start();
 		}

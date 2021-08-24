@@ -266,9 +266,9 @@ namespace Assembly.Metro.Controls.PageTemplates.Games.Components
 						//if (showActionDialog)
 						//{
 							if (onlyUpdateChanged)
-								StatusUpdater.Update("Tag changes successfully poked to " + _cache.FileName + " in memory!");
+								StatusUpdater.Update("Tag changes successfully poked to memory!");
 						else
-								StatusUpdater.Update("Tag successfully saved in " + _cache.FileName + "!");
+								StatusUpdater.Update("Tag successfully saved!");
 						//}
 					}
 					else

@@ -124,13 +124,13 @@ namespace Assembly.Windows
 			float32 = 0,
 			flags32 = 1,
 			int16 = 2,
-			uint32 = 3,
-			enum8 = 4,
-			rangef = 5,
-			ranged = 6,
-			stringid = 7,
-			degree = 8,
-			vector3 = 9,
+			enum8 = 3,
+			rangeFloat32 = 4,
+			ranged = 5,
+			stringid = 6,
+			degree = 7,
+			vector3 = 8,
+			uint32 = 9,
 			uint8 = 10
 		}
 
@@ -141,14 +141,14 @@ namespace Assembly.Windows
 				case "float32": return tfType.float32;
 				case "flags32": return tfType.flags32;
 				case "int16": return tfType.int16;
-				case "uint8": return tfType.uint8;
-				case "uint32": return tfType.uint32;
 				case "enum8": return tfType.enum8;
-				case "rangef": return tfType.rangef;
+				case "rangef": return tfType.rangeFloat32;
 				case "ranged": return tfType.ranged;
 				case "stringid": return tfType.stringid;
 				case "degree": return tfType.degree;
 				case "vector3": return tfType.vector3;
+				case "uint8": return tfType.uint8;
+				case "uint32": return tfType.uint32;
 			}
 			return tfType.unknown;
 		}
@@ -160,14 +160,14 @@ namespace Assembly.Windows
 				case tfType.float32: return "Float32Data";
 				case tfType.flags32: return "FlagData";
 				case tfType.int16: return "Int16Data";
-				case tfType.uint8: return "Uint8Data";
-				case tfType.uint32: return "Uint32Data";
 				case tfType.enum8: return "EnumData";
-				case tfType.rangef: return "RangeFloat32Data";
+				case tfType.rangeFloat32: return "RangeFloat32Data";
 				case tfType.ranged: return "RangeDegreeData";
 				case tfType.stringid: return "StringIDData";
 				case tfType.degree: return "DegreeData";
 				case tfType.vector3: return "Vector3Data";
+				case tfType.uint8: return "Uint8Data";
+				case tfType.uint32: return "Uint32Data";
 			}
 			return null;
 		}
@@ -183,7 +183,7 @@ namespace Assembly.Windows
 				case tfType.float32:
 					valFloat = float.Parse(toks[3]);
 					break;
-				case tfType.rangef:
+				case tfType.rangeFloat32:
 					valFloatMin = float.Parse(toks[3]);
 					valFloatMax = float.Parse(toks[4]);
 					break;
@@ -193,12 +193,6 @@ namespace Assembly.Windows
 					break;
 				case tfType.int16:
 					valInt = int.Parse(toks[3]);
-					break;
-				case tfType.uint8:
-					valUInt8 = byte.Parse(toks[3]);
-					break;
-				case tfType.uint32:
-					valUInt = UInt32.Parse(toks[3]);
 					break;
 				case tfType.flags32:
 					valInt = int.Parse(toks[3].Substring(1));
@@ -222,6 +216,12 @@ namespace Assembly.Windows
 					valFloatx = float.Parse(toks[3]);
 					valFloaty = float.Parse(toks[4]);
 					valFloatz = float.Parse(toks[5]);
+					break;
+				case tfType.uint8:
+					valUInt8 = byte.Parse(toks[3]);
+					break;
+				case tfType.uint32:
+					valUInt = UInt32.Parse(toks[3]);
 					break;
 				default:
 					break;
@@ -258,7 +258,7 @@ namespace Assembly.Windows
 				String[] lines = System.IO.File.ReadAllLines(genPath);
 				for (int i = 0; i < lines.Count(); i++)
 				{
-					String[] toks = lines[i].Split('|');g:
+					String[] toks = lines[i].Split('|');
 					WSTagGroup tg = null;
 					if (!tgDict.TryGetValue(toks[0], out tg))
 					{
@@ -427,7 +427,7 @@ namespace Assembly.Windows
 			CloseableTabItem cti = (CloseableTabItem)map.contentTabs.SelectedItem;
 			MetaContainer mc = (MetaContainer)cti.Content;
 			MetaEditor me = (MetaEditor)mc.tabMetaEditor.Content;
-			ThirdGenPluginVisitor tgp = me.GetPluginVisitor();
+			AssemblyPluginVisitor tgp = me.GetPluginVisitor();
 			bool dirty = false;
 			foreach (MetaField mfouter in tgp.Values)
 			{
@@ -455,7 +455,7 @@ namespace Assembly.Windows
 									}
 								}
 								break;
-							case WSTagField.tfType.rangef:
+							case WSTagField.tfType.rangeFloat32:
 								RangeFloat32Data dRangeFloat32 = (RangeFloat32Data)mf;
 								if (dRangeFloat32.Name == wstf.name)
 								{
@@ -502,30 +502,6 @@ namespace Assembly.Windows
 									{
 										dirty = true;
 										dInt16.Value = (short)wstf.valInt;
-									}
-								}
-								break;
-							case WSTagField.tfType.uint8:
-								Uint8Data dUInt8 = (Uint8Data)mf;
-								if (dUInt8.Name == wstf.name)
-								{
-									wstf.hits += 1;
-									if (dUInt8.Value != wstf.valUInt8)
-									{
-										dirty = true;
-										dUInt8.Value = wstf.valUInt8;
-									}
-								}
-								break;
-							case WSTagField.tfType.uint32:
-								Uint32Data dUInt32 = (Uint32Data)mf;
-								if (dUInt32.Name == wstf.name)
-								{
-									wstf.hits += 1;
-									if (dUInt32.Value != wstf.valUInt)
-									{
-										dirty = true;
-										dUInt32.Value = wstf.valUInt;
 									}
 								}
 								break;
@@ -576,6 +552,30 @@ namespace Assembly.Windows
 										dVector3Float32.A = wstf.valFloatx;
 										dVector3Float32.B = wstf.valFloaty;
 										dVector3Float32.C = wstf.valFloatz;
+									}
+								}
+								break;
+							case WSTagField.tfType.uint8:
+								Uint8Data dUInt8 = (Uint8Data)mf;
+								if (dUInt8.Name == wstf.name)
+								{
+									wstf.hits += 1;
+									if (dUInt8.Value != wstf.valUInt8)
+									{
+										dirty = true;
+										dUInt8.Value = wstf.valUInt8;
+									}
+								}
+								break;
+							case WSTagField.tfType.uint32:
+								Uint32Data dUInt32 = (Uint32Data)mf;
+								if (dUInt32.Name == wstf.name)
+								{
+									wstf.hits += 1;
+									if (dUInt32.Value != wstf.valUInt)
+									{
+										dirty = true;
+										dUInt32.Value = wstf.valUInt;
 									}
 								}
 								break;
@@ -773,7 +773,7 @@ namespace Assembly.Metro.Controls.PageTemplates.Games.Components
 {
 	public partial class MetaEditor : UserControl
 	{
-		public ThirdGenPluginVisitor GetPluginVisitor()
+		public AssemblyPluginVisitor GetPluginVisitor()
 		{
 			return _pluginVisitor;
 		}

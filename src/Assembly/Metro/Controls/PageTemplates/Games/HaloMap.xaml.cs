@@ -2481,7 +2481,7 @@ namespace Assembly.Metro.Controls.PageTemplates.Games
 			}
 
 			//MetroMessageBox.Show("Tags Saved", "The changes have been saved back to the original file.");
-			StatusUpdater.Update("Tag successfully saved in " + _cacheFile.FileName + "!");
+			StatusUpdater.Update("Tag successfully saved!");
 		}
 
 		private void SIDFreeButton_Click(object sender, RoutedEventArgs e)
