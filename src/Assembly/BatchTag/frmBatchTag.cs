@@ -34,5 +34,10 @@ namespace Assembly
             if (tagIdx != pbTag.Value) { pbTag.Value = tagIdx; pbTag.Refresh(); }
             if (tagMsg != null && tagMsg.CompareTo(txtTag.Text) != 0) { txtTag.Text = tagMsg; txtTag.Refresh(); }
         }
+
+        private void pbMap_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

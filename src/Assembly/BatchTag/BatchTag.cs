@@ -1,4 +1,7 @@
-﻿using System;
+﻿// All code credits go to palesius (original Assembly fork: https://github.com/palesius/Assembly)
+// A gigantic thank you for making this possible in Assembly.
+
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
@@ -52,6 +55,7 @@ using XboxChaos.Models;
 using Xceed.Wpf.AvalonDock.Controls;
 using Assembly.Helpers.Net.Sockets;
 using Blamite.Blam.ThirdGen.Structures;
+using Microsoft.WindowsAPICodePack.Dialogs;
 
 namespace Assembly.Windows
 {
@@ -64,44 +68,44 @@ namespace Assembly.Windows
 		}
 	}
 
-	public partial class WSTagGroup
+	public partial class BatchTagGroup
 	{
 		public String name;
-		public Dictionary<String, WSTagEntry> entries = new Dictionary<String, WSTagEntry>();
+		public Dictionary<String, BatchTagEntry> entries = new Dictionary<String, BatchTagEntry>();
 
-		public WSTagGroup(String _name)
+		public BatchTagGroup(String _name)
 		{
 			name = _name;
 		}
 	}
 
-	public partial class WSTagEntry
+	public partial class BatchTagEntry
 	{
 		public String name;
-		public Dictionary<uint, WSTagField> fields=new Dictionary<uint, WSTagField>();
+		public Dictionary<uint, BatchTagField> fields=new Dictionary<uint, BatchTagField>();
 
-		public WSTagEntry(String _name)
+		public BatchTagEntry(String _name)
 		{
 			name = _name;
 		}
 
 		public void addField(String def,bool mapLevel)
 		{
-			WSTagField f = new WSTagField(def);
+			BatchTagField f = new BatchTagField(def);
 			if (mapLevel && fields.ContainsKey(f.line)) fields.Remove(f.line);
 			fields.Add(f.line, f);
 		}
 
-		public void cloneFields(WSTagEntry src)
+		public void cloneFields(BatchTagEntry src)
 		{
-			foreach (WSTagField tf in src.fields.Values)
+			foreach (BatchTagField tf in src.fields.Values)
 			{
 				fields.Add(tf.line, tf);
 			}
 		}
 	}
 
-	public class WSTagField
+	public class BatchTagField
 	{
 		public int hits=0;
 		public tfType fldType=tfType.unknown;
@@ -116,6 +120,7 @@ namespace Assembly.Windows
 		public int valInt;
 		public byte valUInt8;
 		public UInt32 valUInt;
+		public Int32 valInt32;
 		public bool valFlagType;
 		public string valString;
 		public enum tfType : int
@@ -131,10 +136,11 @@ namespace Assembly.Windows
 			degree = 7,
 			vector3 = 8,
 			uint32 = 9,
-			uint8 = 10
+			uint8 = 10,
+			int32 = 11
 		}
 
-		public static WSTagField.tfType nameToEnum(String name)
+		public static BatchTagField.tfType nameToEnum(String name)
 		{
 			switch (name)
 			{
@@ -149,11 +155,12 @@ namespace Assembly.Windows
 				case "vector3": return tfType.vector3;
 				case "uint8": return tfType.uint8;
 				case "uint32": return tfType.uint32;
+				case "int32": return tfType.int32;
 			}
 			return tfType.unknown;
 		}
 
-		public static String enumToType(WSTagField.tfType fldType)
+		public static String enumToType(BatchTagField.tfType fldType)
 		{
 			switch (fldType)
 			{
@@ -168,14 +175,15 @@ namespace Assembly.Windows
 				case tfType.vector3: return "Vector3Data";
 				case tfType.uint8: return "Uint8Data";
 				case tfType.uint32: return "Uint32Data";
+				case tfType.int32: return "Int32Data";
 			}
 			return null;
 		}
 
-		public WSTagField(String src)
+		public BatchTagField(String src)
 		{
 			String[] toks=src.Split(':');
-			fldType = WSTagField.nameToEnum(toks[0]);
+			fldType = BatchTagField.nameToEnum(toks[0]);
 			line = uint.Parse(toks[1]);
 			name = toks[2];
 			switch (fldType) 
@@ -223,12 +231,15 @@ namespace Assembly.Windows
 				case tfType.uint32:
 					valUInt = UInt32.Parse(toks[3]);
 					break;
+				case tfType.int32:
+					valInt32 = Int32.Parse(toks[3]);
+					break;
 				default:
 					break;
 			}
 		}
 
-		public WSTagField(WSTagField tf)
+		public BatchTagField(BatchTagField tf)
 		{
 			fldType = tf.fldType;
 			line = tf.line;
@@ -240,97 +251,90 @@ namespace Assembly.Windows
 
 		public String getFldTypeName()
 		{
-			return WSTagField.enumToType(fldType);
+			return BatchTagField.enumToType(fldType);
 		}
 	}
-
 	public partial class Home
 	{
 		public String genPath;
+		public String genFile;
 
-		private Dictionary<String, WSTagGroup> loadWSSettings(HaloMap map)
+		List<String> lstIssues = new List<String>();
+
+		private Dictionary<String, BatchTagGroup> loadWSSettings(HaloMap map)
 		{
-			Dictionary<String, WSTagGroup> tgDict = new Dictionary<string, WSTagGroup>();
-			//String genPath = string.Format("C:\\Projects\\halo\\{0}.txt", map.GetBuildInfo().GameModule);
-			//String mapPath = string.Format("C:\\Projects\\halo\\{0}_{1}.txt", map.GetBuildInfo().GameModule, map.GetCacheFile().InternalName);
-			if (System.IO.File.Exists(genPath))
+			Dictionary<String, BatchTagGroup> tgDict = new Dictionary<string, BatchTagGroup>();
+
+			String[] lines = System.IO.File.ReadAllLines(genFile);
+			for (int i = 0; i < lines.Count(); i++)
 			{
-				String[] lines = System.IO.File.ReadAllLines(genPath);
-				for (int i = 0; i < lines.Count(); i++)
+				String[] toks = lines[i].Split('|');
+				BatchTagGroup tg = null;
+				if (!tgDict.TryGetValue(toks[0], out tg))
 				{
-					String[] toks = lines[i].Split('|');
-					WSTagGroup tg = null;
-					if (!tgDict.TryGetValue(toks[0], out tg))
-					{
-						tg = new WSTagGroup(toks[0]);
-						tgDict.Add(toks[0], tg);
-					}
-					WSTagEntry te = null;
-					if (!tg.entries.TryGetValue(toks[1], out te))
-					{
-						te = new WSTagEntry(toks[1]);
-						tg.entries.Add(toks[1], te);
-					}
-					if (toks[2].Substring(0, 1) == "*")
-					{
-						WSTagEntry src = null;
-						if (tg.entries.TryGetValue(toks[2], out src)) { te.cloneFields(tg.entries[(toks[2])]); }
-					}
-					else
-					{
-						te.addField(toks[2],false);
-					}
+					tg = new BatchTagGroup(toks[0]);
+					tgDict.Add(toks[0], tg);
 				}
-			}/*
-			if (System.IO.File.Exists(mapPath))
-			{
-				String[] lines = System.IO.File.ReadAllLines(mapPath);
-				for (int i = 0; i < lines.Count(); i++)
+				BatchTagEntry te = null;
+				if (!tg.entries.TryGetValue(toks[1], out te))
 				{
-					String[] toks = lines[i].Split('|');
-					WSTagGroup tg = null;
-					if (!tgDict.TryGetValue(toks[0], out tg))
-					{
-						tg = new WSTagGroup(toks[0]);
-						tgDict.Add(toks[0], tg);
-					}
-					WSTagEntry te = null;
-					if (!tg.entries.TryGetValue(toks[1], out te))
-					{
-						te = new WSTagEntry(toks[1]);
-						tg.entries.Add(toks[1], te);
-					}
-					if (toks[2].Substring(0, 1) == "*")
-					{
-						WSTagEntry src = null;
-						if (tg.entries.TryGetValue(toks[2], out src)) { te.cloneFields(tg.entries[(toks[2])]); }
-					}
-					else
-					{
-						te.addField(toks[2],true);
-					}
+					te = new BatchTagEntry(toks[1]);
+					tg.entries.Add(toks[1], te);
 				}
-			}*/
+				if (toks[2].Substring(0, 1) == "*")
+				{
+					BatchTagEntry src = null;
+					if (tg.entries.TryGetValue(toks[2], out src)) { te.cloneFields(tg.entries[(toks[2])]); }
+				}
+				else
+				{
+					te.addField(toks[2], false);
+				}
+			}
 			return tgDict;
 		}
 
-		private void menuWalkingSim_Click(object sender, RoutedEventArgs e)
+		private void menuBatchTag_File_Click(object sender, RoutedEventArgs e)
 		{
 			var OpenTemplateDialog = new OpenFileDialog
 			{
-				Title = "Assembly - Open Template File",
+				Title = "Select template file",
+				// InitialDirectory = "",
 				Multiselect = false,
 				Filter = "All files (*.*)|*.*"
 			};
 
 			if (!(bool)OpenTemplateDialog.ShowDialog(this)) return;
-			StatusUpdater.Update("Processing tags from template...");
 			genPath = string.Format(OpenTemplateDialog.FileName);
 			frmStatus frmStat = new frmStatus();
 			frmStat.Show();
+			processTask(genPath, true, frmStat);
+		}
+
+		private void menuBatchTag_Folder_Click(object sender, RoutedEventArgs e)
+		{
+			var OpenTemplateDialog = new CommonOpenFileDialog
+			{
+				Title = "Select folder with batch template files",
+				// InitialDirectory = "",
+				Multiselect = false,
+				IsFolderPicker = true,
+				EnsurePathExists = true
+			};
+
+			if (!(OpenTemplateDialog.ShowDialog() == CommonFileDialogResult.Ok)) return;
+			genPath = string.Format(OpenTemplateDialog.FileName);
+			frmStatus frmStat = new frmStatus();
+			frmStat.Show();
+			processTask(genPath, true, frmStat);
+		}
+		private void processTask(string genPath, bool IsFolder, frmStatus frmStat)
+        {
+			List<String> lstIssues = new List<String>();
+			
 			int mapCnt = 0;
 			int mapIdx = 0;
-			List<String> lstIssues = new List<String>();
+			
 			foreach (LayoutDocument ld in documentManager.Children)
 			{
 				if (ld.Content.GetType().Name == "HaloMap") { mapCnt++; }
@@ -343,85 +347,91 @@ namespace Assembly.Windows
 					mapIdx++;
 					String mapMsg;
 					String mapPath = map.GetCacheLocation();
-					String bakPath = mapPath.Substring(0, mapPath.Length - 4) + ".bak";
-					/*if (!System.IO.File.Exists(bakPath)) {
-						mapMsg = string.Format("({0}/{1}) {2} - Creating backup", mapIdx, mapCnt, map.GetCacheFile().InternalName);
-						frmStat.UpdateMapStatus(mapIdx, mapCnt, mapMsg);
-						System.IO.File.Copy(mapPath, bakPath); }*/
-					Dictionary<String, WSTagGroup> wsDict = loadWSSettings(map);
-					mapMsg= string.Format("({0}/{1}) {2} - Scanning Groups", mapIdx, mapCnt, map.GetCacheFile().InternalName);
-					frmStat.UpdateMapStatus(mapIdx, mapCnt, mapMsg);
-					foreach (TagGroup tg in map.tvTagList.Items)
+
+					string[] files = new string[] { };
+					if (IsFolder) { files = Directory.GetFiles(genPath, "*.txt"); }
+                    else { files = new string[] { genPath }; }
+
+					foreach (string file in files)
 					{
-						WSTagGroup wstg = null;
-						if (wsDict.TryGetValue(tg.TagGroupMagic,out wstg))
+						genFile = file;
+						if (System.IO.File.Exists(genFile))
 						{
-							mapMsg = string.Format("({0}/{1}) {2} - Processing {3}", mapIdx, mapCnt, map.GetCacheFile().InternalName,tg.TagGroupMagic);
+							Dictionary<String, BatchTagGroup> wsDict = loadWSSettings(map);
+							mapMsg = string.Format("({0}/{1}) {2} - Scanning Groups", mapIdx, mapCnt, map.GetCacheFile().InternalName);
 							frmStat.UpdateMapStatus(mapIdx, mapCnt, mapMsg);
-							int tagCnt = tg.Children.Count;
-							int tagIdx = 0;
-							foreach (TagEntry te in tg.Children)
+							foreach (TagGroup tg in map.tvTagList.Items)
 							{
-								tagIdx++;
-								WSTagEntry wste = null;
-								if (!wstg.entries.TryGetValue(te.TagFileName,out wste))
+								BatchTagGroup wstg = null;
+								if (wsDict.TryGetValue(tg.TagGroupMagic, out wstg))
 								{
-									int prefPos = 0;
-									while (prefPos<te.TagFileName.Length && prefPos>=0)
+									mapMsg = string.Format("({0}/{1}) {2} - Processing {3}", mapIdx, mapCnt, map.GetCacheFile().InternalName, tg.TagGroupMagic);
+									frmStat.UpdateMapStatus(mapIdx, mapCnt, mapMsg);
+									int tagCnt = tg.Children.Count;
+									int tagIdx = 0;
+									foreach (TagEntry te in tg.Children)
 									{
-										WSTagEntry tryWste = null;
-										wstg.entries.TryGetValue(te.TagFileName.Substring(0,prefPos)+"*", out tryWste);
-										if (tryWste != null)
+										tagIdx++;
+										BatchTagEntry wste = null;
+										if (!wstg.entries.TryGetValue(te.TagFileName, out wste))
 										{
-											Debug.Print(te.TagFileName + "<=>" + te.TagFileName.Substring(0, prefPos) + "*");
-											wste = tryWste;
+											int prefPos = 0;
+											while (prefPos < te.TagFileName.Length && prefPos >= 0)
+											{
+												BatchTagEntry tryWste = null;
+												wstg.entries.TryGetValue(te.TagFileName.Substring(0, prefPos) + "*", out tryWste);
+												if (tryWste != null)
+												{
+													Debug.Print(te.TagFileName + "<=>" + te.TagFileName.Substring(0, prefPos) + "*");
+													wste = tryWste;
+												}
+												prefPos = te.TagFileName.IndexOf('\\', prefPos);
+												if (prefPos > 0) prefPos++;
+											}
 										}
-										prefPos = te.TagFileName.IndexOf('\\', prefPos);
-										if (prefPos > 0) prefPos++;
+										if (wste != null)
+										{
+											String tagMsg = string.Format("({0}/{1}) {2}", tagIdx, tagCnt, te.TagFileName);
+											frmStat.UpdateTagStatus(tagIdx, tagCnt, tagMsg);
+											processTagEntry(te, wste, map, lstIssues);
+										}
+									}
+
+								}
+							}
+							foreach (BatchTagGroup wstg in wsDict.Values)
+							{
+								foreach (BatchTagEntry wste in wstg.entries.Values)
+								{
+									foreach (BatchTagField wstf in wste.fields.Values)
+									{
+										if (wstf.hits == 0)
+										{
+											lstIssues.Add(string.Format("No hits for [{0}]{1}: ({2}) \"{3}\"", wstg.name, wste.name, wstf.line, wstf.name));
+										}
 									}
 								}
-								if (wste!=null) {
-									String tagMsg = string.Format("({0}/{1}) {2}", tagIdx, tagCnt, te.TagFileName);
-									frmStat.UpdateTagStatus(tagIdx, tagCnt, tagMsg);
-									processTagEntry(te, wste, map,lstIssues); 
-								}
-							}
 
-						}
-					}
-					foreach (WSTagGroup wstg in wsDict.Values)
-					{
-						foreach (WSTagEntry wste in wstg.entries.Values)
-						{
-							foreach (WSTagField wstf in wste.fields.Values)
-							{
-								if (wstf.hits==0)
-								{
-									lstIssues.Add(string.Format("No hits for [{0}]{1}: ({2}) \"{3}\"", wstg.name, wste.name, wstf.line, wstf.name));
-								}
 							}
 						}
-
 					}
 				}
 			}
 			frmStat.Close();
 
-			if (lstIssues.Count>0)
+			if (lstIssues.Count > 0)
 			{
 				System.Text.StringBuilder sbIssues = new System.Text.StringBuilder();
 				foreach (String curIssue in lstIssues) { sbIssues.AppendLine(curIssue); }
 				Clipboard.SetText(sbIssues.ToString());
-				//MessageBox.Show("Some weapons/equipment were not included in the settings files. Copied to clipboard.");
-				StatusUpdater.Update("Some tags could not be updated. Results have been copied to clipboard.");
+				MetroMessageBox.Show("Process complete","Some tags could not be updated. Results have been copied to clipboard.");
 			}
 			else
-            {
-				StatusUpdater.Update("All tags have been updated.");
+			{
+				MetroMessageBox.Show("Process complete","All tags have been updated.");
 			}
 		}
-
-		private void processTagEntry(TagEntry te, WSTagEntry wste,HaloMap map,List<string> lstIssues)
+		private void processTagEntry(TagEntry te, BatchTagEntry wste,HaloMap map,List<string> lstIssues)
 		{
 			map.CreateTag(te);
 			CloseableTabItem cti = (CloseableTabItem)map.contentTabs.SelectedItem;
@@ -436,14 +446,14 @@ namespace Assembly.Windows
 				{
 					mf = ((WrappedTagBlockEntry)mf).WrappedField;
 				}
-				WSTagField wstf = null;
+				BatchTagField wstf = null;
 				if (wste.fields.TryGetValue(mf.PluginLine,out wstf))
 				{
 					if (wstf.getFldTypeName()==mf.GetType().Name)
 					{
 						switch (wstf.fldType)
 						{
-							case WSTagField.tfType.float32:
+							case BatchTagField.tfType.float32:
 								Float32Data dFloat32 = (Float32Data)mf;
 								if (dFloat32.Name == wstf.name)
 								{
@@ -455,7 +465,7 @@ namespace Assembly.Windows
 									}
 								}
 								break;
-							case WSTagField.tfType.rangeFloat32:
+							case BatchTagField.tfType.rangeFloat32:
 								RangeFloat32Data dRangeFloat32 = (RangeFloat32Data)mf;
 								if (dRangeFloat32.Name == wstf.name)
 								{
@@ -468,7 +478,7 @@ namespace Assembly.Windows
 									}
 								}
 								break;
-							case WSTagField.tfType.ranged:
+							case BatchTagField.tfType.ranged:
 								RangeDegreeData dRangeDegree = (RangeDegreeData)mf;
 								if (dRangeDegree.Name == wstf.name)
 								{
@@ -481,7 +491,7 @@ namespace Assembly.Windows
 									}
 								}
 								break;
-							case WSTagField.tfType.flags32:
+							case BatchTagField.tfType.flags32:
 								FlagData dFlag = (FlagData)mf;
 								if (dFlag.Name == wstf.name)
 								{
@@ -493,7 +503,7 @@ namespace Assembly.Windows
 									}
 								}
 								break;
-							case WSTagField.tfType.int16:
+							case BatchTagField.tfType.int16:
 								Int16Data dInt16 = (Int16Data)mf;
 								if (dInt16.Name == wstf.name)
 								{
@@ -505,7 +515,7 @@ namespace Assembly.Windows
 									}
 								}
 								break;
-							case WSTagField.tfType.enum8:
+							case BatchTagField.tfType.enum8:
 								EnumData dEnum = (EnumData)mf;
 								if (dEnum.Name == wstf.name)
 								{
@@ -517,7 +527,7 @@ namespace Assembly.Windows
 									}
 								}
 								break;
-							case WSTagField.tfType.stringid:
+							case BatchTagField.tfType.stringid:
 								StringIDData dStringID = (StringIDData)mf;
 								if (dStringID.Name == wstf.name)
 								{
@@ -529,7 +539,7 @@ namespace Assembly.Windows
 									}
 								}
 								break;
-							case WSTagField.tfType.degree:
+							case BatchTagField.tfType.degree:
 								DegreeData dDegree = (DegreeData)mf;
 								if (dDegree.Name == wstf.name)
 								{
@@ -541,7 +551,7 @@ namespace Assembly.Windows
 									}
 								}
 								break;
-							case WSTagField.tfType.vector3:
+							case BatchTagField.tfType.vector3:
 								Vector3Data dVector3Float32 = (Vector3Data)mf;
 								if (dVector3Float32.Name == wstf.name)
 								{
@@ -555,7 +565,7 @@ namespace Assembly.Windows
 									}
 								}
 								break;
-							case WSTagField.tfType.uint8:
+							case BatchTagField.tfType.uint8:
 								Uint8Data dUInt8 = (Uint8Data)mf;
 								if (dUInt8.Name == wstf.name)
 								{
@@ -567,7 +577,7 @@ namespace Assembly.Windows
 									}
 								}
 								break;
-							case WSTagField.tfType.uint32:
+							case BatchTagField.tfType.uint32:
 								Uint32Data dUInt32 = (Uint32Data)mf;
 								if (dUInt32.Name == wstf.name)
 								{
@@ -576,6 +586,18 @@ namespace Assembly.Windows
 									{
 										dirty = true;
 										dUInt32.Value = wstf.valUInt;
+									}
+								}
+								break;
+							case BatchTagField.tfType.int32:
+								Int32Data dInt32 = (Int32Data)mf;
+								if (dInt32.Name == wstf.name)
+								{
+									wstf.hits += 1;
+									if (dInt32.Value != wstf.valInt32)
+									{
+										dirty = true;
+										dInt32.Value = wstf.valInt32;
 									}
 								}
 								break;

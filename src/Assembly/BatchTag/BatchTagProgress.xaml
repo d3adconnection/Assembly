@@ -1,0 +1,73 @@
+﻿<Window x:Class="Assembly.Metro.Dialogs.ControlDialogs.BatchTag"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        x:Name="BatchTagProgressWindow"
+        xmlns:Vectors="clr-namespace:Assembly.Metro.Controls.Vectors"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:n="clr-namespace:Assembly.Helpers.Native"
+        AllowsTransparency="True" ResizeMode="NoResize" WindowStyle="None" WindowStartupLocation="CenterOwner"
+        SnapsToDevicePixels="True" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        Height="150"
+        Width="600"
+        ShowInTaskbar="False"
+        Title="Updater"
+        n:WindowMovement.IsDraggable="True">
+    <Window.Resources>
+        <Storyboard x:Key="ResizeWindowToUpdate">
+            <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="BatchTagProgress"
+			                               Storyboard.TargetProperty="(FrameworkElement.Height)">
+                <SplineDoubleKeyFrame KeyTime="00:00:00" Value="400" />
+                <SplineDoubleKeyFrame KeyTime="00:00:00.30" Value="150" />
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+    </Window.Resources>
+
+    <Border Background="#FF2E2E31" BorderThickness="1,1,1,23" BorderBrush="{DynamicResource ExtryzeAccentBrush}" RenderTransformOrigin="0.5,0.5" Margin="0,0,0,-45">
+        <Border.RenderTransform>
+            <TransformGroup>
+                <ScaleTransform/>
+                <SkewTransform AngleX="0.243"/>
+                <RotateTransform/>
+                <TranslateTransform X="0.318"/>
+            </TransformGroup>
+        </Border.RenderTransform>
+        <Grid>
+            <Path Style="{StaticResource AsmLogo}" Margin="6,6,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Height="34" Width="34" />
+
+            <Grid
+				x:Name="headerThumb"
+				Opacity="0"
+				Background="Transparent"
+				Margin="0,0,0,0" Height="53.5" VerticalAlignment="Top"
+				n:WindowMovement.DragsWindow="True" />
+
+            <Button x:Name="btnActionClose" ToolTip="Close" Width="34" Height="26" Margin="0"
+			        Style="{StaticResource WindowActionButton}" VerticalAlignment="Top" HorizontalAlignment="Right">
+                <Vectors:CloseModule Width="34" Height="26" />
+            </Button>
+
+            <TextBlock x:Name="lblTitle" IsHitTestVisible="False" Text="Batch Tag Template - Assembly" Foreground="#989898"
+			           VerticalAlignment="Top" HorizontalAlignment="Stretch" FontSize="15" Margin="45,12,34,0"
+			           FontFamily="{DynamicResource MetroFontLight}" TextTrimming="CharacterEllipsis" />
+
+            <Grid x:Name="MainBar">
+                <StackPanel Margin="30,60,0,0" VerticalAlignment="Top">
+                    <TextBlock x:Name="lblApplyingTemplate" Text="Applying templates to open map files..."
+					           Style="{DynamicResource GenericTextblock}" HorizontalAlignment="Left" />
+                    <ProgressBar x:Name="pbBatchTagProgress" Height="3" Minimum="0" Maximum="100" Margin="0,5,10,5"
+					             IsIndeterminate="True" />
+                </StackPanel>
+            </Grid>
+            <TextBox x:Name="txtMap" Margin="159,101,12,48" />
+            <TextBox x:Name="txtTag" Margin="159,132,12,17" />
+            <TextBlock x:Name="lblMap" Text="Map"
+                Style="{DynamicResource GenericTextblock}" HorizontalAlignment="Left" Margin="18,104,0,51" />
+            <TextBlock x:Name="lblTag" Text="Tag"
+                Style="{DynamicResource GenericTextblock}" HorizontalAlignment="Left" Margin="21,135,0,20" />
+            <ProgressBar x:Name="pbMap" Minimum="0" Maximum="100" Margin="55,110,450,57"
+                IsIndeterminate="True" />
+            <ProgressBar x:Name="pbTag" Minimum="0" Maximum="100" Margin="55,141,450,26"
+                IsIndeterminate="True" />
+        </Grid>
+    </Border>
+</Window>

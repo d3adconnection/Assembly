@@ -43,6 +43,7 @@
             this.pbMap.Size = new System.Drawing.Size(146, 20);
             this.pbMap.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
             this.pbMap.TabIndex = 0;
+            this.pbMap.Click += new System.EventHandler(this.pbMap_Click);
             // 
             // lblMap
             // 
