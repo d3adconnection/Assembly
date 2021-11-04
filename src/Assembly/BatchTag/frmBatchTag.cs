@@ -12,6 +12,8 @@ namespace Assembly
 {
     public partial class frmStatus : Form
     {
+        public delegate void UpdateMap(int mapIdx, int mapCnt, String mapMsg);
+        public delegate void UpdateTag(int tagIdx, int tagCnt, String tagMsg);
         public frmStatus()
         {
             InitializeComponent();
@@ -30,10 +32,13 @@ namespace Assembly
         }
         public void UpdateTagStatus(int tagIdx, int tagCnt, String tagMsg)
         {
+
             if (tagCnt != pbTag.Maximum) { pbTag.Maximum = tagCnt; }
             if (tagIdx != pbTag.Value) { pbTag.Value = tagIdx; pbTag.Refresh(); }
             if (tagMsg != null && tagMsg.CompareTo(txtTag.Text) != 0) { txtTag.Text = tagMsg; txtTag.Refresh(); }
         }
+
+
 
         private void pbMap_Click(object sender, EventArgs e)
         {

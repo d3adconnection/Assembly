@@ -808,12 +808,14 @@ namespace Assembly.Windows
 		/// <param name="status">Current Status of Assembly</param>
 		public void UpdateStatusText(string status)
 		{
-			Status.Text = status;
+			if (status == "") { status = "Ready."; }
+			Status.Text = DateTime.Now.ToString("h:mm tt") + ": " + status;
 
-			_statusUpdateTimer.Stop();
-			_statusUpdateTimer.Interval = new TimeSpan(0, 0, 0, 16);
-			_statusUpdateTimer.Tick += statusUpdateCleaner_Clear;
-			_statusUpdateTimer.Start();
+			// Leave last status always on
+			// _statusUpdateTimer.Stop();
+			// _statusUpdateTimer.Interval = new TimeSpan(0, 0, 0, 4);
+			// _statusUpdateTimer.Tick += statusUpdateCleaner_Clear;
+			// _statusUpdateTimer.Start();
 		}
 
 		private void statusUpdateCleaner_Clear(object sender, EventArgs e)

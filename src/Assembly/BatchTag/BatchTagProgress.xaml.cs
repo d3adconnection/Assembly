@@ -14,9 +14,6 @@ using XboxChaos.Models;
 
 namespace Assembly.Metro.Dialogs.ControlDialogs
 {
-	/// <summary>
-	///     Interaction logic for Updater.xaml
-	/// </summary>
 	public partial class BatchTagProgress
 	{
 

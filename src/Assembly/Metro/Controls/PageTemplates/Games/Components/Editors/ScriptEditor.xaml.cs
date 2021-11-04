@@ -230,7 +230,7 @@ namespace Assembly.Metro.Controls.PageTemplates.Games.Components.Editors
                             }
                         });
                         RefreshMeta();
-                        StatusUpdater.Update("Scripts saved");
+                        StatusUpdater.Update("Scripts saved.");
                     }
                 }
                 // Handle Parsing Errors.
@@ -242,7 +242,7 @@ namespace Assembly.Metro.Controls.PageTemplates.Games.Components.Editors
                     }
                     else
                     {
-                        MetroMessageBox.Show("Operation Canceled", opEx.Message);
+                        MetroMessageBox.Show("Operation cancelled!", opEx.Message);
                     }
 
                 }
@@ -273,7 +273,7 @@ namespace Assembly.Metro.Controls.PageTemplates.Games.Components.Editors
         {
             IEnumerable<ICompletionData> completionData = await Task.Run(() => GenerateStaticCompletionData());
             _staticCompletionData = completionData;
-            StatusUpdater.Update("Context Reloaded");
+            StatusUpdater.Update("Context reloaded.");
         }
 
         private async void EditorGotFocus(object sender, RoutedEventArgs e)
@@ -599,7 +599,7 @@ namespace Assembly.Metro.Controls.PageTemplates.Games.Components.Editors
                 if(haloMap != null)
                 {
                     haloMap.RefreshTags();
-                    StatusUpdater.Update("Meta Refreshed");
+                    StatusUpdater.Update("Meta refreshed.");
                     return;
                 }
                 else

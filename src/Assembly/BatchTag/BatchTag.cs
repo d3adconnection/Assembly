@@ -7,6 +7,7 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Globalization;
+using System.Media;
 using System.IO;
 using System.Linq;
 using System.Windows;
@@ -137,7 +138,8 @@ namespace Assembly.Windows
 			vector3 = 8,
 			uint32 = 9,
 			uint8 = 10,
-			int32 = 11
+			int32 = 11,
+			enum16 = 12
 		}
 
 		public static BatchTagField.tfType nameToEnum(String name)
@@ -156,6 +158,7 @@ namespace Assembly.Windows
 				case "uint8": return tfType.uint8;
 				case "uint32": return tfType.uint32;
 				case "int32": return tfType.int32;
+				case "enum16": return tfType.enum16;
 			}
 			return tfType.unknown;
 		}
@@ -176,6 +179,7 @@ namespace Assembly.Windows
 				case tfType.uint8: return "Uint8Data";
 				case tfType.uint32: return "Uint32Data";
 				case tfType.int32: return "Int32Data";
+				case tfType.enum16: return "Enum16Data";
 			}
 			return null;
 		}
@@ -234,6 +238,9 @@ namespace Assembly.Windows
 				case tfType.int32:
 					valInt32 = Int32.Parse(toks[3]);
 					break;
+				case tfType.enum16:
+					valInt = int.Parse(toks[3]);
+					break;
 				default:
 					break;
 			}
@@ -261,7 +268,7 @@ namespace Assembly.Windows
 
 		List<String> lstIssues = new List<String>();
 
-		private Dictionary<String, BatchTagGroup> loadWSSettings(HaloMap map)
+		private Dictionary<String, BatchTagGroup> loadBatchTagSettings(HaloMap map)
 		{
 			Dictionary<String, BatchTagGroup> tgDict = new Dictionary<string, BatchTagGroup>();
 
@@ -308,7 +315,7 @@ namespace Assembly.Windows
 			genPath = string.Format(OpenTemplateDialog.FileName);
 			frmStatus frmStat = new frmStatus();
 			frmStat.Show();
-			processTask(genPath, true, frmStat);
+			processTask(genPath, false, frmStat);
 		}
 
 		private void menuBatchTag_Folder_Click(object sender, RoutedEventArgs e)
@@ -330,6 +337,7 @@ namespace Assembly.Windows
 		}
 		private void processTask(string genPath, bool IsFolder, frmStatus frmStat)
         {
+			StatusUpdater.Update("Applying batch tag template...");
 			List<String> lstIssues = new List<String>();
 			
 			int mapCnt = 0;
@@ -351,13 +359,13 @@ namespace Assembly.Windows
 					string[] files = new string[] { };
 					if (IsFolder) { files = Directory.GetFiles(genPath, "*.txt"); }
                     else { files = new string[] { genPath }; }
-
+					
 					foreach (string file in files)
 					{
 						genFile = file;
 						if (System.IO.File.Exists(genFile))
 						{
-							Dictionary<String, BatchTagGroup> wsDict = loadWSSettings(map);
+							Dictionary<String, BatchTagGroup> wsDict = loadBatchTagSettings(map);
 							mapMsg = string.Format("({0}/{1}) {2} - Scanning Groups", mapIdx, mapCnt, map.GetCacheFile().InternalName);
 							frmStat.UpdateMapStatus(mapIdx, mapCnt, mapMsg);
 							foreach (TagGroup tg in map.tvTagList.Items)
@@ -400,6 +408,7 @@ namespace Assembly.Windows
 								}
 							}
 							foreach (BatchTagGroup wstg in wsDict.Values)
+
 							{
 								foreach (BatchTagEntry wste in wstg.entries.Values)
 								{
@@ -413,6 +422,7 @@ namespace Assembly.Windows
 								}
 
 							}
+							wsDict.Clear();
 						}
 					}
 				}
@@ -424,12 +434,18 @@ namespace Assembly.Windows
 				System.Text.StringBuilder sbIssues = new System.Text.StringBuilder();
 				foreach (String curIssue in lstIssues) { sbIssues.AppendLine(curIssue); }
 				Clipboard.SetText(sbIssues.ToString());
-				MetroMessageBox.Show("Process complete","Some tags could not be updated. Results have been copied to clipboard.");
+				System.Media.SystemSounds.Beep.Play();
+				//MetroMessageBox.Show("Process complete","Some tags could not be updated. Results have been copied to clipboard.");
+				StatusUpdater.Update("Some tags could not be updated. Results have been copied to clipboard.");
 			}
 			else
 			{
-				MetroMessageBox.Show("Process complete","All tags have been updated.");
+				System.Media.SystemSounds.Beep.Play();
+				//MetroMessageBox.Show("Process complete","All tags have been updated.");
+				StatusUpdater.Update("All tags have been updated successfully.");
 			}
+			lstIssues.Clear();
+			//GC.Collect();
 		}
 		private void processTagEntry(TagEntry te, BatchTagEntry wste,HaloMap map,List<string> lstIssues)
 		{
@@ -598,6 +614,18 @@ namespace Assembly.Windows
 									{
 										dirty = true;
 										dInt32.Value = wstf.valInt32;
+									}
+								}
+								break;
+							case BatchTagField.tfType.enum16:
+								EnumData dEnum16 = (EnumData)mf;
+								if (dEnum16.Name == wstf.name)
+								{
+									wstf.hits += 1;
+									if (dEnum16.Value != wstf.valInt)
+									{
+										dirty = true;
+										dEnum16.Value = wstf.valInt;
 									}
 								}
 								break;

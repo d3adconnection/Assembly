@@ -171,7 +171,7 @@ namespace Assembly.Metro.Controls.PageTemplates.Games
 
 						if (ex is NotSupportedException)
 						{
-							StatusUpdater.Update("Not a supported target engine");
+							StatusUpdater.Update("Not a supported target engine.");
 							MetroMessageBox.Show("Unable to open cache file",
 								ex.Message + ".\r\nMake sure your Assembly is up to date, otherwise try adding support in the 'Formats' folder.");
 						}
@@ -227,14 +227,14 @@ namespace Assembly.Metro.Controls.PageTemplates.Games
 						break;
 				}
 
-				Dispatcher.Invoke(new Action(() => StatusUpdater.Update("Loaded Cache File")));
+				Dispatcher.Invoke(new Action(() => StatusUpdater.Update("Loaded cache file.")));
 
 				// Add to Recents
 				Dispatcher.Invoke(new Action(delegate
 				{
 					RecentFiles.AddNewEntry(Path.GetFileName(_cacheLocation), _cacheLocation,
 						_buildInfo.Settings.GetSetting<string>("shortName"), Settings.RecentFileType.Cache);
-					StatusUpdater.Update("Added To Recents");
+					StatusUpdater.Update("Added to Recents.");
 				}));
 
 				App.AssemblyStorage.AssemblyNetworkPoke.Maps.Add(new Tuple<ICacheFile, IRTEProvider>(_cacheFile, _rteProvider));
@@ -362,7 +362,7 @@ namespace Assembly.Metro.Controls.PageTemplates.Games
 				}
 				Dispatcher.Invoke(new Action(() => panelHeaderItems.DataContext = HeaderDetails));
 
-				StatusUpdater.Update("Loaded Header Info");
+				StatusUpdater.Update("Loaded header info.");
 			}));
 		}
 
@@ -749,7 +749,7 @@ namespace Assembly.Metro.Controls.PageTemplates.Games
 			tag.TagFileName = newName;
 			tag.NotifyTooltipUpdate();
 
-			StatusUpdater.Update("Tag Renamed");
+			StatusUpdater.Update("Tag renamed.");
 		}
 
 		private void contextExtract_Click(object sender, RoutedEventArgs e)
@@ -2480,7 +2480,8 @@ namespace Assembly.Metro.Controls.PageTemplates.Games
 					((MetaContainer)tabItem.Content).ExternalSave();
 			}
 
-			//MetroMessageBox.Show("Tags Saved", "The changes have been saved back to the original file.");
+			//MetroMessageBox.Show("Tag Saved", "Changes on this tag have been saved.");
+			System.Media.SystemSounds.Beep.Play();
 			StatusUpdater.Update("Tag successfully saved!");
 		}
 

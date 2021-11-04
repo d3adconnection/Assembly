@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
+using System.Media;
 using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
@@ -265,10 +266,15 @@ namespace Assembly.Metro.Controls.PageTemplates.Games.Components
 
 						//if (showActionDialog)
 						//{
-							if (onlyUpdateChanged)
-								StatusUpdater.Update("Tag changes successfully poked to memory!");
+						if (onlyUpdateChanged)
+						{
+							StatusUpdater.Update("Tag changes successfully poked to memory!");
+						}
 						else
-								StatusUpdater.Update("Tag successfully saved!");
+						{
+							StatusUpdater.Update("Tag successfully saved!");
+							System.Media.SystemSounds.Beep.Play();
+						}
 						//}
 					}
 					else
