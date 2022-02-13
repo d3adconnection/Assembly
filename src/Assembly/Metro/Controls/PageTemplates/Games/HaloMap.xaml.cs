@@ -169,16 +169,31 @@ namespace Assembly.Metro.Controls.PageTemplates.Games
 					Dispatcher.Invoke(new Action(delegate
 					{
 
-						if (ex is NotSupportedException)
+						reader.SeekTo(0x00);
+						if (reader.ReadUInt32() != 1836017764)//check for secret sauce
 						{
-							StatusUpdater.Update("Not a supported target engine.");
-							MetroMessageBox.Show("Unable to open cache file",
-								ex.Message + ".\r\nMake sure your Assembly is up to date, otherwise try adding support in the 'Formats' folder.");
+							if (ex is NotSupportedException)
+							{
+								StatusUpdater.Update("Not a supported target engine");
+								MetroMessageBox.Show("Unable to open cache file",
+									ex.Message + ".\r\nMake sure your Assembly is up to date, otherwise try adding support in the 'Formats' folder.");
+							}
+							else
+							{
+								StatusUpdater.Update("An unknown error occured. Cache file may be corrupted.");
+								throw ex;
+							}
 						}
 						else
 						{
-							StatusUpdater.Update("An unknown error occured. Cache file may be corrupted.");
-							throw ex;
+							if (_0xabad1dea.IWff.Play())
+								StatusUpdater.Update("Opening Module File...");
+							else
+							{
+								StatusUpdater.Update("Not a supported target engine");
+								MetroMessageBox.Show("Unable to open module file",
+									"Module files are not supported.");
+							}
 						}
 
 						App.AssemblyStorage.AssemblySettings.HomeWindow.ExternalTabClose(_tab);
@@ -227,14 +242,14 @@ namespace Assembly.Metro.Controls.PageTemplates.Games
 						break;
 				}
 
-				Dispatcher.Invoke(new Action(() => StatusUpdater.Update("Loaded cache file.")));
+				Dispatcher.Invoke(new Action(() => StatusUpdater.Update("Loaded Cache File")));
 
 				// Add to Recents
 				Dispatcher.Invoke(new Action(delegate
 				{
 					RecentFiles.AddNewEntry(Path.GetFileName(_cacheLocation), _cacheLocation,
 						_buildInfo.Settings.GetSetting<string>("shortName"), Settings.RecentFileType.Cache);
-					StatusUpdater.Update("Added to Recents.");
+					StatusUpdater.Update("Added To Recents");
 				}));
 
 				App.AssemblyStorage.AssemblyNetworkPoke.Maps.Add(new Tuple<ICacheFile, IRTEProvider>(_cacheFile, _rteProvider));
@@ -362,7 +377,7 @@ namespace Assembly.Metro.Controls.PageTemplates.Games
 				}
 				Dispatcher.Invoke(new Action(() => panelHeaderItems.DataContext = HeaderDetails));
 
-				StatusUpdater.Update("Loaded header info.");
+				StatusUpdater.Update("Loaded Header Info");
 			}));
 		}
 
@@ -482,7 +497,7 @@ namespace Assembly.Metro.Controls.PageTemplates.Games
 			Dispatcher.Invoke(new Action(delegate
 			{
 				lbLanguages.ItemsSource = _languages;
-				StatusUpdater.Update("Initialized languages.");
+				StatusUpdater.Update("Initialized Languages");
 			}));
 		}
 
@@ -495,7 +510,7 @@ namespace Assembly.Metro.Controls.PageTemplates.Games
 			{
 				tabScripts.Visibility = Visibility.Visible;
 				lbScripts.ItemsSource = _cacheFile.ScriptFiles;
-				StatusUpdater.Update("Initialized scripts.");
+				StatusUpdater.Update("Initialized Scripts");
 			}
 				));
 		}
@@ -749,7 +764,7 @@ namespace Assembly.Metro.Controls.PageTemplates.Games
 			tag.TagFileName = newName;
 			tag.NotifyTooltipUpdate();
 
-			StatusUpdater.Update("Tag renamed.");
+			StatusUpdater.Update("Tag Renamed");
 		}
 
 		private void contextExtract_Click(object sender, RoutedEventArgs e)
@@ -2480,9 +2495,7 @@ namespace Assembly.Metro.Controls.PageTemplates.Games
 					((MetaContainer)tabItem.Content).ExternalSave();
 			}
 
-			//MetroMessageBox.Show("Tag Saved", "Changes on this tag have been saved.");
-			System.Media.SystemSounds.Beep.Play();
-			StatusUpdater.Update("Tag successfully saved!");
+			MetroMessageBox.Show("Tags Saved", "The changes have been saved back to the original file.");
 		}
 
 		private void SIDFreeButton_Click(object sender, RoutedEventArgs e)
