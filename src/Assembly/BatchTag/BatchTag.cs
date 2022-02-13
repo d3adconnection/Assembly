@@ -312,6 +312,7 @@ namespace Assembly.Windows
 			};
 
 			if (!(bool)OpenTemplateDialog.ShowDialog(this)) return;
+			StatusUpdater.Update("Applying batch tag template...");
 			genPath = string.Format(OpenTemplateDialog.FileName);
 			frmStatus frmStat = new frmStatus();
 			frmStat.Show();
@@ -330,6 +331,7 @@ namespace Assembly.Windows
 			};
 
 			if (!(OpenTemplateDialog.ShowDialog() == CommonFileDialogResult.Ok)) return;
+			StatusUpdater.Update("Applying batch tag template...");
 			genPath = string.Format(OpenTemplateDialog.FileName);
 			frmStatus frmStat = new frmStatus();
 			frmStat.Show();
@@ -337,7 +339,6 @@ namespace Assembly.Windows
 		}
 		private void processTask(string genPath, bool IsFolder, frmStatus frmStat)
         {
-			StatusUpdater.Update("Applying batch tag template...");
 			List<String> lstIssues = new List<String>();
 			
 			int mapCnt = 0;
