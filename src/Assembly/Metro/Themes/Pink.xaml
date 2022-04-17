@@ -1,9 +1,9 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
-	<SolidColorBrush x:Key="ExtryzeAccentBrush" x:Name="ExtryzeAccentBrush" Color="#F472D0" />
-	<SolidColorBrush x:Key="ExtryzeAccentBrushSecondary" x:Name="ExtryzeAccentBrushSecondary" Color="#DB66BB" />
+    <SolidColorBrush x:Key="ExtryzeAccentBrush" x:Name="ExtryzeAccentBrush" Color="#FF009F" />
+    <SolidColorBrush x:Key="ExtryzeAccentBrushSecondary" x:Name="ExtryzeAccentBrushSecondary" Color="#F472D0" />
 
-	<Color x:Key="ExtryzeAccentBrushColour" A="#FF" R="#F4" G="#72" B="#D0" />
-	<Color x:Key="ExtryzeAccentBrushColourSecondary" A="#FF" R="#DB" G="#66" B="#BB" />
+	<Color x:Key="ExtryzeAccentBrushColour" A="#FF" R="#FF" G="#00" B="#9F" />
+	<Color x:Key="ExtryzeAccentBrushColourSecondary" A="#FF" R="#F4" G="#72" B="#D0" />
 </ResourceDictionary>
