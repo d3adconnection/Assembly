@@ -3,59 +3,60 @@
 
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
+// using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Diagnostics;
-using System.Globalization;
-using System.Media;
+/* using System.Globalization;
+using System.Media; */
 using System.IO;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Input;
+/* using System.Windows.Input;
 using System.Xml;
-using Assembly.Helpers;
+using Assembly.Helpers; */
 using Assembly.Metro.Controls.PageTemplates.Games.Components;
-using Assembly.Metro.Controls.PageTemplates.Games.Components.Editors;
+// using Assembly.Metro.Controls.PageTemplates.Games.Components.Editors;
 using Assembly.Metro.Controls.PageTemplates.Games.Components.MetaData;
-using Assembly.Metro.Dialogs;
-using Assembly.Windows;
+/*using Assembly.Metro.Dialogs;
+using Assembly.Windows; */
 using Xceed.Wpf.AvalonDock.Layout;
 using Blamite.Blam;
-using Blamite.Blam.Localization;
+/* using Blamite.Blam.Localization;
 using Blamite.Blam.Resources;
-using Blamite.Blam.Scripting;
+using Blamite.Blam.Scripting; */
 using Blamite.Serialization;
 using Blamite.Injection;
 using Blamite.IO;
-using Blamite.Plugins;
+/* using Blamite.Plugins;
 using Blamite.RTE;
 //using Blamite.RTE.H2Vista;
-using Blamite.Util;
+using Blamite.Util; */
 using CloseableTabItemDemo;
 using Microsoft.Win32;
-using Newtonsoft.Json;
+/* using Newtonsoft.Json;
 using XBDMCommunicator;
 using Blamite.Blam.ThirdGen;
 //using Blamite.RTE.MCC;
 using System.Runtime.InteropServices;
-using System.Threading;
+using System.Threading; */
 using System.Threading.Tasks;
-using System.Windows.Controls.Primitives;
+/* using System.Windows.Controls.Primitives;
 using System.Windows.Interop;
-using System.Windows.Resources;
+using System.Windows.Resources; */
 using System.Windows.Threading;
-using Assembly.Helpers.Native;
+/* using Assembly.Helpers.Native;
 using Assembly.Helpers.Net;
-using Assembly.Metro.Controls.PageTemplates;
+using Assembly.Metro.Controls.PageTemplates; */
 using Assembly.Helpers.Plugins;
 using Assembly.Metro.Controls.PageTemplates.Games;
-using Assembly.Metro.Controls.PageTemplates.Tools;
+/* using Assembly.Metro.Controls.PageTemplates.Tools;
 using Assembly.Metro.Controls.PageTemplates.Tools.Halo4;
 using XboxChaos.Models;
 using Xceed.Wpf.AvalonDock.Controls;
 using Assembly.Helpers.Net.Sockets;
 using Blamite.Blam.ThirdGen.Structures;
+*/
 using Microsoft.WindowsAPICodePack.Dialogs;
 
 namespace Assembly.Windows
@@ -126,39 +127,41 @@ namespace Assembly.Windows
 		public string valString;
 		public enum tfType : int
 		{
-			unknown = -1,
-			float32 = 0,
-			flags32 = 1,
-			int16 = 2,
-			enum8 = 3,
-			rangeFloat32 = 4,
-			ranged = 5,
-			stringid = 6,
-			degree = 7,
-			vector3 = 8,
-			uint32 = 9,
-			uint8 = 10,
-			int32 = 11,
-			enum16 = 12
+			unknown      = -1,
+			float32      = 0,
+			flags32      = 1,
+			int8         = 2,
+			int16        = 3,
+			enum8        = 4,
+			rangeFloat32 = 5,
+			ranged		 = 6,
+			stringid     = 7,
+			degree       = 8,
+			vector3      = 9,
+			uint32       = 10,
+			uint8        = 11,
+			int32        = 12,
+			enum16       = 13
 		}
 
 		public static BatchTagField.tfType nameToEnum(String name)
 		{
 			switch (name)
 			{
-				case "float32": return tfType.float32;
-				case "flags32": return tfType.flags32;
-				case "int16": return tfType.int16;
-				case "enum8": return tfType.enum8;
-				case "rangef": return tfType.rangeFloat32;
-				case "ranged": return tfType.ranged;
+				case "float32":  return tfType.float32;
+				case "flags32":  return tfType.flags32;
+				case "int8":     return tfType.int8;
+				case "int16":    return tfType.int16;
+				case "int32":    return tfType.int32;
+				case "enum8":    return tfType.enum8;
+				case "enum16":   return tfType.enum16;
+				case "rangef":   return tfType.rangeFloat32;
+				case "ranged":   return tfType.ranged;
 				case "stringid": return tfType.stringid;
-				case "degree": return tfType.degree;
-				case "vector3": return tfType.vector3;
-				case "uint8": return tfType.uint8;
-				case "uint32": return tfType.uint32;
-				case "int32": return tfType.int32;
-				case "enum16": return tfType.enum16;
+				case "degree":   return tfType.degree;
+				case "vector3":  return tfType.vector3;
+				case "uint8":    return tfType.uint8;
+				case "uint32":   return tfType.uint32;
 			}
 			return tfType.unknown;
 		}
@@ -167,19 +170,20 @@ namespace Assembly.Windows
 		{
 			switch (fldType)
 			{
-				case tfType.float32: return "Float32Data";
-				case tfType.flags32: return "FlagData";
-				case tfType.int16: return "Int16Data";
-				case tfType.enum8: return "EnumData";
+				case tfType.float32:      return "Float32Data";
+				case tfType.flags32:      return "FlagData";
+				case tfType.int8:         return "Int8Data";
+				case tfType.int16:        return "Int16Data";
+				case tfType.int32:        return "Int32Data";
+				case tfType.enum8:        return "EnumData";
+				case tfType.enum16:       return "Enum16Data";
 				case tfType.rangeFloat32: return "RangeFloat32Data";
-				case tfType.ranged: return "RangeDegreeData";
-				case tfType.stringid: return "StringIDData";
-				case tfType.degree: return "DegreeData";
-				case tfType.vector3: return "Vector3Data";
-				case tfType.uint8: return "Uint8Data";
-				case tfType.uint32: return "Uint32Data";
-				case tfType.int32: return "Int32Data";
-				case tfType.enum16: return "Enum16Data";
+				case tfType.ranged:       return "RangeDegreeData";
+				case tfType.stringid:     return "StringIDData";
+				case tfType.degree:       return "DegreeData";
+				case tfType.vector3:      return "Vector3Data";
+				case tfType.uint8:        return "Uint8Data";
+				case tfType.uint32:       return "Uint32Data";
 			}
 			return null;
 		}
@@ -202,6 +206,9 @@ namespace Assembly.Windows
 				case tfType.ranged:
 					valFloatMin = float.Parse(toks[3]);
 					valFloatMax = float.Parse(toks[4]);
+					break;
+				case tfType.int8:
+					valInt = int.Parse(toks[3]);
 					break;
 				case tfType.int16:
 					valInt = int.Parse(toks[3]);
@@ -248,11 +255,11 @@ namespace Assembly.Windows
 
 		public BatchTagField(BatchTagField tf)
 		{
-			fldType = tf.fldType;
-			line = tf.line;
-			name = tf.name;
-			valFloat = tf.valFloat;
-			valInt = tf.valInt;
+			fldType     = tf.fldType;
+			line        = tf.line;
+			name        = tf.name;
+			valFloat    = tf.valFloat;
+			valInt      = tf.valInt;
 			valFlagType = tf.valFlagType;
 		}
 
@@ -448,7 +455,7 @@ namespace Assembly.Windows
 			lstIssues.Clear();
 			//GC.Collect();
 		}
-		private void processTagEntry(TagEntry te, BatchTagEntry wste,HaloMap map,List<string> lstIssues)
+		private void processTagEntry(TagEntry te, BatchTagEntry wste, HaloMap map, List<string> lstIssues)
 		{
 			map.CreateTag(te);
 			CloseableTabItem cti = (CloseableTabItem)map.contentTabs.SelectedItem;
@@ -464,9 +471,9 @@ namespace Assembly.Windows
 					mf = ((WrappedTagBlockEntry)mf).WrappedField;
 				}
 				BatchTagField wstf = null;
-				if (wste.fields.TryGetValue(mf.PluginLine,out wstf))
+				if (wste.fields.TryGetValue(mf.PluginLine, out wstf))
 				{
-					if (wstf.getFldTypeName()==mf.GetType().Name)
+					if (wstf.getFldTypeName() == mf.GetType().Name)
 					{
 						switch (wstf.fldType)
 						{
@@ -517,6 +524,18 @@ namespace Assembly.Windows
 									{
 										dirty = true;
 										dFlag.Bits.ElementAt(wstf.valInt).IsSet = wstf.valFlagType;
+									}
+								}
+								break;
+							case BatchTagField.tfType.int8:
+								Int8Data dInt8 = (Int8Data)mf;
+								if (dInt8.Name == wstf.name)
+								{
+									wstf.hits += 1;
+									if (dInt8.Value != wstf.valInt)
+									{
+										dirty = true;
+										dInt8.Value = (sbyte)wstf.valInt;
 									}
 								}
 								break;
@@ -614,7 +633,7 @@ namespace Assembly.Windows
 									if (dInt32.Value != wstf.valInt32)
 									{
 										dirty = true;
-										dInt32.Value = wstf.valInt32;
+										dInt32.Value = (short)wstf.valInt32;
 									}
 								}
 								break;
@@ -637,13 +656,13 @@ namespace Assembly.Windows
 			}
 			if (dirty) {
 				Debug.Print("Updated [" + te.GroupName + "]:" + te.TagFileName + ".");
-				me.PublicSave(); 
+				me.PublicSave();
 			}
 			RaiseEvent(new RoutedEventArgs(CloseableTabItem.CloseTabEvent, cti));
 			map.contentTabs.Items.Remove(cti);
 		}
 
-		private class PathProcess
+	private class PathProcess
 		{
 			public enum ppStatus : int
 			{

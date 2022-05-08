@@ -875,8 +875,8 @@ Unlike creation effect, it is only played when the object spawns in through cert
 	<tagref name="Assassination Primary Damage" offset="0x4AC" visible="true" />
 	<tagref name="Assassination Ragdoll Damage" offset="0x4BC" visible="true" />
 	<enum16 name="Motion Sensor Blip Size" offset="0x4CC" visible="true">
-		<option name="Medium" value="0x0" />
-		<option name="Small" value="0x1" />
+		<option name="Small" value="0x0" />
+		<option name="Medium" value="0x1" />
 		<option name="Large" value="0x2" />
 	</enum16>
 	<enum16 name="Item Owner Size" offset="0x4CE" visible="true">

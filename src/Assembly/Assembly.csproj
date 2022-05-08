@@ -527,9 +527,6 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="BatchTag\BatchTagProgress.xaml.cs">
-      <DependentUpon>BatchTagProgress.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Helpers\0xabad1dea.cs" />
     <Compile Include="Helpers\AssemblyProtocol.cs" />
     <Compile Include="Helpers\CodeCompletion\Scripting\CompletionBase.cs" />
@@ -949,10 +946,6 @@
       <DependentUpon>Home.xaml</DependentUpon>
     </Compile>
     <Compile Include="Windows\StatusUpdater.cs" />
-    <Page Include="BatchTag\BatchTagProgress.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
     <Page Include="Helpers\0xabad1dea\DingDong.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

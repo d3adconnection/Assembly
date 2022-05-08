@@ -44,5 +44,10 @@ namespace Assembly
         {
 
         }
+
+        private void lblMap_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
