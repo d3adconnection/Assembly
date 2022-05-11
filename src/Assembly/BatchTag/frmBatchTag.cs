@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Windows.Threading;
 
 namespace Assembly
 {
@@ -24,22 +25,21 @@ namespace Assembly
 
         }
 
-        public void UpdateMapStatus(int mapIdx, int mapCnt, String mapMsg)
+        public async void UpdateMapStatus(int mapIdx, int mapCnt, String mapMsg)
         {
             if (mapCnt != pbMap.Maximum) { pbMap.Maximum = mapCnt; }
             if (mapIdx != pbMap.Value) { pbMap.Value = mapIdx; pbMap.Refresh(); }
             if (mapMsg != null && mapMsg.CompareTo(txtMap.Text) != 0) { txtMap.Text = mapMsg; txtMap.Refresh(); }
+            await Dispatcher.Yield();
         }
-        public void UpdateTagStatus(int tagIdx, int tagCnt, String tagMsg)
+        public async void UpdateTagStatus(int tagIdx, int tagCnt, String tagMsg)
         {
 
             if (tagCnt != pbTag.Maximum) { pbTag.Maximum = tagCnt; }
             if (tagIdx != pbTag.Value) { pbTag.Value = tagIdx; pbTag.Refresh(); }
             if (tagMsg != null && tagMsg.CompareTo(txtTag.Text) != 0) { txtTag.Text = tagMsg; txtTag.Refresh(); }
+            await Dispatcher.Yield();
         }
-
-
-
         private void pbMap_Click(object sender, EventArgs e)
         {
 

@@ -3,60 +3,59 @@
 
 using System;
 using System.Collections.Generic;
-// using System.Collections.ObjectModel;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Diagnostics;
-/* using System.Globalization;
-using System.Media; */
+using System.Globalization;
+using System.Media;
 using System.IO;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
-/* using System.Windows.Input;
+using System.Windows.Input;
 using System.Xml;
-using Assembly.Helpers; */
+using Assembly.Helpers;
 using Assembly.Metro.Controls.PageTemplates.Games.Components;
-// using Assembly.Metro.Controls.PageTemplates.Games.Components.Editors;
+using Assembly.Metro.Controls.PageTemplates.Games.Components.Editors;
 using Assembly.Metro.Controls.PageTemplates.Games.Components.MetaData;
-/*using Assembly.Metro.Dialogs;
-using Assembly.Windows; */
+using Assembly.Metro.Dialogs;
+using Assembly.Windows;
 using Xceed.Wpf.AvalonDock.Layout;
 using Blamite.Blam;
-/* using Blamite.Blam.Localization;
+using Blamite.Blam.Localization;
 using Blamite.Blam.Resources;
-using Blamite.Blam.Scripting; */
+using Blamite.Blam.Scripting;
 using Blamite.Serialization;
 using Blamite.Injection;
 using Blamite.IO;
-/* using Blamite.Plugins;
+using Blamite.Plugins;
 using Blamite.RTE;
 //using Blamite.RTE.H2Vista;
-using Blamite.Util; */
+using Blamite.Util;
 using CloseableTabItemDemo;
 using Microsoft.Win32;
-/* using Newtonsoft.Json;
+using Newtonsoft.Json;
 using XBDMCommunicator;
 using Blamite.Blam.ThirdGen;
 //using Blamite.RTE.MCC;
 using System.Runtime.InteropServices;
-using System.Threading; */
+using System.Threading;
 using System.Threading.Tasks;
-/* using System.Windows.Controls.Primitives;
+using System.Windows.Controls.Primitives;
 using System.Windows.Interop;
-using System.Windows.Resources; */
+using System.Windows.Resources;
 using System.Windows.Threading;
-/* using Assembly.Helpers.Native;
+using Assembly.Helpers.Native;
 using Assembly.Helpers.Net;
-using Assembly.Metro.Controls.PageTemplates; */
+using Assembly.Metro.Controls.PageTemplates;
 using Assembly.Helpers.Plugins;
 using Assembly.Metro.Controls.PageTemplates.Games;
-/* using Assembly.Metro.Controls.PageTemplates.Tools;
+using Assembly.Metro.Controls.PageTemplates.Tools;
 using Assembly.Metro.Controls.PageTemplates.Tools.Halo4;
 using XboxChaos.Models;
 using Xceed.Wpf.AvalonDock.Controls;
 using Assembly.Helpers.Net.Sockets;
 using Blamite.Blam.ThirdGen.Structures;
-*/
 using Microsoft.WindowsAPICodePack.Dialogs;
 
 namespace Assembly.Windows
@@ -344,7 +343,7 @@ namespace Assembly.Windows
 			frmStat.Show();
 			processTask(genPath, true, frmStat);
 		}
-		private void processTask(string genPath, bool IsFolder, frmStatus frmStat)
+		private async void processTask(string genPath, bool IsFolder, frmStatus frmStat)
         {
 			List<String> lstIssues = new List<String>();
 			
@@ -403,6 +402,7 @@ namespace Assembly.Windows
 												}
 												prefPos = te.TagFileName.IndexOf('\\', prefPos);
 												if (prefPos > 0) prefPos++;
+												await Dispatcher.Yield();
 											}
 										}
 										if (wste != null)
@@ -411,12 +411,12 @@ namespace Assembly.Windows
 											frmStat.UpdateTagStatus(tagIdx, tagCnt, tagMsg);
 											processTagEntry(te, wste, map, lstIssues);
 										}
+										await Dispatcher.Yield();
 									}
 
 								}
 							}
 							foreach (BatchTagGroup wstg in wsDict.Values)
-
 							{
 								foreach (BatchTagEntry wste in wstg.entries.Values)
 								{
@@ -426,15 +426,21 @@ namespace Assembly.Windows
 										{
 											lstIssues.Add(string.Format("No hits for [{0}]{1}: ({2}) \"{3}\"", wstg.name, wste.name, wstf.line, wstf.name));
 										}
+										await Dispatcher.Yield();
 									}
+									await Dispatcher.Yield();
 								}
-
+								await Dispatcher.Yield();
 							}
+							await Dispatcher.Yield();
 							wsDict.Clear();
 						}
+						await Dispatcher.Yield();
 					}
 				}
+				await Dispatcher.Yield();
 			}
+			await Dispatcher.Yield();
 			frmStat.Close();
 
 			if (lstIssues.Count > 0)
@@ -455,7 +461,7 @@ namespace Assembly.Windows
 			lstIssues.Clear();
 			//GC.Collect();
 		}
-		private void processTagEntry(TagEntry te, BatchTagEntry wste, HaloMap map, List<string> lstIssues)
+		private void processTagEntry(TagEntry te, BatchTagEntry wste,HaloMap map,List<string> lstIssues)
 		{
 			map.CreateTag(te);
 			CloseableTabItem cti = (CloseableTabItem)map.contentTabs.SelectedItem;
@@ -471,9 +477,9 @@ namespace Assembly.Windows
 					mf = ((WrappedTagBlockEntry)mf).WrappedField;
 				}
 				BatchTagField wstf = null;
-				if (wste.fields.TryGetValue(mf.PluginLine, out wstf))
+				if (wste.fields.TryGetValue(mf.PluginLine,out wstf))
 				{
-					if (wstf.getFldTypeName() == mf.GetType().Name)
+					if (wstf.getFldTypeName()==mf.GetType().Name)
 					{
 						switch (wstf.fldType)
 						{
@@ -656,13 +662,13 @@ namespace Assembly.Windows
 			}
 			if (dirty) {
 				Debug.Print("Updated [" + te.GroupName + "]:" + te.TagFileName + ".");
-				me.PublicSave();
+				me.PublicSave(); 
 			}
 			RaiseEvent(new RoutedEventArgs(CloseableTabItem.CloseTabEvent, cti));
 			map.contentTabs.Items.Remove(cti);
 		}
 
-	private class PathProcess
+		private class PathProcess
 		{
 			public enum ppStatus : int
 			{

@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmStatus));
             this.pbMap = new System.Windows.Forms.ProgressBar();
             this.pbTag = new System.Windows.Forms.ProgressBar();
             this.txtMap = new System.Windows.Forms.TextBox();
@@ -95,11 +96,13 @@
             this.Controls.Add(this.pbMap);
             this.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ForeColor = System.Drawing.SystemColors.ControlDark;
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frmStatus";
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Applying template to open maps...";
+            this.TopMost = true;
             this.UseWaitCursor = true;
             this.Load += new System.EventHandler(this.frmStatus_Load);
             this.ResumeLayout(false);
