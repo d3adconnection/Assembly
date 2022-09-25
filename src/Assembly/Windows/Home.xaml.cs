@@ -43,7 +43,7 @@ namespace Assembly.Windows
 			DwmDropShadow.DropShadowToWindow(this);
 
 			UpdateTitleText("");
-			UpdateStatusText("");
+			UpdateStatusText("Ready...");
 
 			//Window_StateChanged(null, null);
 			ClearTabs();
@@ -809,19 +809,17 @@ namespace Assembly.Windows
 		/// <param name="status">Current Status of Assembly</param>
 		public void UpdateStatusText(string status)
 		{
-			if (status == "") { status = "Ready."; }
-			Status.Text = DateTime.Now.ToString("h:mm tt") + ": " + status;
+			Status.Text = status;
 
-			// Leave last status always on
-			// _statusUpdateTimer.Stop();
-			// _statusUpdateTimer.Interval = new TimeSpan(0, 0, 0, 4);
-			// _statusUpdateTimer.Tick += statusUpdateCleaner_Clear;
-			// _statusUpdateTimer.Start();
+			_statusUpdateTimer.Stop();
+			_statusUpdateTimer.Interval = new TimeSpan(0, 0, 0, 4);
+			_statusUpdateTimer.Tick += statusUpdateCleaner_Clear;
+			_statusUpdateTimer.Start();
 		}
 
 		private void statusUpdateCleaner_Clear(object sender, EventArgs e)
 		{
-			Status.Text = "";
+			Status.Text = "Ready...";
 		}
 
 		#endregion
@@ -945,12 +943,11 @@ namespace Assembly.Windows
 
 		private void Window_Loaded(object sender, RoutedEventArgs e)
 		{
-			/*if (!App.AssemblyStorage.AssemblySettings.ShownCheatingDialog)
+			if (!App.AssemblyStorage.AssemblySettings.ShownCheatingDialog)
 			{
 				ShowCheatingDialog();
 				App.AssemblyStorage.AssemblySettings.ShownCheatingDialog = true;
 			}
-			No one's going to be cheating in this dojo */
 		}
 	}
 }

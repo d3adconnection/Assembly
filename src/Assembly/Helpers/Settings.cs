@@ -139,7 +139,7 @@ namespace Assembly.Helpers
 		private double _applicationSizeHeight = 600;
 		private bool _applicationSizeMaximize;
 		private double _applicationSizeWidth = 1100;
-		private bool _applicationUpdateOnStartup = false;
+		private bool _applicationUpdateOnStartup = true;
 		private bool _defaultAmp;
 		private bool _defaultBlf;
 		private EngineDatabase _defaultDatabase = XMLEngineDatabaseLoader.LoadDatabase("Formats/Engines.xml");
@@ -191,7 +191,6 @@ namespace Assembly.Helpers
 		public enum Accents
 		{
 			Blue,
-			Pink,
 			Purple,
 			Orange,
 			Green

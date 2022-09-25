@@ -42,7 +42,7 @@
     <RestorePackages>true</RestorePackages>
     <StartupObject>Assembly.App</StartupObject>
     <ApplicationManifest>Properties\app.manifest</ApplicationManifest>
-    <ApplicationIcon>Metro\Images\app_icon_large_pink.ico</ApplicationIcon>
+    <ApplicationIcon>Metro\Images\app_icon_large.ico</ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
     <DebugSymbols>true</DebugSymbols>
@@ -82,7 +82,7 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
-    <OutputPath>..\..\bin\</OutputPath>
+    <OutputPath>bin\x64\Release\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <Optimize>true</Optimize>
@@ -452,10 +452,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <EmbeddedResource Include="SyntaxHighlighting\BlamScriptSolarized.xshd" />
-    <EmbeddedResource Include="BatchTag\frmBatchTag.resx">
-      <DependentUpon>frmBatchTag.cs</DependentUpon>
+    <EmbeddedResource Include="WalkingSim\frmWalkingSim.resx">
+      <DependentUpon>frmWalkingSim.cs</DependentUpon>
     </EmbeddedResource>
-    <None Include="SyntaxHighlighting\XMLPink.xshd" />
     <Reference Include="Antlr4.Runtime.Standard, Version=4.8.0.0, Culture=neutral, PublicKeyToken=e78b2c5abd1fcb3f, processorArchitecture=MSIL">
       <HintPath>..\packages\Antlr4.Runtime.Standard.4.8.0\lib\net35\Antlr4.Runtime.Standard.dll</HintPath>
       <LibZ>True</LibZ>
@@ -464,21 +463,12 @@
       <HintPath>..\packages\AvalonEdit.6.0.1\lib\net45\ICSharpCode.AvalonEdit.dll</HintPath>
       <LibZ>True</LibZ>
     </Reference>
-    <Reference Include="Microsoft.WindowsAPICodePack, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.WindowsAPICodePack-Core.1.1.0.0\lib\Microsoft.WindowsAPICodePack.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.WindowsAPICodePack.Shell, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.WindowsAPICodePack-Shell.1.1.0.0\lib\Microsoft.WindowsAPICodePack.Shell.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.WindowsAPICodePack.ShellExtensions, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.WindowsAPICodePack-Shell.1.1.0.0\lib\Microsoft.WindowsAPICodePack.ShellExtensions.dll</HintPath>
-    </Reference>
     <Reference Include="Mono.Nat, Version=1.2.24.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Mono.Nat.1.2.24.0\lib\net40\Mono.Nat.dll</HintPath>
       <LibZ>True</LibZ>
     </Reference>
-    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.6.0.7\lib\net45\Newtonsoft.Json.dll</HintPath>
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.13.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
       <LibZ>True</LibZ>
     </Reference>
     <Reference Include="PresentationFramework.Aero" />
@@ -771,29 +761,8 @@
     <Compile Include="Metro\Controls\TabReorg\DraggedAdorner.cs" />
     <Compile Include="Metro\Controls\TabReorg\InsertionAdorner.cs" />
     <Compile Include="Metro\Controls\TabReorg\Utilities.cs" />
-    <Compile Include="Metro\Controls\Vectors\ExportModule.xaml.cs">
-      <DependentUpon>ExportModule.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Metro\Controls\Vectors\FreezeModule.xaml.cs">
-      <DependentUpon>FreezeModule.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Metro\Controls\Vectors\ImportModule.xaml.cs">
-      <DependentUpon>ImportModule.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Metro\Controls\Vectors\PinModule.xaml.cs">
       <DependentUpon>PinModule.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Metro\Controls\Vectors\PokeModule.xaml.cs">
-      <DependentUpon>PokeModule.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Metro\Controls\Vectors\RebootVector.xaml.cs">
-      <DependentUpon>RebootVector.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Metro\Controls\Vectors\ScreenshotModule.xaml.cs">
-      <DependentUpon>ScreenshotModule.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Metro\Controls\Vectors\UnFreezeModule.xaml.cs">
-      <DependentUpon>UnFreezeModule.xaml</DependentUpon>
     </Compile>
     <Compile Include="Metro\Controls\WPFTreeView\MetroTreeView.cs" />
     <Compile Include="Metro\Controls\WPFTreeView\MetroTreeViewItem.cs" />
@@ -935,13 +904,13 @@
     <Compile Include="Helpers\PostGeneration\AssemblyPostGenerator.cs" />
     <Compile Include="Helpers\PostGeneration\ModPostInfo.cs" />
     <Compile Include="SyntaxHighlighting\HighlightLoader.cs" />
-    <Compile Include="BatchTag\frmBatchTag.cs">
+    <Compile Include="WalkingSim\frmWalkingSim.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="BatchTag\frmBatchTag.Designer.cs">
-      <DependentUpon>frmBatchTag.cs</DependentUpon>
+    <Compile Include="WalkingSim\frmWalkingSim.Designer.cs">
+      <DependentUpon>frmWalkingSim.cs</DependentUpon>
     </Compile>
-    <Compile Include="BatchTag\BatchTag.cs" />
+    <Compile Include="WalkingSim\WalkingSimulator.cs" />
     <Compile Include="Windows\Home.xaml.cs">
       <DependentUpon>Home.xaml</DependentUpon>
     </Compile>
@@ -1334,18 +1303,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Metro\Controls\Vectors\ExportModule.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Metro\Controls\Vectors\FreezeModule.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Metro\Controls\Vectors\ImportModule.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Metro\Controls\Vectors\MaxamizeModule.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -1358,14 +1315,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Metro\Controls\Vectors\PokeModule.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Metro\Controls\Vectors\RebootVector.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Metro\Controls\Vectors\ResizeModule.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -1374,15 +1323,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Metro\Controls\Vectors\ScreenshotModule.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Metro\Controls\Vectors\ScriptEditorIcons.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Metro\Controls\Vectors\UnFreezeModule.xaml">
+    <Page Include="Metro\Controls\Vectors\XBDMIcons.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -1482,10 +1427,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Metro\Themes\Pink.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
     <Page Include="Metro\Themes\Purple.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -1532,7 +1473,6 @@
       <HintPath>..\packages\Extended.Wpf.Toolkit.3.7.0\lib\net40\Xceed.Wpf.Toolkit.dll</HintPath>
       <LibZ>True</LibZ>
     </Reference>
-    <Resource Include="Helpers\0xabad1dea\GodOfAllThingsHolyAndModdy.png" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -1595,8 +1535,6 @@
     <Resource Include="Metro\Images\orange_logo_small.png" />
     <Resource Include="Metro\Images\purple_logo_small.png" />
     <Resource Include="Metro\Images\logo_small.png" />
-    <Resource Include="Metro\Images\background_logo.png" />
-    <Resource Include="Metro\Images\settings_logo.png" />
     <ProjectReference Include="..\Blamite\Blamite.csproj">
       <Project>{6b105ab9-84a0-4774-b319-75e9cab3db4b}</Project>
       <Name>Blamite</Name>
@@ -1629,10 +1567,6 @@
     </BootstrapperPackage>
     <Resource Include="Metro\Images\green_logo.png" />
     <Resource Include="Metro\Images\green_logo_small.png" />
-    <Resource Include="Metro\Images\Vectored\screenshotVector.png" />
-    <Resource Include="Metro\Images\Vectored\freezeVector.png" />
-    <Resource Include="Metro\Images\Vectored\unfreezeVector.png" />
-    <Resource Include="Metro\Images\Vectored\rebootVector.png" />
     <Resource Include="Metro\Images\super_patcher.png" />
     <Resource Include="Metro\Controls\AvalonDockMetro\Images\Locked.png" />
     <Resource Include="Metro\Controls\AvalonDockMetro\Images\PinRestore.png" />

@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
-using System.Media;
 using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
@@ -21,6 +20,7 @@ using Blamite.RTE;
 using Blamite.Util;
 using System.CodeDom.Compiler;
 using Microsoft.Win32;
+using Newtonsoft.Json;
 
 namespace Assembly.Metro.Controls.PageTemplates.Games.Components
 {
@@ -225,7 +225,7 @@ namespace Assembly.Metro.Controls.PageTemplates.Games.Components
 			}
 		}
 
-		private void UpdateMeta(MetaWriter.SaveType type, bool onlyUpdateChanged, bool showActionDialog = false)
+		private void UpdateMeta(MetaWriter.SaveType type, bool onlyUpdateChanged, bool showActionDialog = true)
 		{
 			if (type == MetaWriter.SaveType.File)
 			{
@@ -245,12 +245,9 @@ namespace Assembly.Metro.Controls.PageTemplates.Games.Components
 					_fileChanges.MarkAllUnchanged();
 				}
 
-				StatusUpdater.Update("Tag successfully saved!");
-				System.Media.SystemSounds.Beep.Play();
-
-				// if (showActionDialog)
-				//	MetroMessageBox.Show("Tag Saved", "The changes have been saved back to the original file." +
-				//		(_buildInfo.UsesCompression && _cache.Engine == EngineType.SecondGeneration ? "\r\n\r\nNote: This file must be compressed from the Tools menu before attempting to load ingame." : ""));
+				if (showActionDialog)
+					MetroMessageBox.Show("Tag Saved", "The changes have been saved back to the original file." +
+						(_buildInfo.UsesCompression && _cache.Engine == EngineType.SecondGeneration ? "\r\n\r\nNote: This file must be compressed from the Tools menu before attempting to load ingame." : ""));
 			}
 			else if (_rteProvider != null)
 			{
@@ -269,18 +266,13 @@ namespace Assembly.Metro.Controls.PageTemplates.Games.Components
 							changes, _stringIdTrie);
 						metaUpdate.WriteFields(_pluginVisitor.Values);
 
-						//if (showActionDialog)
-						//{
-						if (onlyUpdateChanged)
+						if (showActionDialog)
 						{
-							StatusUpdater.Update("Tag changes successfully poked to memory!");
+							if (onlyUpdateChanged)
+								StatusUpdater.Update("All changed fields have been poked to the game.");
+							else
+								StatusUpdater.Update("The changes have been poked to the game.");
 						}
-						else
-						{
-							StatusUpdater.Update("Tag successfully saved!");
-							System.Media.SystemSounds.Beep.Play();
-						}
-						//}
 					}
 					else
 					{
@@ -294,12 +286,19 @@ namespace Assembly.Metro.Controls.PageTemplates.Games.Components
 		{
 			switch (_rteProvider.ConnectionType)
 			{
-				case RTEConnectionType.ConsoleX360:
+				case RTEConnectionType.ConsoleXbox:
+					MetroMessageBox.Show("Connection Error",
+						"Poking to an Xbox console is not currently supported.");
+						//"Unable to connect to your Xbox console. Make sure that XBDM is enabled and that your console's IP has been set correctly.");
+					break;
+
+				case RTEConnectionType.ConsoleXbox360:
 					MetroMessageBox.Show("Connection Error",
 						"Unable to connect to your Xbox 360 console. Make sure that XBDM is enabled, you have the Xbox 360 SDK installed, and that your console's IP has been set correctly.");
 					break;
 
-				case RTEConnectionType.LocalProcess:
+				case RTEConnectionType.LocalProcess32:
+				case RTEConnectionType.LocalProcess64:
 					MetroMessageBox.Show("Connection Error",
 						"Unable to connect to the game. Make sure that it is running on your computer and that the map you are poking to is currently loaded.");
 					break;
@@ -457,7 +456,7 @@ namespace Assembly.Metro.Controls.PageTemplates.Games.Components
 			var sfd = new SaveFileDialog
 			{
 				Title = "Save Tag Dump",
-				Filter = "Text Files|*.txt"
+				Filter = "JSON Files|*.json|Text Files|*.txt"
 			};
 			bool? result = sfd.ShowDialog();
 			if (!result.Value)
@@ -465,17 +464,102 @@ namespace Assembly.Metro.Controls.PageTemplates.Games.Components
 
 			using (StringWriter sw = new StringWriter())
 			{
-				IndentedTextWriter itw = new IndentedTextWriter(sw);
-				itw.WriteLine(_tag.TagFileName);
-				itw.WriteLine();
 				MetaField[] fields = new MetaField[panelMetaComponents.Items.Count];
 				panelMetaComponents.Items.CopyTo(fields, 0);
-				DumpFieldsToText(itw, fields);
+
+				if (sfd.FilterIndex == 1)
+				{
+					using (JsonWriter writer = new JsonTextWriter(sw))
+					{
+						writer.Formatting = Newtonsoft.Json.Formatting.Indented;
+						writer.WriteStartObject();
+						writer.WritePropertyName("TagName");
+						writer.WriteValue(_tag.TagFileName);
+
+						writer.WritePropertyName("Data");
+						DumpFieldsToJSON(writer, fields);
+
+						writer.WriteEndObject();
+					}
+				}
+				else if (sfd.FilterIndex == 2)
+				{
+					IndentedTextWriter itw = new IndentedTextWriter(sw);
+					itw.WriteLine(_tag.TagFileName);
+					itw.WriteLine();
+
+					DumpFieldsToText(itw, fields);
+				}
+				else return;
 
 				File.WriteAllText(sfd.FileName, sw.ToString());
 
 				MetroMessageBox.Show("Tag dumped!");
 			}
+		}
+
+		private void WriteJSONContent(JsonWriter writer, object content)
+		{
+			if (content is IDictionary<string, object>)
+			{
+				writer.WriteStartObject();
+				foreach (KeyValuePair<string, object> entry in content as IDictionary<string, object>)
+				{
+					writer.WritePropertyName(entry.Key);
+					WriteJSONContent(writer, entry.Value);
+				}
+				writer.WriteEndObject();
+			}
+			else if (content is IList<string>)
+			{
+				writer.WriteStartArray();
+				foreach (string str in content as List<string>)
+					writer.WriteValue(str);
+				writer.WriteEndArray();
+			}
+			else if (content is IList<object>)
+			{
+				writer.WriteStartArray();
+				foreach (object val in content as List<object>)
+					WriteJSONContent(writer, val);
+				writer.WriteEndArray();
+			}
+			else
+				writer.WriteValue(content);
+		}
+
+		private void DumpFieldsToJSON(JsonWriter writer, MetaField[] fields)
+		{
+			writer.WriteStartObject();
+			foreach (MetaField field in fields)
+			{
+				if (field is TagBlockData)
+				{
+					TagBlockData block = field as TagBlockData;
+					int oldIndex = block.CurrentIndex;
+					writer.WritePropertyName(block.Name);
+					writer.WriteStartArray();
+					for (int i = 0; i < block.Length; i++)
+					{
+						block.CurrentIndex = i;
+
+						MetaField[] subFields = new MetaField[block.Template.Count];
+						block.Template.CopyTo(subFields, 0);
+						DumpFieldsToJSON(writer, subFields);
+
+					}
+					block.CurrentIndex = oldIndex;
+					writer.WriteEnd();
+				}
+				else if (field is ValueField)
+				{
+					ValueField valueField = field as ValueField;
+					writer.WritePropertyName(valueField.Name);
+					WriteJSONContent(writer, valueField.GetAsJson());
+
+				}
+			}
+			writer.WriteEndObject();
 		}
 
 		private void DumpFieldsToText(IndentedTextWriter itw, MetaField[] fields)

@@ -230,7 +230,7 @@ namespace Assembly.Metro.Controls.PageTemplates.Games.Components.Editors
                             }
                         });
                         RefreshMeta();
-                        StatusUpdater.Update("Scripts saved.");
+                        StatusUpdater.Update("Scripts saved");
                     }
                 }
                 // Handle Parsing Errors.
@@ -242,7 +242,7 @@ namespace Assembly.Metro.Controls.PageTemplates.Games.Components.Editors
                     }
                     else
                     {
-                        MetroMessageBox.Show("Operation cancelled!", opEx.Message);
+                        MetroMessageBox.Show("Operation Canceled", opEx.Message);
                     }
 
                 }
@@ -273,7 +273,7 @@ namespace Assembly.Metro.Controls.PageTemplates.Games.Components.Editors
         {
             IEnumerable<ICompletionData> completionData = await Task.Run(() => GenerateStaticCompletionData());
             _staticCompletionData = completionData;
-            StatusUpdater.Update("Context reloaded.");
+            StatusUpdater.Update("Context Reloaded");
         }
 
         private async void EditorGotFocus(object sender, RoutedEventArgs e)
@@ -454,9 +454,6 @@ namespace Assembly.Metro.Controls.PageTemplates.Games.Components.Editors
                 case Settings.Accents.Blue:
                     selbrsh = (System.Windows.Media.Brush)bconv.ConvertFromString("#1D98EB");
                     break;
-                case Settings.Accents.Pink:
-                    selbrsh = (System.Windows.Media.Brush)bconv.ConvertFromString("#DB66BB");
-                    break;
                 case Settings.Accents.Green:
                     selbrsh = (System.Windows.Media.Brush)bconv.ConvertFromString("#98e062");
                     break;
@@ -599,7 +596,7 @@ namespace Assembly.Metro.Controls.PageTemplates.Games.Components.Editors
                 if(haloMap != null)
                 {
                     haloMap.RefreshTags();
-                    StatusUpdater.Update("Meta refreshed.");
+                    StatusUpdater.Update("Meta Refreshed");
                     return;
                 }
                 else
