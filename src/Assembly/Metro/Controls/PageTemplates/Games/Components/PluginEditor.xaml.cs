@@ -114,7 +114,10 @@ namespace Assembly.Metro.Controls.PageTemplates.Games.Components
 				case Settings.Accents.Purple:
 					filename = "XMLPurple.xshd";
 					break;
-			}
+                case Settings.Accents.Pink:
+                    filename = "XMLPink.xshd";
+                    break;
+            }
 			txtPlugin.SyntaxHighlighting = HighlightLoader.LoadEmbeddedDefinition(filename);
 		}
 
@@ -138,7 +141,10 @@ namespace Assembly.Metro.Controls.PageTemplates.Games.Components
 				case Settings.Accents.Purple:
 					selbrsh = (System.Windows.Media.Brush)bconv.ConvertFromString("#9C40B4");
 					break;
-			}
+                case Settings.Accents.Pink:
+                    selbrsh = (System.Windows.Media.Brush)bconv.ConvertFromString("#FF009F");
+                    break;
+            }
 
 			txtPlugin.TextArea.SelectionBorder = new System.Windows.Media.Pen(selbrsh, 1);
 			selbrsh.Opacity = 0.3;

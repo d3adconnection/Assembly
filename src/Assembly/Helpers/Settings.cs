@@ -193,7 +193,8 @@ namespace Assembly.Helpers
 			Blue,
 			Purple,
 			Orange,
-			Green
+			Green,
+			Pink
 		}
 
 		/// <summary>

@@ -302,8 +302,10 @@ namespace Assembly.Windows
 
 		private void ShowCheatingDialog()
 		{
+			/*
 			MetroMessageBox.Show("Assembly",
 				"Assembly is not a cheating tool. While you will never be prevented from using it to give yourself an unfair advantage on Xbox Live, do not expect to receive help if you ask how to do so.\n\nThis dialog will only show once.");
+			*/
 		}
 
 		#region Waste of Space, idk man
@@ -948,6 +950,11 @@ namespace Assembly.Windows
 				ShowCheatingDialog();
 				App.AssemblyStorage.AssemblySettings.ShownCheatingDialog = true;
 			}
+		}
+
+		private void MenuItem_Click(object sender, RoutedEventArgs e)
+		{
+
 		}
 	}
 }

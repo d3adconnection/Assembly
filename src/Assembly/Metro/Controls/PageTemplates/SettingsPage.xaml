@@ -249,7 +249,7 @@
 							  Tag="General" Click="ButtonTabSelection_OnClick" />
 				<ToggleButton x:Name="ButtonSelectXbox360Dev" Content="Xbox 360 Development" Margin="0,0,0,0" HorizontalAlignment="Left"
 							  Style="{DynamicResource ToggleTabChoser}"
-							  Tag="XboxDev" Click="ButtonTabSelection_OnClick" />
+							  Tag="XboxDev" Click="ButtonTabSelection_OnClick" Visibility="Collapsed"/>
 				<ToggleButton x:Name="ButtonSelectMapEdit" Content="Map Editor" Margin="0,0,0,0" HorizontalAlignment="Left"
 							  Style="{DynamicResource ToggleTabChoser}"
 							  Tag="MapEdit" Click="ButtonTabSelection_OnClick" />
@@ -305,8 +305,8 @@
 									  Content="Enable easter eggs." />
 						</Grid>
 					</Grid>
-					
-					<Grid Style="{DynamicResource SettingEntry}">
+
+                    <Grid Style="{DynamicResource SettingEntry}" Visibility="Collapsed">
 						<Grid.ColumnDefinitions>
 							<ColumnDefinition Width="200" />
 							<ColumnDefinition Width="20" />
@@ -326,7 +326,7 @@
 						</Grid>
 					</Grid>
 
-					<Grid Style="{DynamicResource SettingEntry}">
+					<Grid Style="{DynamicResource SettingEntry}" Visibility="Collapsed">
 						<Grid.ColumnDefinitions>
 							<ColumnDefinition Width="200" />
 							<ColumnDefinition Width="20" />
