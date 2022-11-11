@@ -225,7 +225,7 @@ namespace Assembly.Metro.Controls.PageTemplates.Games.Components
 			}
 		}
 
-		private void UpdateMeta(MetaWriter.SaveType type, bool onlyUpdateChanged, bool showActionDialog = true)
+		private void UpdateMeta(MetaWriter.SaveType type, bool onlyUpdateChanged, bool showActionDialog = false)
 		{
 			if (type == MetaWriter.SaveType.File)
 			{
