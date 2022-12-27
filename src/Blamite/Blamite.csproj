@@ -426,7 +426,7 @@
     <Content Include="Formats\Engines.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Formats\Halo1\H1AMCC_U1_Scripting.xml">
+    <Content Include="Formats\Halo1\H1AMCC_Scripting.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Formats\Halo1\H1CE_Scripting.xml">
@@ -454,9 +454,6 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Formats\Halo1\H1AMCC_Poking.xml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Formats\Halo1\H1AMCC_Scripting.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Formats\Halo1\H1A_Scripting.xml">
@@ -505,6 +502,9 @@
     <Content Include="Formats\Halo2AMCC\H2AMCC_Scripting.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Formats\Halo2AMCC\H2AMCC_Stub_StringIDs.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Formats\Halo2AMCC\H2AMCC_U1_StringIDs.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -515,6 +515,15 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Formats\Halo2AMCC\H2AMCC_U2_StringIDs.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Formats\Halo2AMCC\LayoutsU10\H2AMCC_LayoutsU10_Core.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Formats\Halo2AMCC\LayoutsU10\H2AMCC_LayoutsU10_Resources.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Formats\Halo2AMCC\LayoutsU10\H2AMCC_LayoutsU10_Scenario.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Formats\Halo2AMCC\LayoutsU8\H2AMCC_LayoutsU8_Core.xml">
@@ -616,6 +625,12 @@
     <Content Include="Formats\Halo3Beta\H3B_StringIDs.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Formats\Halo3Beta\H3A_StringIDs.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Formats\Halo3Beta\LayoutsAlpha\H3A_Layouts_Core.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Formats\Halo3Beta\LayoutsMarch\H3BMarch_Layouts_Core.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -640,7 +655,25 @@
     <Content Include="Formats\Halo3MCC\H3MCC_LocaleSymbols.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Formats\Halo3MCC\H3MCC_Stub_StringIDs.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Formats\Halo3MCC\H3MCC_U1_StringIDs.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Formats\Halo3MCC\LayoutsU12\H3MCC_LayoutsU12_Core.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Formats\Halo3MCC\LayoutsU12\H3MCC_LayoutsU12_Resources.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Formats\Halo3MCC\LayoutsU12\H3MCC_LayoutsU12_Scenario.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Formats\Halo3MCC\LayoutsU12\H3MCC_LayoutsU12_Scripting.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Formats\Halo3MCC\LayoutsU12\H3MCC_LayoutsU12_Sounds.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Formats\Halo3MCC\LayoutsU9\H3MCC_LayoutsU9_Core.xml">
@@ -722,6 +755,18 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Formats\Halo4E3\H4WarGames_StringIDs.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Formats\Halo4MCC\H4MCC_Stub_StringIDs.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Formats\Halo4MCC\LayoutsU6\H4MCC_LayoutsU6_Core.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Formats\Halo4MCC\LayoutsU6\H4MCC_LayoutsU6_Resources.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Formats\Halo4MCC\LayoutsU6\H4MCC_LayoutsU6_Scenario.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Formats\Halo4MCC\LayoutsU4\H4MCC_LayoutsU4_Core.xml">
@@ -868,6 +913,21 @@
     <Content Include="Formats\MapInfo\ReachBeta\ReachBeta_MultiplayerObjects.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Formats\ODSTMCC\LayoutsU7\ODSTMCC_LayoutsU7_Core.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Formats\ODSTMCC\LayoutsU7\ODSTMCC_LayoutsU7_Resources.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Formats\ODSTMCC\LayoutsU7\ODSTMCC_LayoutsU7_Scenario.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Formats\ODSTMCC\LayoutsU7\ODSTMCC_LayoutsU7_Scripting.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Formats\ODSTMCC\LayoutsU7\ODSTMCC_LayoutsU7_Sounds.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Formats\ODSTMCC\LayoutsU4\ODSTMCC_LayoutsU4_Core.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -923,6 +983,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Formats\ODSTMCC\ODSTMCC_StringIDs.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Formats\ODSTMCC\ODSTMCC_Stub_StringIDs.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Formats\ODST\Layouts\ODST_Layouts_Scripting.xml">
@@ -1055,6 +1118,9 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Formats\ReachMCC\ReachMCC_StringIDs.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Formats\ReachMCC\ReachMCC_Stub_StringIDs.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Formats\Reach\Layouts\Reach_Layouts_Scripting.xml">
