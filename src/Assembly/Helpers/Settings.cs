@@ -205,7 +205,7 @@ namespace Assembly.Helpers
 			MetaEditor,
 			PluginEditor,
 			Sound,
-			Model
+			String
 		}
 
 		/// <summary>
