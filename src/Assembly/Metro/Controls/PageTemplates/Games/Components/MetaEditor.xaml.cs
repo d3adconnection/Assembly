@@ -132,13 +132,13 @@ namespace Assembly.Metro.Controls.PageTemplates.Games.Components
 					if (_rteProvider == null)
 						goto default;
 
-					if (_rteProvider.GetMetaStream(_cache) == null)
+					if (_rteProvider.GetMetaStream(_cache, _tag.RawTag) == null)
 					{
 						ShowConnectionError();
 						return;
 					}
 
-					streamManager = new RTEStreamManager(_rteProvider, _cache);
+					streamManager = new RTEStreamManager(_rteProvider, _cache, _tag.RawTag);
 					baseOffset = _tag.RawTag.MetaLocation.AsPointer();
 					break;
 
@@ -238,7 +238,7 @@ namespace Assembly.Metro.Controls.PageTemplates.Games.Components
 				using (IStream stream = _fileManager.OpenReadWrite())
 				{
 #if DEBUG_SAVE_ALL
-                    MetaWriter metaUpdate = new MetaWriter(writer, (uint)_tag.RawTag.MetaLocation.AsOffset(), _cache, _buildInfo, type, null, _stringIdTrie);
+                    MetaWriter metaUpdate = new MetaWriter(writer, _tag.RawTag.MetaLocation.AsOffset(), _cache, _buildInfo, type, null, _stringIdTrie);
 #else
 					var metaUpdate = new MetaWriter(stream, _tag.RawTag.MetaLocation.AsOffset(), _cache, _buildInfo, type,
 						_fileChanges, _stringIdTrie, _srcSegmentGroup);
@@ -260,7 +260,7 @@ namespace Assembly.Metro.Controls.PageTemplates.Games.Components
 					rteProvider = App.AssemblyStorage.AssemblyNetworkPoke.NetworkRteProvider;
 				}
 
-				using (IStream metaStream = rteProvider.GetMetaStream(_cache))
+				using (IStream metaStream = rteProvider.GetMetaStream(_cache, _tag.RawTag))
 				{
 					if (metaStream != null)
 					{
@@ -316,6 +316,7 @@ namespace Assembly.Metro.Controls.PageTemplates.Games.Components
 			cbShowInvisibles.IsChecked = App.AssemblyStorage.AssemblySettings.PluginsShowInvisibles;
 			cbShowComments.IsChecked = App.AssemblyStorage.AssemblySettings.PluginsShowComments;
 			cbShowInformation.IsChecked = App.AssemblyStorage.AssemblySettings.PluginsShowInformation;
+			cbShowDataRefNotice.IsChecked = App.AssemblyStorage.AssemblySettings.PluginsShowDataRefNotice;
 
 			cbEnumPrefix.SelectedIndex = (int)App.AssemblyStorage.AssemblySettings.PluginsEnumPrefix;
 
@@ -363,7 +364,6 @@ namespace Assembly.Metro.Controls.PageTemplates.Games.Components
 		{
 			if (!hasInitFinished) return;
 
-
 			App.AssemblyStorage.AssemblySettings.PluginsShowComments = (bool)cbShowComments.IsChecked;
 			RefreshEditor(MetaReader.LoadType.File);
 			btnOptions.IsChecked = false;
@@ -382,6 +382,14 @@ namespace Assembly.Metro.Controls.PageTemplates.Games.Components
 
 
 			App.AssemblyStorage.AssemblySettings.PluginsShowInformation = (bool)cbShowInformation.IsChecked;
+			btnOptions.IsChecked = false;
+		}
+
+		private void cbShowDataRefNotice_Altered(object sender, RoutedEventArgs e)
+		{
+			if (!hasInitFinished) return;
+
+			App.AssemblyStorage.AssemblySettings.PluginsShowDataRefNotice = (bool)cbShowDataRefNotice.IsChecked;
 			btnOptions.IsChecked = false;
 		}
 
@@ -556,10 +564,15 @@ namespace Assembly.Metro.Controls.PageTemplates.Games.Components
 				}
 				else if (field is ValueField)
 				{
+					if (field is RawData)
+					{
+						RawData raw = field as RawData;
+						raw.ShowingNotice = false;
+					}
+
 					ValueField valueField = field as ValueField;
 					writer.WritePropertyName(valueField.Name);
 					WriteJSONContent(writer, valueField.GetAsJson());
-
 				}
 			}
 			writer.WriteEndObject();
@@ -593,7 +606,15 @@ namespace Assembly.Metro.Controls.PageTemplates.Games.Components
 					itw.Indent--;
 				}
 				else if (!(field is WrappedTagBlockEntry))
+				{
+					if (field is RawData)
+					{
+						RawData raw = field as RawData;
+						raw.ShowingNotice = false;
+					}
+
 					itw.WriteLine(field.AsString());
+				}
 			}
 		}
 

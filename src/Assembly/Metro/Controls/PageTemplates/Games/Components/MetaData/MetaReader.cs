@@ -26,6 +26,7 @@ namespace Assembly.Metro.Controls.PageTemplates.Games.Components.MetaData
 		private readonly StructureLayout _tagRefLayout;
 		private readonly LoadType _type;
 		private IReader _reader;
+		private bool _shouldShowDatarefNotice;
 
 		public MetaReader(IStreamManager streamManager, long baseOffset, ICacheFile cache, EngineDescription buildInfo,
 			LoadType type, FieldChangeSet ignore, FileSegmentGroup segmentGroup)
@@ -41,6 +42,8 @@ namespace Assembly.Metro.Controls.PageTemplates.Games.Components.MetaData
 			_tagBlockLayout = buildInfo.Layouts.GetLayout("tag block");
 			_tagRefLayout = buildInfo.Layouts.GetLayout("tag reference");
 			_dataRefLayout = buildInfo.Layouts.GetLayout("data reference");
+
+			_shouldShowDatarefNotice = App.AssemblyStorage.AssemblySettings.PluginsShowDataRefNotice;
 		}
 
 		public long BaseOffset { get; set; }
@@ -226,6 +229,13 @@ namespace Assembly.Metro.Controls.PageTemplates.Games.Components.MetaData
 		{
 			SeekToOffset(field.Offset);
 			field.DataAddress = field.FieldAddress;
+
+			long fieldEnd = field.FieldAddress + field.Length;
+			long groupEnd = _srcSegmentGroup.BasePointer + _srcSegmentGroup.Size;
+
+			if (fieldEnd > groupEnd)
+				field.Length = (int)(groupEnd - field.FieldAddress);
+
 			field.Value = FunctionHelpers.BytesToHexString(_reader.ReadBlock(field.Length));
 		}
 
@@ -238,6 +248,8 @@ namespace Assembly.Metro.Controls.PageTemplates.Games.Components.MetaData
 			uint pointer = (uint)values.GetInteger("pointer");
 
 			long expanded = _cache.PointerExpander.Expand(pointer);
+
+			field.ShowingNotice = length > field.NoticeThreshold && _shouldShowDatarefNotice;
 
 			if (length > 0 && _srcSegmentGroup.ContainsBlockPointer(expanded, (uint)length))
 			{
@@ -585,7 +597,7 @@ namespace Assembly.Metro.Controls.PageTemplates.Games.Components.MetaData
 
 		public void ReadDataRefContents(DataRef field)
 		{
-			if (field.Length < 0)
+			if (field.Length < 0 || field.ShowingNotice)
 				return;
 
 			bool opened = OpenReader();
