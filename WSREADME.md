@@ -1,15 +1,11 @@
 This adds batch editing features to Assembly.
+All original code credits go to palesius for the Walking Sim mod and batch editing code for Assembly.
 
-Currently the path to the template files is hardcoded to:
-g:\th\reach\wsset\
-in WalkingSimulator.cs
-this can be changed to whatever you desire.
-
-To Use:
-1) Set up a template file.
-2) Open all maps you want to edit.
-3) Select "Walking Sim" from the menu. It will backup each map and apply the changes from the template. If it isn't able to find some of the tags, the info will be copied to the clipboard at the end of the process so you can investigate. Sometimes it is legitimate (applying a tag to a level where it never occurs). Sometimes it is because the tag definitions have changed and the template needs to be updated.
-4) "WS Complete" will use GenPat to create a patch file for each open map using GenPat. (Path currently hardcoded to G:\th\reach\VPatch32\GenPat.exe). Maximum instances of GenPat is currently set to 4, but you can adjust if you have more or less memory. (It's a fairly memory intensive process, taking about twice as much memory as the size of the map file.)
+To apply a template:
+1) Open the maps to edit
+2) On the toolbar select BATCH.
+3) You can either apply a single file to all open maps, or 
+4) You can apply an entire folder of .txt templates to all open maps
 
 Template Files:
 These are named based on the game engine with a .txt extension (e.g. halo1.txt halo3odst.txt). You may also create a level specific file that will overlay the base template for that game engine.
