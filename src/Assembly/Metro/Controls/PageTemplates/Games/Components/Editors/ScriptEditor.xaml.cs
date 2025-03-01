@@ -463,9 +463,6 @@ namespace Assembly.Metro.Controls.PageTemplates.Games.Components.Editors
                 case Settings.Accents.Purple:
                     selbrsh = (System.Windows.Media.Brush)bconv.ConvertFromString("#9C40B4");
                     break;
-                case Settings.Accents.Pink:
-                    selbrsh = (System.Windows.Media.Brush)bconv.ConvertFromString("#FF009F");
-                    break;
             }
             txtScript.TextArea.SelectionBorder = new System.Windows.Media.Pen(selbrsh, 1);
             selbrsh.Opacity = 0.3;

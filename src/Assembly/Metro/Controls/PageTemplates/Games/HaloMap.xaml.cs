@@ -25,18 +25,15 @@ using Blamite.Injection;
 using Blamite.IO;
 using Blamite.Plugins;
 using Blamite.RTE;
-using Blamite.RTE.SecondGen;
+using Blamite.RTE.Console;
+using Blamite.RTE.PC;
 using Blamite.Util;
 using CloseableTabItemDemo;
 using Microsoft.Win32;
 using Newtonsoft.Json;
-using XBDMCommunicator;
 using Blamite.Blam.ThirdGen;
-using Blamite.RTE.ThirdGen;
 using Blamite.Blam.Resources.Sounds;
-using Blamite.RTE.FirstGen;
 using Blamite.Blam.Eldorado;
-using Blamite.RTE.Eldorado;
 
 namespace Assembly.Metro.Controls.PageTemplates.Games
 {
@@ -68,11 +65,12 @@ namespace Assembly.Metro.Controls.PageTemplates.Games
 		private Settings.MapInfoDockSide _dockSide;
 		private ObservableCollection<HeaderValue> _headerDetails = new ObservableCollection<HeaderValue>();
 		private IStreamManager _mapManager;
-		private IRTEProvider _rteProvider;
+		private RTEProvider _rteProvider;
 		private Trie _stringIdTrie;
 		private List<TagEntry> _tagEntries = new List<TagEntry>();
 		private Settings.TagOpenMode _tagOpenMode;
 		private TagHierarchy _visibleTags = new TagHierarchy();
+		private bool _only360Poke;
 
 		public static RoutedCommand DeleteBatchCommand = new RoutedCommand();
 
@@ -107,6 +105,8 @@ namespace Assembly.Metro.Controls.PageTemplates.Games
 			cbShowBookmarkedTagsOnly.IsChecked = App.AssemblyStorage.AssemblySettings.HalomapOnlyShowBookmarkedTags;
 			cbOpenDuplicate.IsChecked = App.AssemblyStorage.AssemblySettings.AutoOpenDuplicates;
 			cbTabOpenMode.SelectedIndex = (int) App.AssemblyStorage.AssemblySettings.HalomapTagOpenMode;
+
+			_only360Poke = App.AssemblyStorage.AssemblySettings.XdkOnly360;
 
 			App.AssemblyStorage.AssemblySettings.PropertyChanged += SettingsChanged;
 
@@ -235,43 +235,39 @@ namespace Assembly.Metro.Controls.PageTemplates.Games
 				// Set up RTE
 				switch (_buildInfo.PokingPlatform)
 				{
-					default:
-					case RTEConnectionType.None:
 					case RTEConnectionType.ConsoleXbox:
-					case RTEConnectionType.ConsoleXboxOne:
+						if (App.AssemblyStorage.AssemblySettings.XdkOnly360)
+							_rteProvider = new ConsoleRTEProvider(App.AssemblyStorage.AssemblySettings.XenonFusionConsole);
+						else
+							_rteProvider = new ConsoleRTEProvider(App.AssemblyStorage.AssemblySettings.XboxConsole);
 						break;
 					case RTEConnectionType.ConsoleXbox360:
-						_rteProvider = new XBDMRTEProvider(App.AssemblyStorage.AssemblySettings.Xbdm);
+						_rteProvider = new ConsoleRTEProvider(App.AssemblyStorage.AssemblySettings.XenonConsole);
+						break;
+					case RTEConnectionType.ConsoleXboxOne:
 						break;
 					case RTEConnectionType.LocalProcess32:
 					case RTEConnectionType.LocalProcess64:
 						{
-							if (_cacheFile.Engine == EngineType.FirstGeneration)
+							switch (_cacheFile.Engine)
 							{
-								if (!string.IsNullOrEmpty(_buildInfo.PokingModule)) // CEA MCC
-									_rteProvider = new FirstGenMCCRTEProvider(_buildInfo);
-								else // PC or Custom
-									_rteProvider = new FirstGenRTEProvider(_buildInfo);
-							}
-							else if (_cacheFile.Engine == EngineType.SecondGeneration)
-							{
-								if (!string.IsNullOrEmpty(_buildInfo.PokingModule))
-									_rteProvider = new SecondGenMCCRTEProvider(_buildInfo);
-								else
-									_rteProvider = new SecondGenRTEProvider(_buildInfo);
-							}
-							else if (_cacheFile.Engine == EngineType.ThirdGeneration)
-							{
-								if (!string.IsNullOrEmpty(_buildInfo.PokingModule))
-									_rteProvider = new ThirdGenMCCRTEProvider(_buildInfo);
-							}
-							else if (_cacheFile.Engine == EngineType.Eldorado)
-							{
-								_rteProvider = new EldoradoRTEProvider(_buildInfo);
+								case EngineType.FirstGeneration:
+									_rteProvider = new PCFirstGenRTEProvider(_buildInfo);
+									break;
+								case EngineType.SecondGeneration:
+									_rteProvider = new PCSecondGenRTEProvider(_buildInfo);
+									break;
+								case EngineType.ThirdGeneration:
+									_rteProvider = new PCThirdGenRTEProvider(_buildInfo);
+									break;
+								case EngineType.Eldorado:
+									_rteProvider = new PCEldoradoRTEProvider(_buildInfo);
+									break;
 							}
 							break;
 						}
 				}
+
 
 				Dispatcher.Invoke(new Action(() => StatusUpdater.Update("Loaded Cache File")));
 
@@ -284,7 +280,7 @@ namespace Assembly.Metro.Controls.PageTemplates.Games
 				}));
 
 				if (_cacheFile.Engine != EngineType.Eldorado)
-					App.AssemblyStorage.AssemblyNetworkPoke.Maps.Add(new Tuple<ICacheFile, IRTEProvider>(_cacheFile, _rteProvider));
+					App.AssemblyStorage.AssemblyNetworkPoke.Maps.Add(new Tuple<ICacheFile, RTEProvider>(_cacheFile, _rteProvider));
 
 				/*ITag dice = _cacheFile.Tags[0x0102];
 				IRenderModel diceModel = _cacheFile.ResourceMetaLoader.LoadRenderModelMeta(dice, reader);
@@ -573,6 +569,10 @@ namespace Assembly.Metro.Controls.PageTemplates.Games
 
 			if (App.AssemblyStorage.AssemblySettings.HalomapTagOpenMode != _tagOpenMode)
 				UpdateTagOpenMode();
+
+			if (App.AssemblyStorage.AssemblySettings.XdkOnly360 != _only360Poke)
+				UpdateOGPokingMode();
+
 		}
 
 		private void cbShowEmptyTags_Altered(object sender, RoutedEventArgs e)
@@ -2521,7 +2521,7 @@ namespace Assembly.Metro.Controls.PageTemplates.Games
 			List<TabItem> tabs = contentTabs.Items.OfType<TabItem>().ToList();
 
 			if (_cacheFile.Engine != EngineType.Eldorado)
-				App.AssemblyStorage.AssemblyNetworkPoke.Maps.Remove(new Tuple<ICacheFile, IRTEProvider>(_cacheFile, _rteProvider));
+				App.AssemblyStorage.AssemblyNetworkPoke.Maps.Remove(new Tuple<ICacheFile, RTEProvider>(_cacheFile, _rteProvider));
 
 			ExternalTabsClose(tabs, false);
 
@@ -2620,8 +2620,50 @@ namespace Assembly.Metro.Controls.PageTemplates.Games
 
 			uint result = origLength - _cacheFile.StringIDDataTable.Size;
 
-			MetroMessageBox.Show("Free StringIDs", "A total of " + result + " bytes were freed.");
-				
+			MetroMessageBox.Show("Free StringIDs", "A total of " + result + " bytes were freed.");	
+		}
+
+		private void DumpTagsJSON(object sender, RoutedEventArgs e)
+		{
+			// Get the menu item and the tag group
+			var item = e.Source as MenuItem;
+			if (item == null)
+				return;
+
+			var tagGroup = item.DataContext as TagGroup;
+			if (tagGroup == null)
+				return;
+
+			// Ask the user where to save the dumps
+			var fbd = new System.Windows.Forms.FolderBrowserDialog();
+			if (!(fbd.ShowDialog() == System.Windows.Forms.DialogResult.OK))
+				return;
+
+			BatchDumpTags(tagGroup.Children, fbd.SelectedPath);
+			MetroMessageBox.Show("Dump Successful", "Tags dumped successfully.");
+		}
+
+		private void BatchDumpTags(List<TagEntry> tags, string outPath)
+		{
+			// hack: make the tag editor the last metacontainer tab
+			App.AssemblyStorage.AssemblySettings.HalomapLastSelectedMetaEditor = Settings.LastMetaEditorType.MetaEditor;
+
+			foreach (TagEntry t in tags)
+			{
+				CloseableTabItem tab = new CloseableTabItem
+				{
+					Header = TabHeaderFromTag(t),
+					Tag = t,
+					Content =
+							new MetaContainer(_buildInfo, _cacheLocation, t, _allTags, _cacheFile, _mapManager, _rteProvider,
+								_stringIdTrie)
+				};
+				contentTabs.Items.Add(tab);
+
+				SelectTabFromTag(t);
+				((MetaContainer)tab.Content).ExternalDump(outPath);
+				ExternalTabClose(tab);
+			}
 		}
 
 		private void itemCopyName_Click(object sender, RoutedEventArgs e)
@@ -2660,6 +2702,20 @@ namespace Assembly.Metro.Controls.PageTemplates.Games
 				return;
 
 			tag.TagFileName = name;
+		}
+
+		private void UpdateOGPokingMode()
+		{
+			_only360Poke = App.AssemblyStorage.AssemblySettings.XdkOnly360;
+
+			//have to reinit the intended platform
+			if (_rteProvider != null && _buildInfo.PokingPlatform == RTEConnectionType.ConsoleXbox)
+			{
+				if (_rteProvider.ConnectionType == RTEConnectionType.ConsoleXbox360)
+					_rteProvider = new ConsoleRTEProvider(App.AssemblyStorage.AssemblySettings.XboxConsole);
+				else if (_rteProvider.ConnectionType == RTEConnectionType.ConsoleXbox)
+					_rteProvider = new ConsoleRTEProvider(App.AssemblyStorage.AssemblySettings.XenonFusionConsole);
+			}
 		}
 	}
 }

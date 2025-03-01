@@ -42,7 +42,7 @@
     <RestorePackages>true</RestorePackages>
     <StartupObject>Assembly.App</StartupObject>
     <ApplicationManifest>Properties\app.manifest</ApplicationManifest>
-    <ApplicationIcon>Metro\Images\app_icon_large_pink.ico</ApplicationIcon>
+    <ApplicationIcon>Metro\Images\app_icon_large.ico</ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
     <DebugSymbols>true</DebugSymbols>
@@ -82,7 +82,7 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
-    <OutputPath>..\..\bin\</OutputPath>
+    <OutputPath>bin\x64\Release\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <Optimize>true</Optimize>
@@ -107,7 +107,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <Optimize>true</Optimize>
-    <PlatformTarget>x64</PlatformTarget>
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <ErrorReport>prompt</ErrorReport>
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
@@ -410,6 +410,78 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Plugins\Halo2AMCC\term.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Plugins\Halo2E3_04\bipd.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Plugins\Halo2E3_04\grhi.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Plugins\Halo2E3_04\hlmt.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Plugins\Halo2E3_04\hmt.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Plugins\Halo2E3_04\jmad.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Plugins\Halo2E3_04\jpt!.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Plugins\Halo2E3_04\ligh.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Plugins\Halo2E3_04\matg.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Plugins\Halo2E3_04\mode.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Plugins\Halo2E3_04\mulg.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Plugins\Halo2E3_04\nhdt.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Plugins\Halo2E3_04\pctl.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Plugins\Halo2E3_04\phmo.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Plugins\Halo2E3_04\proj.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Plugins\Halo2E3_04\sbsp.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Plugins\Halo2E3_04\scnr.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Plugins\Halo2E3_04\skin.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Plugins\Halo2E3_04\stem.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Plugins\Halo2E3_04\udlg.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Plugins\Halo2E3_04\vehi.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Plugins\Halo2E3_04\weap.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Plugins\Halo2E3_04\wgit.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Plugins\Halo2E3_04\wgtz.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Plugins\Halo2E3_04\wigl.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Plugins\Halo2MCC\bloc.xml">
@@ -2146,24 +2218,14 @@
     <Content Include="Plugins\Stubbs\wphi.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <EmbeddedResource Include="BatchTag\frmBatchTag.resx">
-      <DependentUpon>frmBatchTag.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="SyntaxHighlighting\BlamScriptSolarized.xshd" />
     <Reference Include="Antlr4.Runtime.Standard, Version=4.8.0.0, Culture=neutral, PublicKeyToken=e78b2c5abd1fcb3f, processorArchitecture=MSIL">
       <HintPath>..\packages\Antlr4.Runtime.Standard.4.8.0\lib\net35\Antlr4.Runtime.Standard.dll</HintPath>
       <LibZ>True</LibZ>
     </Reference>
-    <Reference Include="CustomMarshalers" />
     <Reference Include="ICSharpCode.AvalonEdit, Version=6.0.1.278, Culture=neutral, PublicKeyToken=9cc39be672370310, processorArchitecture=MSIL">
       <HintPath>..\packages\AvalonEdit.6.0.1\lib\net45\ICSharpCode.AvalonEdit.dll</HintPath>
       <LibZ>True</LibZ>
-    </Reference>
-    <Reference Include="Microsoft.WindowsAPICodePack, Version=1.1.4.0, Culture=neutral, PublicKeyToken=8985beaab7ea3f04, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft-WindowsAPICodePack-Core.1.1.4\lib\net48\Microsoft.WindowsAPICodePack.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.WindowsAPICodePack.Shell, Version=1.1.4.0, Culture=neutral, PublicKeyToken=8985beaab7ea3f04, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft-WindowsAPICodePack-Shell.1.1.4\lib\net48\Microsoft.WindowsAPICodePack.Shell.dll</HintPath>
     </Reference>
     <Reference Include="Mono.Nat, Version=1.2.24.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Mono.Nat.1.2.24.0\lib\net40\Mono.Nat.dll</HintPath>
@@ -2202,7 +2264,6 @@
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
-    <Reference Include="WindowsFormsIntegration" />
     <Reference Include="WPFToolkit, Version=3.5.40128.1, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\DLLs\WPFToolkit.dll</HintPath>
@@ -2219,13 +2280,6 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="BatchTag\BatchTag.cs" />
-    <Compile Include="BatchTag\frmBatchTag.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="BatchTag\frmBatchTag.Designer.cs">
-      <DependentUpon>frmBatchTag.cs</DependentUpon>
     </Compile>
     <Compile Include="Helpers\0xabad1dea.cs" />
     <Compile Include="Helpers\AssemblyProtocol.cs" />
@@ -2247,12 +2301,12 @@
     <Compile Include="Helpers\Cryptography\MD5.cs" />
     <Compile Include="Helpers\Cryptography\RSA.cs" />
     <Compile Include="Helpers\Cryptography\SHA1.cs" />
-    <Compile Include="Helpers\DDSConversion.cs" />
     <Compile Include="Helpers\ExceptionDictionary.cs" />
     <Compile Include="Helpers\FileDefaults.cs" />
     <Compile Include="Helpers\HoldingVault.cs" />
     <Compile Include="Helpers\INIClass.cs" />
     <Compile Include="Helpers\JumpLists.cs" />
+    <Compile Include="Helpers\Native\ScreenshotHelper.cs" />
     <Compile Include="Helpers\Native\ShellChanges.cs" />
     <Compile Include="Helpers\Models\ObjExporter.cs" />
     <Compile Include="Helpers\Net\HttpMethod.cs" />
@@ -2273,6 +2327,7 @@
     <Compile Include="Helpers\Net\Imgur.cs" />
     <Compile Include="Helpers\Settings.cs" />
     <Compile Include="Helpers\SingleInstance.cs" />
+    <Compile Include="Helpers\TagDataCommandState.cs" />
     <Compile Include="Helpers\UIX\AnimationHelper.cs" />
     <Compile Include="Helpers\UIX\ImagerLoader.cs" />
     <Compile Include="Helpers\Updater.cs" />
@@ -2456,6 +2511,9 @@
     </Compile>
     <Compile Include="Metro\Controls\PageTemplates\Tools\PostGenerator.xaml.cs">
       <DependentUpon>PostGenerator.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Metro\Controls\PageTemplates\Tools\TagListings.xaml.cs">
+      <DependentUpon>TagListings.xaml</DependentUpon>
     </Compile>
     <Compile Include="Metro\Controls\PageTemplates\WelcomePage.xaml.cs">
       <DependentUpon>WelcomePage.xaml</DependentUpon>
@@ -2987,6 +3045,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Metro\Controls\PageTemplates\Tools\TagListings.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Metro\Controls\PageTemplates\WelcomePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -3127,10 +3189,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Metro\Themes\Pink.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
     <Page Include="Metro\Themes\Purple.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -3181,7 +3239,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <Resource Include="Metro\Images\app_icon_large_pink.ico" />
+    <Resource Include="Metro\Images\app_icon_large.ico" />
     <Resource Include="Metro\Images\app_icon_large.png" />
     <Resource Include="Fonts\Halo3.ttf" />
     <Page Include="Metro\Themes\Dark.xaml">
@@ -3242,11 +3300,6 @@
     <ProjectReference Include="..\Blamite\Blamite.csproj">
       <Project>{6b105ab9-84a0-4774-b319-75e9cab3db4b}</Project>
       <Name>Blamite</Name>
-      <LibZ>True</LibZ>
-    </ProjectReference>
-    <ProjectReference Include="..\XBDMCommunicator\XBDMCommunicator.csproj">
-      <Project>{cf7b2216-1f9e-4bcf-bcf2-f76fb38d69bb}</Project>
-      <Name>XBDMCommunicator</Name>
       <LibZ>True</LibZ>
     </ProjectReference>
     <BootstrapperPackage Include=".NETFramework,Version=v4.0">
