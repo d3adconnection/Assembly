@@ -133,7 +133,7 @@ namespace Assembly.Helpers
 	/// </summary>
 	public class Settings : INotifyPropertyChanged
 	{
-		private Accents _applicationAccent = Accents.Blue;
+		private Accents _applicationAccent = Accents.Pink;
 		private bool _applicationEasterEggs = true;
 		private ObservableCollection<RecentFileEntry> _applicationRecents = new ObservableCollection<RecentFileEntry>();
 		private double _applicationSizeHeight = 600;
@@ -192,6 +192,7 @@ namespace Assembly.Helpers
 		/// </summary>
 		public enum Accents
 		{
+			Pink,
 			Blue,
 			Purple,
 			Orange,

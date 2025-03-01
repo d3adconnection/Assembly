@@ -35,7 +35,7 @@ using Blamite.Util;
 using CloseableTabItemDemo;
 using Microsoft.Win32;
 using Newtonsoft.Json;
-using XBDMCommunicator;
+//using XBDMCommunicator;
 using Blamite.Blam.ThirdGen;
 //using Blamite.RTE.MCC;
 using System.Runtime.InteropServices;

@@ -95,6 +95,14 @@
 							<Separator />
 							<MenuItem Header="Settings" x:Name="menuOpenSettings" Click="menuOpenSettings_Click" />
 						</MenuItem>
+                        <MenuItem Margin="5,0,0,0" Header="BATCH" Foreground="White" FontFamily="{DynamicResource MetroFontLight}"
+						          BorderBrush="{x:Null}" FontSize="12">
+                            <MenuItem Header="Apply batch template from file..." x:Name="menuBatchTag_File" Click="menuBatchTag_File_Click">
+                            </MenuItem>
+                            <Separator />
+                            <MenuItem Header="Apply batch templates from folder..." x:Name="menuBatchTag_Folder" Click="menuBatchTag_Folder_Click">
+                            </MenuItem>
+                        </MenuItem>
 						<MenuItem Margin="5,0,0,0" Header="XBOX" Foreground="White" FontFamily="{DynamicResource MetroFontLight}"
 						          BorderBrush="{x:Null}" FontSize="12">
 							<MenuItem Header="Take Screenshot" x:Name="menuOGScreenshot" Click="menuOGScreenshot_Click">
@@ -217,8 +225,8 @@
 						          BorderBrush="{x:Null}" FontSize="12">
 							<MenuItem Header="Map Names" x:Name="menuHelpMapNames" Click="menuHelpMapNames_Click" />
 							<Separator />
-							<MenuItem Header="Check for Updates" x:Name="menuHelpUpdater" Click="menuHelpUpdater_Click" />
-							<Separator />
+							<!--<MenuItem Header="Check for Updates" x:Name="menuHelpUpdater" Click="menuHelpUpdater_Click" />
+							<Separator />-->
 							<MenuItem Header="About Assembly" x:Name="menuHelpAbout" Click="menuHelpAbout_Click" />
 						</MenuItem>
 					</Menu>

@@ -87,11 +87,10 @@ namespace Assembly.Windows
 
 			ProcessCommandLineArgs(Environment.GetCommandLineArgs());
 
-			if (App.AssemblyStorage.AssemblySettings.ApplicationUpdateOnStartup)
-				await CheckForUpdates();
+			/*if (App.AssemblyStorage.AssemblySettings.ApplicationUpdateOnStartup)
+				//await CheckForUpdates();*/
 		}
-
-		private async Task CheckForUpdates()
+		/*private async Task CheckForUpdates()
 		{
 			// Grab JSON Update package from the server
 			try
@@ -105,7 +104,7 @@ namespace Assembly.Windows
 			catch
 			{
 			}
-		}
+		}*/
 
 		private void LayoutRoot_PropertyChanged(object sender, PropertyChangedEventArgs e)
 		{
@@ -1036,7 +1035,7 @@ namespace Assembly.Windows
 		{
 			if (!App.AssemblyStorage.AssemblySettings.ShownCheatingDialog)
 			{
-				ShowCheatingDialog();
+				// ShowCheatingDialog();
 				App.AssemblyStorage.AssemblySettings.ShownCheatingDialog = true;
 			}
 		}

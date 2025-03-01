@@ -15,9 +15,10 @@ namespace Assembly.Metro.Dialogs.ControlDialogs
 			InitializeComponent();
 			DwmDropShadow.DropShadowToWindow(this);
 
-			var friendlyVersion = VersionInfo.GetUserFriendlyVersion();
-			var versionStr = (friendlyVersion != null) ? friendlyVersion.ToString() : "(unknown version)";
-			lblTitle.Text = lblTitle.Text.Replace("{version}", versionStr);
+            //var friendlyVersion = VersionInfo.GetUserFriendlyVersion();
+            //var versionStr = (friendlyVersion != null) ? friendlyVersion.ToString() : "(unknown version)";
+            var versionStr = "(unofficial forked version)";
+            lblTitle.Text = lblTitle.Text.Replace("{version}", versionStr);
 		}
 
 		private void btnActionClose_Click(object sender, RoutedEventArgs e)

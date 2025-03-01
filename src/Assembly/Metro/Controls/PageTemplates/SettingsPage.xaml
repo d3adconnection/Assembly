@@ -306,7 +306,7 @@
 						</Grid>
 					</Grid>
 					
-					<Grid Style="{DynamicResource SettingEntry}">
+					<!--<Grid Style="{DynamicResource SettingEntry}">
 						<Grid.ColumnDefinitions>
 							<ColumnDefinition Width="200" />
 							<ColumnDefinition Width="20" />
@@ -326,8 +326,8 @@
 						</Grid>
 					</Grid>
 
-					<Grid Style="{DynamicResource SettingEntry}">
-						<Grid.ColumnDefinitions>
+                    <Grid Style="{DynamicResource SettingEntry}">
+                        <Grid.ColumnDefinitions>
 							<ColumnDefinition Width="200" />
 							<ColumnDefinition Width="20" />
 							<ColumnDefinition Width="*" />
@@ -346,10 +346,10 @@
 							</TextBlock>
 						</StackPanel>
 						<Grid Grid.Column="2">
-							<ComboBox x:Name="ComboBoxUpdateChannel" HorizontalAlignment="Left" VerticalAlignment="Top"
+							<ComboBox x:Name="ComboBoxUpdateChannel" HorizontalAlignment="Left" VerticalAlignment="Top" IsEnabled="False"
 								  SelectedItem="{Binding Path=UpdateChannel, Mode=TwoWay}" Width="250" />
 						</Grid>
-					</Grid>
+					</Grid>-->
 
 					<Grid Style="{DynamicResource SettingEntry}">
 						<Grid.ColumnDefinitions>

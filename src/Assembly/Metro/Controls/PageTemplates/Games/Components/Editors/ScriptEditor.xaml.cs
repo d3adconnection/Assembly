@@ -446,11 +446,14 @@ namespace Assembly.Metro.Controls.PageTemplates.Games.Components.Editors
         private void SetHighlightColor()
         {
             var bconv = new System.Windows.Media.BrushConverter();
-            var selbrsh = (System.Windows.Media.Brush)bconv.ConvertFromString("#1D98EB");
+            var selbrsh = (System.Windows.Media.Brush)bconv.ConvertFromString("#FF009F");
 
             //yucky
             switch (App.AssemblyStorage.AssemblySettings.ApplicationAccent)
             {
+                case Settings.Accents.Pink:
+                    selbrsh = (System.Windows.Media.Brush)bconv.ConvertFromString("#FF009F");
+                    break;
                 case Settings.Accents.Blue:
                     selbrsh = (System.Windows.Media.Brush)bconv.ConvertFromString("#1D98EB");
                     break;

@@ -99,10 +99,13 @@ namespace Assembly.Metro.Controls.PageTemplates.Games.Components
 		private void LoadSyntaxHighlighting()
 		{
 			// Load the file depending upon which theme is being used
-			string filename = "XMLBlue.xshd";
+			string filename = "XMLPink.xshd";
 			switch (App.AssemblyStorage.AssemblySettings.ApplicationAccent)
 			{
-				case Settings.Accents.Blue:
+                case Settings.Accents.Pink:
+                    filename = "XMLPink.xshd";
+                    break;
+                case Settings.Accents.Blue:
 					filename = "XMLBlue.xshd";
 					break;
 				case Settings.Accents.Green:
@@ -121,12 +124,15 @@ namespace Assembly.Metro.Controls.PageTemplates.Games.Components
 		private void SetHighlightColor()
 		{
 			var bconv = new System.Windows.Media.BrushConverter();
-			var selbrsh = (System.Windows.Media.Brush)bconv.ConvertFromString("#1D98EB");
+			var selbrsh = (System.Windows.Media.Brush)bconv.ConvertFromString("#FF009F");
 
 			//yucky
 			switch (App.AssemblyStorage.AssemblySettings.ApplicationAccent)
 			{
-				case Settings.Accents.Blue:
+                case Settings.Accents.Pink:
+                    selbrsh = (System.Windows.Media.Brush)bconv.ConvertFromString("#FF009F");
+                    break;
+                case Settings.Accents.Blue:
 					selbrsh = (System.Windows.Media.Brush)bconv.ConvertFromString("#1D98EB");
 					break;
 				case Settings.Accents.Green:

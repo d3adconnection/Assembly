@@ -415,7 +415,7 @@ namespace Assembly.Metro.Controls.PageTemplates.Games.Components
 
 		private void btnPluginPokeChanged_Click(object sender, RoutedEventArgs e)
 		{
-			UpdateMeta(MetaWriter.SaveType.Memory, true);
+			UpdateMeta(MetaWriter.SaveType.Memory, false);
 		}
 
 		private void btnPluginSave_Click(object sender, RoutedEventArgs e)
@@ -447,7 +447,7 @@ namespace Assembly.Metro.Controls.PageTemplates.Games.Components
 					else
 					{
 						// Poke Changed
-						UpdateMeta(MetaWriter.SaveType.Memory, true);
+						UpdateMeta(MetaWriter.SaveType.Memory, false);
 					}
 					break;
 
