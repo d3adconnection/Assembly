@@ -264,9 +264,10 @@ namespace Assembly.Metro.Controls.PageTemplates.Games.Components
 				}
 
 				if (showActionDialog)
-					MetroMessageBox.Show("Tag Saved", "The changes have been saved back to the original file." +
-						(_buildInfo.Compression != Blamite.Compression.CompressionType.None ? "\r\n\r\nNote: This file may need to be compressed from the Tools menu before attempting to load ingame." : ""));
-			}
+                    /*MetroMessageBox.Show("Tag Saved", "The changes have been saved back to the original file." +
+						(_buildInfo.Compression != Blamite.Compression.CompressionType.None ? "\r\n\r\nNote: This file may need to be compressed from the Tools menu before attempting to load ingame." : ""));*/
+                    StatusUpdater.Update("The changes have been saved back to the original file.");
+            }
 			else if (_rteProvider != null)
 			{
 				var rteProvider = _rteProvider;
@@ -415,7 +416,7 @@ namespace Assembly.Metro.Controls.PageTemplates.Games.Components
 
 		private void btnPluginPokeChanged_Click(object sender, RoutedEventArgs e)
 		{
-			UpdateMeta(MetaWriter.SaveType.Memory, false);
+			UpdateMeta(MetaWriter.SaveType.Memory, true);
 		}
 
 		private void btnPluginSave_Click(object sender, RoutedEventArgs e)
@@ -447,7 +448,7 @@ namespace Assembly.Metro.Controls.PageTemplates.Games.Components
 					else
 					{
 						// Poke Changed
-						UpdateMeta(MetaWriter.SaveType.Memory, false);
+						UpdateMeta(MetaWriter.SaveType.Memory, true);
 					}
 					break;
 
