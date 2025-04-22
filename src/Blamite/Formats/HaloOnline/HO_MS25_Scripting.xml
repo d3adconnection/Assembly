@@ -298,7 +298,7 @@
 		<function opcode="0x008" name="-" returnType="real" flags="2" group="Arithmetic" />
 		<function opcode="0x009" name="*" returnType="real" flags="2" group="Arithmetic" />
 		<function opcode="0x00A" name="/" returnType="real" flags="2" group="Arithmetic" />
-		<function opcode="0x00B" name="inc" returnType="real" flags="2" group="Arithmetic" /><!-- eldorado -->
+		<function opcode="0x00B" name="inc" returnType="real" flags="2" group="Arithmetic" />
 		<function opcode="0x00C" name="min" returnType="real" flags="2" group="Arithmetic" />
 		<function opcode="0x00D" name="max" returnType="real" flags="2" group="Arithmetic" />
 		<function opcode="0x00E" name="=" returnType="boolean" flags="2" group="Equality" />
@@ -858,7 +858,7 @@
 		<function opcode="0x0BB" name="texture_camera_render_mode" returnType="void" argc="1">
 			<arg type="long" />  
 		</function>              
-		<function opcode="0x0BC" name="" returnType="void" argc="1"><!-- eldorado -->
+		<function opcode="0x0BC" name="" returnType="void" argc="1">
 			<arg type="object" />
 		</function>              
 		<function opcode="0x0BD" name="texture_camera_set_fov" returnType="void" argc="1">

@@ -392,8 +392,8 @@
 	<functions>
 		<function opcode="0x000" name="begin" returnType="passthrough" flags="2" group="Begin" />
 		<function opcode="0x001" name="begin_random" returnType="passthrough" flags="2" group="Begin" />
-		<function opcode="0x002" name="begin_count" returnType="passthrough" flags="2" />
-		<function opcode="0x003" name="begin_random_count" returnType="passthrough" flags="2" />
+		<function opcode="0x002" name="begin_count" returnType="passthrough" flags="2" group="BeginCount" />
+		<function opcode="0x003" name="begin_random_count" returnType="passthrough" flags="2" group="BeginCount" />
 		<function opcode="0x004" name="if" returnType="passthrough" flags="2" group="If" />
 		<function opcode="0x005" name="cond" returnType="passthrough" flags="2" group="Cond" />
 		<function opcode="0x006" name="set" returnType="passthrough" flags="2" group="Set" />
@@ -430,7 +430,7 @@
 			<arg type="real" />
 			<arg type="real" />
 		</function>
-		<function opcode="0x020" name="" returnType="void" null="true" />
+		<function opcode="0x020" name="dummy_function" returnType="void" null="true" />
 		<function opcode="0x021" name="print" returnType="void" null="true" argc="1">
 			<arg type="string" />
 		</function>
@@ -670,7 +670,7 @@
 		<function opcode="0x068" name="object_wake_physics" returnType="void" argc="1">
 			<arg type="object" />
 		</function>
-		<function opcode="0x069" name="object_wake_physics" returnType="void" argc="2">
+		<function opcode="0x069" name="object_set_ranged_attack_inhibited" returnType="void" argc="2">
 			<arg type="object" />
 			<arg type="boolean" />
 		</function>
@@ -3396,8 +3396,8 @@
 		<function opcode="0x35D" name="switch_zone_set" returnType="void" argc="1">
 			<arg type="zone_set" />
 		</function>              
-		<function opcode="0x35E" name="" returnType="void" null="true" />
-		<function opcode="0x35F" name="" returnType="void" null="true" />
+		<function opcode="0x35E" name="scenario_print_zone_sets" returnType="void" null="true" />
+		<function opcode="0x35F" name="scenario_print_current_zone_set" returnType="void" null="true" />
 		<function opcode="0x360" name="current_zone_set" returnType="long" />
 		<function opcode="0x361" name="current_zone_set_fully_active" returnType="long" />
 		<function opcode="0x362" name="switch_map_and_zone_set" returnType="void" null="true" argc="2">
@@ -3463,37 +3463,37 @@
 		</function>
 		<function opcode="0x374" name="" returnType="void" null="true" />
 		<function opcode="0x375" name="" returnType="void" null="true" />
-		<function opcode="0x376" name="" returnType="void" null="true" argc="1">
+		<function opcode="0x376" name="map_name" returnType="void" null="true" argc="1">
 			<arg type="string" />
 		</function>
-		<function opcode="0x377" name="" returnType="void" null="true" argc="1">
+		<function opcode="0x377" name="game_multiplayer" returnType="void" null="true" argc="1">
 			<arg type="string" />
 		</function>
-		<function opcode="0x378" name="" returnType="void" null="true" />
-		<function opcode="0x379" name="" returnType="void" null="true" />
-		<function opcode="0x37A" name="game_splitscreen" returnType="void" null="true" argc="1">
+		<function opcode="0x378" name="game_campaign" returnType="void" null="true" />
+		<function opcode="0x379" name="game_survival" returnType="void" null="true" />
+		<function opcode="0x37A" name="game_player_count" returnType="void" null="true" argc="1">
 			<arg type="long" />
 		</function>
-		<function opcode="0x37B" name="game_difficulty" returnType="void" null="true" argc="2">
+		<function opcode="0x37B" name="" returnType="void" null="true" argc="2">
 			<arg type="string" />
 			<arg type="string_id" />
 		</function>
-		<function opcode="0x37C" name="" returnType="void" null="true" argc="1">
+		<function opcode="0x37C" name="game_splitscreen" returnType="void" null="true" argc="1">
 			<arg type="long" />
 		</function>
-		<function opcode="0x37D" name="" returnType="void" null="true" argc="1">
+		<function opcode="0x37D" name="game_difficulty" returnType="void" null="true" argc="1">
 			<arg type="game_difficulty" />
 		</function>
-		<function opcode="0x37E" name="" returnType="void" null="true" argc="1">
+		<function opcode="0x37E" name="game_active_skulls" returnType="void" null="true" argc="1">
 			<arg type="long" />
 		</function>
-		<function opcode="0x37F" name="" returnType="void" null="true" argc="1">
+		<function opcode="0x37F" name="game_coop_players" returnType="void" null="true" argc="1">
 			<arg type="long" />
 		</function>
-		<function opcode="0x380" name="" returnType="void" null="true" argc="1">
+		<function opcode="0x380" name="game_initial_zone_set" returnType="void" null="true" argc="1">
 			<arg type="string" />
 		</function>
-		<function opcode="0x381" name="" returnType="void" null="true" argc="1">
+		<function opcode="0x381" name="game_tick_rate" returnType="void" null="true" argc="1">
 			<arg type="long" />
 		</function>
 		<function opcode="0x382" name="game_start" returnType="void" null="true" argc="1">
@@ -3645,14 +3645,14 @@
 			<arg type="object" />
 		</function>              
 		<function opcode="0x3BE" name="cinematic_lighting_rebuild_all" returnType="void" />
-		<function opcode="0x3BF" name="" returnType="void" null="true" argc="5">
+		<function opcode="0x3BF" name="cinematic_lighting_update_dynamic_light_direction" returnType="void" null="true" argc="5">
 			<arg type="string" />
 			<arg type="long" />
 			<arg type="real" />
 			<arg type="real" />
 			<arg type="real" />
 		</function>
-		<function opcode="0x3C0" name="" returnType="void" null="true" argc="8">
+		<function opcode="0x3C0" name="cinematic_lighting_update_vmf_light" returnType="void" null="true" argc="8">
 			<arg type="string" />
 			<arg type="real" />
 			<arg type="real" />
@@ -3662,7 +3662,7 @@
 			<arg type="real" />
 			<arg type="real" />
 		</function>
-		<function opcode="0x3C1" name="" returnType="void" null="true" argc="7">
+		<function opcode="0x3C1" name="cinematic_lighting_update_analytical_light" returnType="void" null="true" argc="7">
 			<arg type="string" />
 			<arg type="real" />
 			<arg type="real" />
@@ -3671,14 +3671,14 @@
 			<arg type="real" />
 			<arg type="real" />
 		</function>
-		<function opcode="0x3C2" name="" returnType="void" null="true" argc="5">
+		<function opcode="0x3C2" name="cinematic_lighting_update_ambient_light" returnType="void" null="true" argc="5">
 			<arg type="string" />
 			<arg type="real" />
 			<arg type="real" />
 			<arg type="real" />
 			<arg type="real" />
 		</function>
-		<function opcode="0x3C3" name="" returnType="void" null="true" argc="5">
+		<function opcode="0x3C3" name="cinematic_lighting_update_scales" returnType="void" null="true" argc="5">
 			<arg type="string" />
 			<arg type="real" />
 			<arg type="real" />
@@ -3862,49 +3862,49 @@
 		<function opcode="0x3F5" name="achievement_grant_to_all_players" returnType="void" null="true" argc="1">
 			<arg type="string_id" />
 		</function>
-		<function opcode="0x3F6" name="" returnType="void" null="true" argc="1">
+		<function opcode="0x3F6" name="achievements_enable" returnType="void" null="true" argc="1">
 			<arg type="boolean" />
-		</function>
-		<function opcode="0x3F7" name="" returnType="void" null="true" argc="1">
+		</function>              
+		<function opcode="0x3F7" name="achievements_skip_validation_checks" returnType="void" null="true" argc="1">
 			<arg type="boolean" />
-		</function>
-		<function opcode="0x3F8" name="" returnType="void" null="true" argc="1">
+		</function>              
+		<function opcode="0x3F8" name="debug_spawning_influencers" returnType="void" null="true" argc="1">
 			<arg type="boolean" />
-		</function>
-		<function opcode="0x3F9" name="" returnType="void" null="true" argc="1">
+		</function>              
+		<function opcode="0x3F9" name="debug_spawning_respawn_zones" returnType="void" null="true" argc="1">
 			<arg type="boolean" />
-		</function>
-		<function opcode="0x3FA" name="" returnType="void" null="true" argc="1">
+		</function>              
+		<function opcode="0x3FA" name="debug_spawning_proximity_forbid" returnType="void" null="true" argc="1">
 			<arg type="boolean" />
-		</function>
-		<function opcode="0x3FB" name="" returnType="void" null="true" argc="1">
+		</function>              
+		<function opcode="0x3FB" name="debug_spawning_moving_vehicle" returnType="void" null="true" argc="1">
 			<arg type="boolean" />
-		</function>
-		<function opcode="0x3FC" name="" returnType="void" null="true" argc="1">
+		</function>              
+		<function opcode="0x3FC" name="debug_spawning_weapon_influences" returnType="void" null="true" argc="1">
 			<arg type="boolean" />
-		</function>
-		<function opcode="0x3FD" name="" returnType="void" null="true" argc="1">
+		</function>              
+		<function opcode="0x3FD" name="debug_spawning_dangerous_projectiles" returnType="void" null="true" argc="1">
 			<arg type="boolean" />
-		</function>
-		<function opcode="0x3FE" name="" returnType="void" null="true" argc="1">
+		</function>              
+		<function opcode="0x3FE" name="debug_spawning_deployed_equipment" returnType="void" null="true" argc="1">
 			<arg type="boolean" />
-		</function>
-		<function opcode="0x3FF" name="" returnType="void" null="true" argc="1">
+		</function>              
+		<function opcode="0x3FF" name="debug_spawning_proximity_enemy" returnType="void" null="true" argc="1">
 			<arg type="boolean" />
-		</function>
-		<function opcode="0x400" name="" returnType="void" null="true" argc="1">
+		</function>              
+		<function opcode="0x400" name="debug_spawning_teammates" returnType="void" null="true" argc="1">
 			<arg type="boolean" />
-		</function>
-		<function opcode="0x401" name="" returnType="void" null="true" argc="1">
+		</function>              
+		<function opcode="0x401" name="debug_spawning_dead_teammates" returnType="void" null="true" argc="1">
 			<arg type="boolean" />
-		</function>
-		<function opcode="0x402" name="" returnType="void" null="true" argc="1">
+		</function>              
+		<function opcode="0x402" name="debug_spawning_random_influence" returnType="void" null="true" argc="1">
 			<arg type="boolean" />
-		</function>
-		<function opcode="0x403" name="" returnType="void" null="true" argc="1">
+		</function>              
+		<function opcode="0x403" name="debug_spawning_nominal_weight" returnType="void" null="true" argc="1">
 			<arg type="boolean" />
-		</function>
-		<function opcode="0x404" name="" returnType="void" null="true" argc="1">
+		</function>              
+		<function opcode="0x404" name="debug_spawning_natural_weight" returnType="void" null="true" argc="1">
 			<arg type="boolean" />
 		</function>
 		<function opcode="0x405" name="debug_spawning_target" returnType="void" null="true" argc="1">
@@ -4306,7 +4306,7 @@
 		<function opcode="0x490" name="chud_clear_hs_variable" returnType="void" argc="1">
 			<arg type="long" />  
 		</function>              
-		<function opcode="0x491" name="" returnType="void" null="true" argc="1">
+		<function opcode="0x491" name="chud_get_hs_variable" returnType="void" null="true" argc="1">
 			<arg type="real" />  
 		</function>              
 		<function opcode="0x492" name="chud_show_arbiter_ai_navpoint" returnType="void" argc="1">
@@ -4761,19 +4761,19 @@
 			<arg type="boolean" />
 		</function>
 		<function opcode="0x512" name="objectives_clear" returnType="void" />
-		<function opcode="0x513" name="" returnType="void" argc="1">
+		<function opcode="0x513" name="objectives_show_up_to" returnType="void" argc="1">
 			<arg type="long" />
 		</function>
-		<function opcode="0x514" name="" returnType="void" argc="1">
+		<function opcode="0x514" name="objectives_finish_up_to" returnType="void" argc="1">
 			<arg type="long" />
 		</function>
-		<function opcode="0x515" name="" returnType="void" argc="1">
+		<function opcode="0x515" name="objectives_secondary_show" returnType="void" argc="1">
 			<arg type="long" />
 		</function>
-		<function opcode="0x516" name="" returnType="void" argc="1">
+		<function opcode="0x516" name="objectives_secondary_finish" returnType="void" argc="1">
 			<arg type="long" />
 		</function>
-		<function opcode="0x517" name="" returnType="void" argc="1">
+		<function opcode="0x517" name="objectives_secondary_unavailable" returnType="void" argc="1">
 			<arg type="long" />
 		</function>
 		<function opcode="0x518" name="input_suppress_rumble" returnType="void" argc="1">
@@ -4798,23 +4798,23 @@
 		</function>
 		<function opcode="0x520" name="net_quality_dump" returnType="void" null="true" />
 		<function opcode="0x521" name="net_quality_clear" returnType="void" null="true" />
-		<function opcode="0x522" name="" returnType="void" null="true" argc="2">
+		<function opcode="0x522" name="net_quality_set_connection_badness_history" returnType="void" null="true" argc="2">
 			<arg type="boolean" />
 			<arg type="short" />
 		</function>
-		<function opcode="0x523" name="" returnType="void" null="true" argc="2">
+		<function opcode="0x523" name="net_quality_set_squad_host_badness_history" returnType="void" null="true" argc="2">
 			<arg type="boolean" />
 			<arg type="short" />
 		</function>
-		<function opcode="0x524" name="" returnType="void" null="true" argc="2">
+		<function opcode="0x524" name="net_quality_set_squad_client_badness_history" returnType="void" null="true" argc="2">
 			<arg type="boolean" />
 			<arg type="short" />
 		</function>
-		<function opcode="0x525" name="" returnType="void" null="true" argc="2">
+		<function opcode="0x525" name="net_quality_set_group_host_badness_history" returnType="void" null="true" argc="2">
 			<arg type="boolean" />
 			<arg type="short" />
 		</function>
-		<function opcode="0x526" name="" returnType="void" null="true" argc="2">
+		<function opcode="0x526" name="net_quality_set_group_client_badness_history" returnType="void" null="true" argc="2">
 			<arg type="boolean" />
 			<arg type="short" />
 		</function>
@@ -5150,8 +5150,8 @@
 		<function opcode="0x587" name="webstats_test_submit" returnType="void" null="true" argc="1">
 			<arg type="string" />
 		</function>
-		<function opcode="0x588" name="" returnType="void" null="true" />
-		<function opcode="0x589" name="" returnType="void" null="true" />
+		<function opcode="0x588" name="webstats_test_submit_multiplayer" returnType="void" null="true" />
+		<function opcode="0x589" name="webstats_test_submit_campaign" returnType="void" null="true" />
 		<function opcode="0x58A" name="webstats_throttle_bandwidth" returnType="void" null="true" argc="1">
 			<arg type="long" />
 		</function>
@@ -5614,14 +5614,14 @@
 		<function opcode="0x62D" name="net_leaderboard_clear_global_unarbitrated_all_users" returnType="void" null="true" argc="1">
 			<arg type="string" />
 		</function>              
-		<function opcode="0x62E" name="" returnType="void" null="true" />
-		<function opcode="0x62F" name="" returnType="void" null="true" argc="1">
+		<function opcode="0x62E" name="test_sapien_crash" returnType="void" null="true" />
+		<function opcode="0x62F" name="output_window_add_category" returnType="void" null="true" argc="1">
 			<arg type="string" />
 		</function>              
-		<function opcode="0x630" name="" returnType="void" null="true" argc="1">
+		<function opcode="0x630" name="output_window_remove_category" returnType="void" null="true" argc="1">
 			<arg type="string" />
 		</function>              
-		<function opcode="0x631" name="test_sapien_crash" returnType="void" null="true" />
+		<function opcode="0x631" name="output_window_list_categories" returnType="void" null="true" />
 		<function opcode="0x632" name="decorators_split" returnType="void" null="true" argc="2">
 			<arg type="long" />  
 			<arg type="real" />  
@@ -5677,19 +5677,19 @@
 			<arg type="long" />  
 			<arg type="long" />  
 		</function>              
-		<function opcode="0x645" name="" returnType="void" null="true" argc="1">
+		<function opcode="0x645" name="net_build_map_variant" returnType="void" null="true" argc="1">
 			<arg type="string" />
 		</function>              
-		<function opcode="0x646" name="" returnType="void" null="true" argc="1">
+		<function opcode="0x646" name="net_verify_map_variant" returnType="void" null="true" argc="1">
 			<arg type="string" />
 		</function>              
-		<function opcode="0x647" name="" returnType="void" null="true" argc="1">
+		<function opcode="0x647" name="net_load_and_use_map_variant" returnType="void" null="true" argc="1">
 			<arg type="string" />
 		</function>              
-		<function opcode="0x648" name="" returnType="void" null="true" argc="1">
+		<function opcode="0x648" name="write_current_map_variant" returnType="void" null="true" argc="1">
 			<arg type="string" />
 		</function>              
-		<function opcode="0x649" name="" returnType="void" null="true" argc="1">
+		<function opcode="0x649" name="read_map_variant_and_make_current" returnType="void" null="true" argc="1">
 			<arg type="string" />
 		</function>              
 		<function opcode="0x64A" name="async_set_thread_work_delay_milliseconds" returnType="void" null="true" argc="2">
@@ -5957,10 +5957,10 @@
 			<arg type="long" />  
 			<arg type="long" />  
 		</function>              
-		<function opcode="0x69C" name="" returnType="void" null="true" argc="1">
+		<function opcode="0x69C" name="xsync_pony_tag" returnType="void" null="true" argc="1">
 			<arg type="any_tag" />
 		</function>              
-		<function opcode="0x69D" name="" returnType="void" null="true" argc="1">
+		<function opcode="0x69D" name="xsync_pony_map" returnType="void" null="true" argc="1">
 			<arg type="string" />
 		</function>              
 		<function opcode="0x69E" name="net_simulation_set_stream_bandwidth" returnType="void" null="true" argc="1">
@@ -6017,14 +6017,14 @@
 		<function opcode="0x6B0" name="levels_add_multiplayer_map" returnType="void" null="true" argc="1">
 			<arg type="string" />
 		</function>
-		<function opcode="0x6B1" name="" returnType="void" null="true" />
+		<function opcode="0x6B1" name="run_like_package" returnType="void" null="true" />
 		<function opcode="0x6B2" name="clear_map_slot" returnType="void" null="true" argc="1">
 			<arg type="long" />
 		</function>
 		<function opcode="0x6B3" name="clear_map_type" returnType="void" null="true" argc="1">
 			<arg type="long" />
 		</function>
-		<function opcode="0x6B4" name="" returnType="void" null="true" />
+		<function opcode="0x6B4" name="network_team_picker_unit_test" returnType="void" null="true" />
 		<function opcode="0x6B5" name="debug_objects_unit_seats_filter" returnType="void" null="true" argc="1">
 			<arg type="string" />
 		</function>
@@ -6110,7 +6110,7 @@
 		<function opcode="0x6CE" name="rewards_get_grade" returnType="long" argc="1">
 			<arg type="controller" />
 		</function>
-		<function opcode="0x6CF" name="" returnType="long" argc="1">
+		<function opcode="0x6CF" name="rewards_get_sub_grade" returnType="long" argc="1">
 			<arg type="controller" />
 		</function>
 		<function opcode="0x6D0" name="exit_experience_set_params" returnType="void" null="true" argc="7">
@@ -6263,7 +6263,7 @@
 		<function opcode="0x6FF" name="" returnType="void" null="true" />
 		<function opcode="0x700" name="" returnType="void" null="true" />
 		<function opcode="0x701" name="" returnType="void" null="true" />
-		<function opcode="0x702" name="" returnType="void" null="true" argc="3">
+		<function opcode="0x702" name="async_test_hang" returnType="void" null="true" argc="3">
 			<arg type="real" />
 			<arg type="long" />
 			<arg type="long" />

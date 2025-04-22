@@ -334,6 +334,16 @@ namespace Assembly.Metro.Controls.PageTemplates.Games
 					Title = "Build:",
 					Data = _cacheFile.BuildString.ToString(CultureInfo.InvariantCulture)
 				});
+
+				if (_cacheFile.BuildDate != null)
+				{
+					HeaderDetails.Add(new HeaderValue
+					{
+						Title = "Build Date:",
+						Data = _cacheFile.BuildDate.Value.ToUniversalTime().ToString("MMM dd yyyy HH:mm:ss")
+					});
+				}
+				
 				HeaderDetails.Add(new HeaderValue {Title = "Type:", Data = _cacheFile.Type.ToString()});
 				HeaderDetails.Add(new HeaderValue {Title = "Internal Name:", Data = _cacheFile.InternalName});
 				HeaderDetails.Add(new HeaderValue {Title = "Scenario Name:", Data = _cacheFile.ScenarioName});

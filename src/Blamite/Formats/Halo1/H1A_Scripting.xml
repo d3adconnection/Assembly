@@ -1405,7 +1405,7 @@
 		<function opcode="0x1BF" name="display_scenario_help" returnType="void" argc="1">
 			<arg type="short" />
 		</function>
-		<function opcode="0x1C0" name="xbox_set_machine_name" returnType="void" argc="1"><!-- unknown if accurate past this point -->
+		<function opcode="0x1C0" name="xbox_set_machine_name" returnType="void" argc="1">
 			<arg type="string" />
 		</function>
 		<function opcode="0x1C1" name="input_find_default" returnType="void" argc="1">
@@ -1489,7 +1489,7 @@
 		</function>
 	</functions>
 
-	<globals><!-- accuracy unknown -->
+	<globals>
 		<global opcode="0x000" name="rasterizer_near_clip_distance" null="true" type="real" />
 		<global opcode="0x001" name="rasterizer_far_clip_distance" null="true" type="real" />
 		<global opcode="0x002" name="rasterizer_first_person_weapon_near_clip_distance" null="true" type="real" />

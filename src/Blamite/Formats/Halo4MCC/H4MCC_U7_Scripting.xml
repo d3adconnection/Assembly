@@ -491,7 +491,7 @@
 		<function opcode="0x015" name="&gt;=" returnType="boolean" flags="4" />
 		<function opcode="0x016" name="&lt;=" returnType="boolean" flags="4" />
 		<function opcode="0x017" name="sleep" returnType="void" flags="4" />
-		<function opcode="0x018" name="cinematic_sleep" returnType="void" flags="4" /><!-- MCC -->
+		<function opcode="0x018" name="cinematic_sleep" returnType="void" flags="4" />
 		<function opcode="0x019" name="sleep_forever" returnType="void" flags="4" />
 		<function opcode="0x01A" name="sleep_until" returnType="boolean" flags="4" />
 		<function opcode="0x01B" name="wake" returnType="void" flags="4" />

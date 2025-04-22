@@ -20,6 +20,9 @@
 		<int32 name="string namespace table count" offset="0x40" />
 		<int32 name="string namespace table offset" offset="0x44" />
 
+		<int32 name="cache build date high" offset ="0x50" />
+		<int32 name="cache build date low" offset ="0x54" />
+
 		<asciiz name="build string" offset="0xA0" />
 
 		<asciiz name="internal name" offset="0xC0" />

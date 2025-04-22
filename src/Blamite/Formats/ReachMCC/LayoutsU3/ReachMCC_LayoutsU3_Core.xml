@@ -16,6 +16,9 @@
 		<int32 name="string table offset" offset="0x15C" />
 		<int32 name="string namespace table count" offset="0x160" />
 		<int32 name="string namespace table offset" offset="0x164" />
+		
+		<int32 name="cache build date high" offset ="0x16C" />
+		<int32 name="cache build date low" offset ="0x170" />
 
 		<asciiz name="internal name" offset="0x194" />
 		<asciiz name="scenario name" offset="0x1B8" />

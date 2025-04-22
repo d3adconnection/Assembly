@@ -298,7 +298,7 @@
 		<function opcode="0x008" name="-" returnType="real" flags="2" group="Arithmetic" />
 		<function opcode="0x009" name="*" returnType="real" flags="2" group="Arithmetic" />
 		<function opcode="0x00A" name="/" returnType="real" flags="2" group="Arithmetic" />
-		<function opcode="0x00B" name="inc" returnType="real" flags="2" group="Arithmetic" /><!-- eldorado -->
+		<function opcode="0x00B" name="inc" returnType="real" flags="2" group="Arithmetic" />
 		<function opcode="0x00C" name="min" returnType="real" flags="2" group="Arithmetic" />
 		<function opcode="0x00D" name="max" returnType="real" flags="2" group="Arithmetic" />
 		<function opcode="0x00E" name="=" returnType="boolean" flags="2" group="Equality" />
@@ -308,7 +308,7 @@
 		<function opcode="0x012" name="&gt;=" returnType="boolean" flags="2" group="Inequality" />
 		<function opcode="0x013" name="&lt;=" returnType="boolean" flags="2" group="Inequality" />
 		<function opcode="0x014" name="sleep" returnType="void" flags="2" group="Sleep" />
-		<function opcode="0x015" name="sleep_for_ticks" returnType="void" flags="2" group="SleepForTicks" /><!-- zbt -->
+		<function opcode="0x015" name="sleep_for_ticks" returnType="void" flags="2" group="SleepForTicks" />
 		<function opcode="0x016" name="sleep_forever" returnType="void" flags="2" group="SleepForever" />
 		<function opcode="0x017" name="sleep_until" returnType="boolean" flags="2" group="SleepUntil" />
 		<function opcode="0x018" name="wake" returnType="void" flags="2" group="Wake" />
@@ -1141,7 +1141,7 @@
 			<arg type="unit" />
 			<arg type="boolean" />
 		</function>
-		<function opcode="0x105" name="" returnType="void" argc="3"><!-- eldorado -->
+		<function opcode="0x105" name="" returnType="void" argc="3">
 			<arg type="unit" />
 			<arg type="unit_seat_mapping" />
 			<arg type="boolean" />
@@ -3056,7 +3056,7 @@
 		<function opcode="0x2EE" name="player_disable_movement" returnType="void" argc="1">
 			<arg type="boolean" />
 		</function>
-		<function opcode="0x2EF" name="" returnType="void" argc="1"><!-- added 3 around here for zbt -->
+		<function opcode="0x2EF" name="" returnType="void" argc="1">
 			<arg type="boolean" />
 		</function>
 		<function opcode="0x2F0" name="" returnType="void" argc="1">
@@ -3254,7 +3254,7 @@
 			<arg type="short" />
 			<arg type="string" />
 		</function>
-		<function opcode="0x345" name="" returnType="void" null="true" argc="1"><!-- one of these 4 is new to zbt -->
+		<function opcode="0x345" name="" returnType="void" null="true" argc="1">
 			<arg type="string" />
 		</function>
 		<function opcode="0x346" name="" returnType="void" null="true" argc="1">
@@ -5215,7 +5215,7 @@
 			<arg type="string" />
 			<arg type="long" />  
 		</function>              
-		<function opcode="0x5AE" name="" returnType="void" null="true" /><!-- 3 removed here for zbt -->
+		<function opcode="0x5AE" name="" returnType="void" null="true" />
 		<function opcode="0x5AF" name="" returnType="void" null="true" argc="1">
 			<arg type="real" />  
 		</function>              
@@ -5770,7 +5770,7 @@
 		<function opcode="0x668" name="chud_bonus_round_set_target_score" returnType="void" argc="1">
 			<arg type="long" />
 		</function>
-		<function opcode="0x669" name="" returnType="void" null="true" /><!-- eldorado from here on -->
+		<function opcode="0x669" name="" returnType="void" null="true" />
 		<function opcode="0x66A" name="" returnType="void" null="true" argc="3">
 			<arg type="short" />
 			<arg type="short" />
@@ -5880,9 +5880,9 @@
 		</function>
 		<function opcode="0x68F" name="" returnType="void" null="true" />
 		<function opcode="0x690" name="" returnType="void" />
-		<function opcode="0x691" name="" returnType="long" /><!-- removed 5 from previous builds -->
-		<function opcode="0x692" name="" returnType="void" null="true" /><!-- was 0x697 in previous builds -->
-		<function opcode="0x693" name="" returnType="void" argc="1"><!-- ZBT from here on -->
+		<function opcode="0x691" name="" returnType="long" />
+		<function opcode="0x692" name="" returnType="void" null="true" />
+		<function opcode="0x693" name="" returnType="void" argc="1">
 			<arg type="boolean" />
 		</function>
 		<function opcode="0x694" name="" returnType="boolean" argc="2">
@@ -5915,7 +5915,7 @@
 			<arg type="controller" />
 			<arg type="string" />
 		</function>
-		<function opcode="0x69D" name="" returnType="boolean" argc="2"><!-- ZBT 70 from here on -->
+		<function opcode="0x69D" name="" returnType="boolean" argc="2">
 			<arg type="unit" />
 			<arg type="short" />
 		</function>

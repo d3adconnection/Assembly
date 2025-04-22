@@ -161,12 +161,17 @@
 		</type>
 		<type opcode="0x39" name="button_preset" size="2">
 			<enum>standard</enum>
-			<enum>community1</enum>
+			<enum>community</enum>
 			<enum>boxer</enum>
 			<enum>green_thumb</enum>
 			<enum>professional</enum>
 			<enum>evolved</enum>
 			<enum>community2</enum>
+			<enum>universal_recon</enum>
+			<enum>universal_reclaimer</enum>
+			<enum>universal_zoom_and_shoot</enum>
+			<enum>universal_bumper_jumper</enum>
+			<enum>universal_green_fingers</enum>
 		</type>
 		<type opcode="0x3A" name="joystick_preset" size="2">
 			<enum>standard</enum>
@@ -425,9 +430,9 @@
 		<function opcode="0x016" name="sleep" returnType="void" flags="2" group="Sleep" />
 		<function opcode="0x017" name="sleep_forever" returnType="void" flags="2" group="SleepForever" />
 		<function opcode="0x018" name="sleep_until" returnType="boolean" flags="2" group="SleepUntil" />
-		<function opcode="0x019" name="sleep_until_game_ticks" returnType="boolean" flags="2" group="SleepUntilGameTicks" /> <!-- MCC -->
+		<function opcode="0x019" name="sleep_until_game_ticks" returnType="boolean" flags="2" group="SleepUntilGameTicks" />
 		<function opcode="0x01A" name="wake" returnType="void" flags="2" group="Wake" />
-		<function opcode="0x01B" name="cinematic_sleep" returnType="void" flags="2" group="CinematicSleep" /><!-- MCC -->
+		<function opcode="0x01B" name="cinematic_sleep" returnType="void" flags="2" group="CinematicSleep" />
 		<function opcode="0x01C" name="inspect" returnType="void" flags="2" group="Inspect" />
 		<function opcode="0x01D" name="branch" returnType="void" flags="2" group="Branch" />
 		<function opcode="0x01E" name="unit" returnType="unit" flags="2" group="ObjectCast" />

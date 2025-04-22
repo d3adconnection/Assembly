@@ -327,7 +327,7 @@
 		<function opcode="0x011" name="&gt;=" returnType="boolean" flags="2" group="Inequality" />
 		<function opcode="0x012" name="&lt;=" returnType="boolean" flags="2" group="Inequality" />
 		<function opcode="0x013" name="sleep" returnType="void" flags="2" group="Sleep" />
-		<function opcode="0x014" name="sleep_for_ticks" returnType="void" flags="2" group="SleepForTicks" /><!--MCC-->
+		<function opcode="0x014" name="sleep_for_ticks" returnType="void" flags="2" group="SleepForTicks" />
 		<function opcode="0x015" name="sleep_forever" returnType="void" flags="2" group="SleepForever" />
 		<function opcode="0x016" name="sleep_until" returnType="boolean" flags="2" group="SleepUntil" />
 		<function opcode="0x017" name="wake" returnType="void" flags="2" group="Wake" />
