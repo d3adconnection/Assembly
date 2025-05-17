@@ -1257,17 +1257,17 @@ namespace Assembly.Metro.Controls.PageTemplates.Games
 				{
 					foreach (ITag t in tagsProcessed)
 					{
-						foreach (ResourcePredictionD pred in resources.Predictions.Where(d => d.Tag.Index == t.Index))
+						foreach (ResourcePredictionMolecule pred in resources.Predictions.Where(d => d.Tag.Index == t.Index))
 						{
-							ExtractedResourcePredictionD expred = new ExtractedResourcePredictionD(pred);
+							ExtractedResourcePredictionMolecule expred = new ExtractedResourcePredictionMolecule(pred);
 
-							foreach (ResourcePredictionC pc in pred.CEntries)
+							foreach (ResourcePredictionMoleculeAtom pc in pred.MoleculeAtoms)
 							{
-								ExtractedResourcePredictionC expc = new ExtractedResourcePredictionC(pc);
+								ExtractedResourcePredictionMoleculeAtom expc = new ExtractedResourcePredictionMoleculeAtom(pc);
 
-								foreach (ResourcePredictionA pa in pc.BEntry.AEntries)
+								foreach (ResourcePredictionQuanta pa in pc.Atom.Quantas)
 								{
-									ExtractedResourcePredictionA expa = new ExtractedResourcePredictionA(pa);
+									ExtractedResourcePredictionQuanta expa = new ExtractedResourcePredictionQuanta(pa);
 
 									var res = resources.Resources[pa.Resource.Index];
 									if (res.ParentTag != null)
@@ -1281,15 +1281,15 @@ namespace Assembly.Metro.Controls.PageTemplates.Games
 										expa.OriginalResourceGroup = -1;
 									}
 
-									expc.BEntry.AEntries.Add(expa);
+									expc.BEntry.Quantas.Add(expa);
 
 								}
-								expred.CEntries.Add(expc);
+								expred.MoleculeAtoms.Add(expc);
 							}
 
-							foreach (ResourcePredictionA pa in pred.AEntries)
+							foreach (ResourcePredictionQuanta pa in pred.Quantas)
 							{
-								ExtractedResourcePredictionA expa = new ExtractedResourcePredictionA(pa);
+								ExtractedResourcePredictionQuanta expa = new ExtractedResourcePredictionQuanta(pa);
 
 								var res = resources.Resources[pa.Resource.Index];
 								if (res.ParentTag != null)
@@ -1303,7 +1303,7 @@ namespace Assembly.Metro.Controls.PageTemplates.Games
 									expa.OriginalResourceGroup = -1;
 								}
 
-								expred.AEntries.Add(expa);
+								expred.Quantas.Add(expa);
 							}
 							container.AddPrediction(expred);
 						}

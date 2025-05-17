@@ -763,6 +763,21 @@
     <Content Include="Formats\Halo3MCC\H3MCC_U1_StringIDs.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Formats\Halo3MCC\LayoutsFU4\H3MCC_LayoutsFU4_Core.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Formats\Halo3MCC\LayoutsFU4\H3MCC_LayoutsFU4_Resources.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Formats\Halo3MCC\LayoutsFU4\H3MCC_LayoutsFU4_Scenario.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Formats\Halo3MCC\LayoutsFU4\H3MCC_LayoutsFU4_Scripting.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Formats\Halo3MCC\LayoutsFU4\H3MCC_LayoutsFU4_Sounds.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Formats\Halo3MCC\LayoutsU13\H3MCC_LayoutsU13_Core.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -791,6 +806,21 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Formats\Halo3MCC\LayoutsU12\H3MCC_LayoutsU12_Sounds.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Formats\Halo3MCC\LayoutsFU6\H3MCC_LayoutsFU6_Core.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Formats\Halo3MCC\LayoutsFU6\H3MCC_LayoutsFU6_Resources.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Formats\Halo3MCC\LayoutsFU6\H3MCC_LayoutsFU6_Scenario.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Formats\Halo3MCC\LayoutsFU6\H3MCC_LayoutsFU6_Scripting.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Formats\Halo3MCC\LayoutsFU6\H3MCC_LayoutsFU6_Sounds.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Formats\Halo3MCC\LayoutsU9\H3MCC_LayoutsU9_Core.xml">
@@ -869,9 +899,6 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Formats\Halo3\Layouts\H3_Layouts_Sounds.xml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Formats\Halo3\Layouts\H3_Layouts_Mission_Dialogue.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Formats\Halo4E3\H4Keynote_StringIDs.xml">
@@ -1057,6 +1084,12 @@
     <Content Include="Formats\HaloOnline\HO_LocaleSymbols.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Formats\HaloOnline\LayoutsMS26\HO_LayoutsMS26_Core.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Formats\HaloOnline\LayoutsMS26\HO_LayoutsMS26_Scenario.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Formats\HaloOnline\LayoutsMS25\HO_LayoutsMS25_Core.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -1100,6 +1133,21 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Formats\ODSTMCC\Layouts2015\ODSTMCC_Layouts2015_Sounds.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Formats\ODSTMCC\LayoutsFU3\ODSTMCC_LayoutsFU3_Core.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Formats\ODSTMCC\LayoutsFU3\ODSTMCC_LayoutsFU3_Resources.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Formats\ODSTMCC\LayoutsFU3\ODSTMCC_LayoutsFU3_Scenario.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Formats\ODSTMCC\LayoutsFU3\ODSTMCC_LayoutsFU3_Scripting.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Formats\ODSTMCC\LayoutsFU3\ODSTMCC_LayoutsFU3_Sounds.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Formats\ODSTMCC\LayoutsU8\ODSTMCC_LayoutsU8_Core.xml">
@@ -1271,9 +1319,6 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Formats\ODST\Layouts\ODST_Layouts_Scenario.xml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Formats\ODST\Layouts\ODST_Layouts_Mission_Dialogue.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Formats\ODST\Layouts\ODST_Layouts_Sounds.xml">

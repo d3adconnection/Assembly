@@ -24,7 +24,7 @@ namespace Assembly.Helpers
 	/// </summary>
 	public class Storage : INotifyPropertyChanged
 	{
-		private Settings _assemblySettings = new Settings();
+		private Settings _assemblySettings;
 		private NetworkPoke _networkPoke = new NetworkPoke();
 
 		#region Helpers

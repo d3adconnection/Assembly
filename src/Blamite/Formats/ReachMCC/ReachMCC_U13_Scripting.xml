@@ -2591,823 +2591,823 @@
 		</function>
 		<function opcode="0x278" name="vs_abort_on_alert" returnType="void" argc="1">
 			<arg type="boolean" />
-		</function>              
+		</function>
 		<function opcode="0x279" name="vs_abort_on_damage" returnType="void" argc="1">
 			<arg type="boolean" />
-		</function>              
+		</function>
 		<function opcode="0x27A" name="vs_abort_on_combat_status" returnType="void" argc="1">
 			<arg type="short" /> 
-		</function>              
+		</function>
 		<function opcode="0x27B" name="vs_abort_on_vehicle_exit" returnType="void" argc="1">
 			<arg type="boolean" />
-		</function>              
+		</function>
 		<function opcode="0x27C" name="cs_abort_on_alert" returnType="void" flags="1" argc="1">
 			<arg type="boolean" />
-		</function>              
+		</function>
 		<function opcode="0x27D" name="vs_abort_on_alert" returnType="void" argc="2">
-			<arg type="ai" />    
+			<arg type="ai" />
 			<arg type="boolean" />
-		</function>              
+		</function>
 		<function opcode="0x27E" name="cs_abort_on_damage" returnType="void" flags="1" argc="1">
 			<arg type="boolean" />
-		</function>              
+		</function>
 		<function opcode="0x27F" name="vs_abort_on_damage" returnType="void" argc="2">
-			<arg type="ai" />    
+			<arg type="ai" />
 			<arg type="boolean" />
-		</function>              
+		</function>
 		<function opcode="0x280" name="cs_abort_on_combat_status" returnType="void" flags="1" argc="1">
 			<arg type="short" /> 
-		</function>              
+		</function>
 		<function opcode="0x281" name="vs_abort_on_combat_status" returnType="void" argc="2">
-			<arg type="ai" />    
+			<arg type="ai" />
 			<arg type="short" /> 
-		</function>              
+		</function>
 		<function opcode="0x282" name="cs_abort_on_vehicle_exit" returnType="void" flags="1" argc="1">
 			<arg type="boolean" />
-		</function>              
+		</function>
 		<function opcode="0x283" name="vs_abort_on_vehicle_exit" returnType="void" argc="2">
-			<arg type="ai" />    
+			<arg type="ai" />
 			<arg type="boolean" />
-		</function>              
+		</function>
 		<function opcode="0x284" name="cs_command_script_running" returnType="boolean" argc="2">
-			<arg type="ai" />    
+			<arg type="ai" />
 			<arg type="ai_command_script" />
-		</function>              
+		</function>
 		<function opcode="0x285" name="cs_command_script_attached" returnType="boolean" argc="2">
-			<arg type="ai" />    
+			<arg type="ai" />
 			<arg type="ai_command_script" />
-		</function>              
+		</function>
 		<function opcode="0x286" name="cs_number_queued" returnType="short" argc="1">
-			<arg type="ai" />    
-		</function>              
+			<arg type="ai" />
+		</function>
 		<function opcode="0x287" name="cs_moving" returnType="boolean" />
 		<function opcode="0x288" name="cs_moving" returnType="boolean" argc="1">
-			<arg type="ai" />    
-		</function>              
+			<arg type="ai" />
+		</function>
 		<function opcode="0x289" name="cs_fly_to" returnType="void" flags="1" argc="1">
 			<arg type="point_reference" />
-		</function>              
+		</function>
 		<function opcode="0x28A" name="vs_fly_to" returnType="void" argc="3">
-			<arg type="ai" />    
+			<arg type="ai" />
 			<arg type="boolean" />
 			<arg type="point_reference" />
-		</function>              
+		</function>
 		<function opcode="0x28B" name="cs_fly_to" returnType="void" flags="1" argc="2">
 			<arg type="point_reference" />
-			<arg type="real" />  
-		</function>              
+			<arg type="real" />
+		</function>
 		<function opcode="0x28C" name="vs_fly_to" returnType="void" argc="4">
-			<arg type="ai" />    
+			<arg type="ai" />
 			<arg type="boolean" />
 			<arg type="point_reference" />
-			<arg type="real" />  
-		</function>              
+			<arg type="real" />
+		</function>
 		<function opcode="0x28D" name="cs_fly_to_and_face" returnType="void" flags="1" argc="2">
 			<arg type="point_reference" />
 			<arg type="point_reference" />
-		</function>              
+		</function>
 		<function opcode="0x28E" name="vs_fly_to_and_face" returnType="void" argc="4">
-			<arg type="ai" />    
+			<arg type="ai" />
 			<arg type="boolean" />
 			<arg type="point_reference" />
 			<arg type="point_reference" />
-		</function>              
+		</function>
 		<function opcode="0x28F" name="cs_fly_to_and_face" returnType="void" flags="1" argc="3">
 			<arg type="point_reference" />
 			<arg type="point_reference" />
-			<arg type="real" />  
-		</function>              
+			<arg type="real" />
+		</function>
 		<function opcode="0x290" name="vs_fly_to_and_face" returnType="void" argc="5">
-			<arg type="ai" />    
+			<arg type="ai" />
 			<arg type="boolean" />
 			<arg type="point_reference" />
 			<arg type="point_reference" />
-			<arg type="real" />  
-		</function>              
+			<arg type="real" />
+		</function>
 		<function opcode="0x291" name="cs_fly_by" returnType="void" flags="1" argc="1">
 			<arg type="point_reference" />
-		</function>              
+		</function>
 		<function opcode="0x292" name="vs_fly_by" returnType="void" argc="3">
-			<arg type="ai" />    
+			<arg type="ai" />
 			<arg type="boolean" />
 			<arg type="point_reference" />
-		</function>              
+		</function>
 		<function opcode="0x293" name="cs_fly_by" returnType="void" flags="1" argc="2">
 			<arg type="point_reference" />
-			<arg type="real" />  
-		</function>              
+			<arg type="real" />
+		</function>
 		<function opcode="0x294" name="vs_fly_by" returnType="void" argc="4">
-			<arg type="ai" />    
+			<arg type="ai" />
 			<arg type="boolean" />
 			<arg type="point_reference" />
-			<arg type="real" />  
-		</function>              
+			<arg type="real" />
+		</function>
 		<function opcode="0x295" name="cs_go_to" returnType="void" flags="1" argc="1">
 			<arg type="point_reference" />
-		</function>              
+		</function>
 		<function opcode="0x296" name="vs_go_to" returnType="void" argc="3">
-			<arg type="ai" />    
+			<arg type="ai" />
 			<arg type="boolean" />
 			<arg type="point_reference" />
-		</function>              
+		</function>
 		<function opcode="0x297" name="cs_go_to" returnType="void" flags="1" argc="2">
 			<arg type="point_reference" />
-			<arg type="real" />  
-		</function>              
+			<arg type="real" />
+		</function>
 		<function opcode="0x298" name="vs_go_to" returnType="void" argc="4">
-			<arg type="ai" />    
+			<arg type="ai" />
 			<arg type="boolean" />
 			<arg type="point_reference" />
-			<arg type="real" />  
-		</function>              
+			<arg type="real" />
+		</function>
 		<function opcode="0x299" name="cs_go_by" returnType="void" flags="1" argc="2">
 			<arg type="point_reference" />
 			<arg type="point_reference" />
-		</function>              
+		</function>
 		<function opcode="0x29A" name="vs_go_by" returnType="void" argc="4">
-			<arg type="ai" />    
+			<arg type="ai" />
 			<arg type="boolean" />
 			<arg type="point_reference" />
 			<arg type="point_reference" />
-		</function>              
+		</function>
 		<function opcode="0x29B" name="cs_go_by" returnType="void" flags="1" argc="3">
 			<arg type="point_reference" />
 			<arg type="point_reference" />
-			<arg type="real" />  
-		</function>              
+			<arg type="real" />
+		</function>
 		<function opcode="0x29C" name="vs_go_by" returnType="void" argc="5">
-			<arg type="ai" />    
+			<arg type="ai" />
 			<arg type="boolean" />
 			<arg type="point_reference" />
 			<arg type="point_reference" />
-			<arg type="real" />  
-		</function>              
+			<arg type="real" />
+		</function>
 		<function opcode="0x29D" name="cs_go_to_and_face" returnType="void" flags="1" argc="2">
 			<arg type="point_reference" />
 			<arg type="point_reference" />
-		</function>              
+		</function>
 		<function opcode="0x29E" name="vs_go_to_and_face" returnType="void" argc="4">
-			<arg type="ai" />    
+			<arg type="ai" />
 			<arg type="boolean" />
 			<arg type="point_reference" />
 			<arg type="point_reference" />
-		</function>              
+		</function>
 		<function opcode="0x29F" name="cs_go_to_and_posture" returnType="void" flags="1" argc="2">
 			<arg type="point_reference" />
 			<arg type="string_id" />
-		</function>              
+		</function>
 		<function opcode="0x2A0" name="vs_go_to_and_posture" returnType="void" argc="4">
-			<arg type="ai" />    
+			<arg type="ai" />
 			<arg type="boolean" />
 			<arg type="point_reference" />
 			<arg type="string_id" />
-		</function>              
+		</function>
 		<function opcode="0x2A1" name="cs_attach_to_spline" returnType="void" flags="1" argc="1">
 			<arg type="string_id" />
-		</function>              
+		</function>
 		<function opcode="0x2A2" name="vs_go_to_nearest" returnType="void" argc="3">
-			<arg type="ai" />    
+			<arg type="ai" />
 			<arg type="boolean" />
 			<arg type="string_id" />
-		</function>              
+		</function>
 		<function opcode="0x2A3" name="cs_go_to_nearest" returnType="void" flags="1" argc="1">
 			<arg type="point_reference" />
-		</function>              
+		</function>
 		<function opcode="0x2A4" name="vs_go_to_nearest" returnType="void" argc="3">
-			<arg type="ai" />    
+			<arg type="ai" />
 			<arg type="boolean" />
 			<arg type="point_reference" />
-		</function>              
+		</function>
 		<function opcode="0x2A5" name="cs_move_in_direction" returnType="void" flags="1" argc="3">
-			<arg type="real" />  
-			<arg type="real" />  
-			<arg type="real" />  
-		</function>              
+			<arg type="real" />
+			<arg type="real" />
+			<arg type="real" />
+		</function>
 		<function opcode="0x2A6" name="vs_move_in_direction" returnType="void" argc="5">
-			<arg type="ai" />    
+			<arg type="ai" />
 			<arg type="boolean" />
-			<arg type="real" />  
-			<arg type="real" />  
-			<arg type="real" />  
-		</function>              
+			<arg type="real" />
+			<arg type="real" />
+			<arg type="real" />
+		</function>
 		<function opcode="0x2A7" name="cs_move_towards" returnType="void" flags="1" argc="1">
 			<arg type="object" />
-		</function>              
+		</function>
 		<function opcode="0x2A8" name="vs_move_towards" returnType="void" argc="3">
-			<arg type="ai" />    
+			<arg type="ai" />
 			<arg type="boolean" />
 			<arg type="object" />
-		</function>              
+		</function>
 		<function opcode="0x2A9" name="cs_move_towards" returnType="void" flags="1" argc="2">
 			<arg type="object" />
 			<arg type="boolean" />
-		</function>              
+		</function>
 		<function opcode="0x2AA" name="vs_move_towards" returnType="void" argc="4">
-			<arg type="ai" />    
+			<arg type="ai" />
 			<arg type="boolean" />
 			<arg type="object" />
 			<arg type="boolean" />
-		</function>              
+		</function>
 		<function opcode="0x2AB" name="cs_move_towards_point" returnType="void" flags="1" argc="2">
 			<arg type="point_reference" />
-			<arg type="real" />  
-		</function>              
+			<arg type="real" />
+		</function>
 		<function opcode="0x2AC" name="vs_move_towards_point" returnType="void" argc="4">
-			<arg type="ai" />    
+			<arg type="ai" />
 			<arg type="boolean" />
 			<arg type="point_reference" />
-			<arg type="real" />  
-		</function>              
+			<arg type="real" />
+		</function>
 		<function opcode="0x2AD" name="cs_swarm_to" returnType="void" flags="1" argc="2">
 			<arg type="point_reference" />
-			<arg type="real" />  
-		</function>              
+			<arg type="real" />
+		</function>
 		<function opcode="0x2AE" name="vs_swarm_to" returnType="void" argc="4">
-			<arg type="ai" />    
+			<arg type="ai" />
 			<arg type="boolean" />
 			<arg type="point_reference" />
-			<arg type="real" />  
-		</function>              
+			<arg type="real" />
+		</function>
 		<function opcode="0x2AF" name="cs_swarm_from" returnType="void" flags="1" argc="2">
 			<arg type="point_reference" />
-			<arg type="real" />  
-		</function>              
+			<arg type="real" />
+		</function>
 		<function opcode="0x2B0" name="vs_swarm_from" returnType="void" argc="4">
-			<arg type="ai" />    
+			<arg type="ai" />
 			<arg type="boolean" />
 			<arg type="point_reference" />
-			<arg type="real" />  
-		</function>              
+			<arg type="real" />
+		</function>
 		<function opcode="0x2B1" name="cs_pause" returnType="void" flags="1" argc="1">
-			<arg type="real" />  
-		</function>              
+			<arg type="real" />
+		</function>
 		<function opcode="0x2B2" name="vs_pause" returnType="void" argc="3">
-			<arg type="ai" />    
+			<arg type="ai" />
 			<arg type="boolean" />
-			<arg type="real" />  
-		</function>              
+			<arg type="real" />
+		</function>
 		<function opcode="0x2B3" name="cs_grenade" returnType="void" flags="1" argc="2">
 			<arg type="point_reference" />
 			<arg type="short" /> 
-		</function>              
+		</function>
 		<function opcode="0x2B4" name="vs_grenade" returnType="void" argc="4">
-			<arg type="ai" />    
+			<arg type="ai" />
 			<arg type="boolean" />
 			<arg type="point_reference" />
 			<arg type="short" /> 
-		</function>              
+		</function>
 		<function opcode="0x2B5" name="cs_use_equipment" returnType="void" flags="1" argc="1">
-			<arg type="real" />  
-		</function>              
+			<arg type="real" />
+		</function>
 		<function opcode="0x2B6" name="vs_use_equipment" returnType="void" argc="3">
-			<arg type="ai" />    
+			<arg type="ai" />
 			<arg type="boolean" />
-			<arg type="real" />  
-		</function>              
+			<arg type="real" />
+		</function>
 		<function opcode="0x2B7" name="cs_jump" returnType="void" flags="1" argc="2">
-			<arg type="real" />  
-			<arg type="real" />  
-		</function>              
+			<arg type="real" />
+			<arg type="real" />
+		</function>
 		<function opcode="0x2B8" name="vs_jump" returnType="void" argc="4">
-			<arg type="ai" />    
+			<arg type="ai" />
 			<arg type="boolean" />
-			<arg type="real" />  
-			<arg type="real" />  
-		</function>              
+			<arg type="real" />
+			<arg type="real" />
+		</function>
 		<function opcode="0x2B9" name="cs_jump_to_point" returnType="void" flags="1" argc="2">
-			<arg type="real" />  
-			<arg type="real" />  
-		</function>              
+			<arg type="real" />
+			<arg type="real" />
+		</function>
 		<function opcode="0x2BA" name="vs_jump_to_point" returnType="void" argc="4">
-			<arg type="ai" />    
+			<arg type="ai" />
 			<arg type="boolean" />
-			<arg type="real" />  
-			<arg type="real" />  
-		</function>              
+			<arg type="real" />
+			<arg type="real" />
+		</function>
 		<function opcode="0x2BB" name="cs_vocalize" returnType="void" flags="1" argc="1">
 			<arg type="short" /> 
-		</function>              
+		</function>
 		<function opcode="0x2BC" name="vs_vocalize" returnType="void" argc="3">
-			<arg type="ai" />    
+			<arg type="ai" />
 			<arg type="boolean" />
 			<arg type="short" /> 
-		</function>              
+		</function>
 		<function opcode="0x2BD" name="cs_play_sound" returnType="void" flags="1" argc="1">
 			<arg type="sound" /> 
-		</function>              
+		</function>
 		<function opcode="0x2BE" name="vs_play_sound" returnType="void" argc="3">
-			<arg type="ai" />    
+			<arg type="ai" />
 			<arg type="boolean" />
 			<arg type="sound" /> 
-		</function>              
+		</function>
 		<function opcode="0x2BF" name="cs_play_sound" returnType="void" flags="1" argc="2">
 			<arg type="sound" /> 
-			<arg type="real" />  
-		</function>              
+			<arg type="real" />
+		</function>
 		<function opcode="0x2C0" name="vs_play_sound" returnType="void" argc="4">
-			<arg type="ai" />    
+			<arg type="ai" />
 			<arg type="boolean" />
 			<arg type="sound" /> 
-			<arg type="real" />  
-		</function>              
+			<arg type="real" />
+		</function>
 		<function opcode="0x2C1" name="cs_play_sound" returnType="void" flags="1" argc="3">
 			<arg type="sound" /> 
-			<arg type="real" />  
-			<arg type="real" />  
-		</function>              
+			<arg type="real" />
+			<arg type="real" />
+		</function>
 		<function opcode="0x2C2" name="vs_play_sound" returnType="void" argc="5">
-			<arg type="ai" />    
+			<arg type="ai" />
 			<arg type="boolean" />
 			<arg type="sound" /> 
-			<arg type="real" />  
-			<arg type="real" />  
-		</function>              
+			<arg type="real" />
+			<arg type="real" />
+		</function>
 		<function opcode="0x2C3" name="cs_action" returnType="void" flags="1" argc="2">
 			<arg type="point_reference" />
 			<arg type="short" /> 
-		</function>              
+		</function>
 		<function opcode="0x2C4" name="vs_action" returnType="void" argc="4">
-			<arg type="ai" />    
+			<arg type="ai" />
 			<arg type="boolean" />
 			<arg type="point_reference" />
 			<arg type="short" /> 
-		</function>              
+		</function>
 		<function opcode="0x2C5" name="cs_action_at_object" returnType="void" flags="1" argc="2">
 			<arg type="object" />
 			<arg type="short" /> 
-		</function>              
+		</function>
 		<function opcode="0x2C6" name="vs_action_at_object" returnType="void" argc="4">
-			<arg type="ai" />    
+			<arg type="ai" />
 			<arg type="boolean" />
 			<arg type="object" />
 			<arg type="short" /> 
-		</function>              
+		</function>
 		<function opcode="0x2C7" name="cs_action_at_player" returnType="void" flags="1" argc="1">
 			<arg type="short" /> 
-		</function>              
+		</function>
 		<function opcode="0x2C8" name="vs_action_at_player" returnType="void" argc="3">
-			<arg type="ai" />    
+			<arg type="ai" />
 			<arg type="boolean" />
 			<arg type="short" /> 
-		</function>              
+		</function>
 		<function opcode="0x2C9" name="cs_custom_animation" returnType="void" flags="1" argc="3">
 			<arg type="animation_graph" />
 			<arg type="string_id" />
 			<arg type="boolean" />
-		</function>              
+		</function>
 		<function opcode="0x2CA" name="vs_custom_animation" returnType="void" argc="5">
-			<arg type="ai" />    
+			<arg type="ai" />
 			<arg type="boolean" />
 			<arg type="animation_graph" />
 			<arg type="string_id" />
 			<arg type="boolean" />
-		</function>              
+		</function>
 		<function opcode="0x2CB" name="cs_custom_animation" returnType="void" flags="1" argc="4">
 			<arg type="animation_graph" />
 			<arg type="string_id" />
 			<arg type="boolean" />
 			<arg type="point_reference" />
-		</function>              
+		</function>
 		<function opcode="0x2CC" name="vs_custom_animation" returnType="void" argc="6">
-			<arg type="ai" />    
+			<arg type="ai" />
 			<arg type="boolean" />
 			<arg type="animation_graph" />
 			<arg type="string_id" />
 			<arg type="boolean" />
 			<arg type="point_reference" />
-		</function>              
+		</function>
 		<function opcode="0x2CD" name="cs_custom_animation_death" returnType="void" flags="1" argc="3">
 			<arg type="animation_graph" />
 			<arg type="string_id" />
 			<arg type="boolean" />
-		</function>              
+		</function>
 		<function opcode="0x2CE" name="vs_custom_animation_death" returnType="void" argc="5">
-			<arg type="ai" />    
+			<arg type="ai" />
 			<arg type="boolean" />
 			<arg type="animation_graph" />
 			<arg type="string_id" />
 			<arg type="boolean" />
-		</function>              
+		</function>
 		<function opcode="0x2CF" name="cs_custom_animation_death" returnType="void" flags="1" argc="4">
 			<arg type="animation_graph" />
 			<arg type="string_id" />
 			<arg type="boolean" />
 			<arg type="point_reference" />
-		</function>              
+		</function>
 		<function opcode="0x2D0" name="vs_custom_animation_death" returnType="void" argc="6">
-			<arg type="ai" />    
+			<arg type="ai" />
 			<arg type="boolean" />
 			<arg type="animation_graph" />
 			<arg type="string_id" />
 			<arg type="boolean" />
 			<arg type="point_reference" />
-		</function>              
+		</function>
 		<function opcode="0x2D1" name="cs_custom_animation_loop" returnType="void" flags="1" argc="3">
 			<arg type="animation_graph" />
 			<arg type="string_id" />
 			<arg type="boolean" />
-		</function>              
+		</function>
 		<function opcode="0x2D2" name="vs_custom_animation_loop" returnType="void" argc="4">
-			<arg type="ai" />    
+			<arg type="ai" />
 			<arg type="animation_graph" />
 			<arg type="string_id" />
 			<arg type="boolean" />
-		</function>              
+		</function>
 		<function opcode="0x2D3" name="cs_custom_animation_loop" returnType="void" flags="1" argc="4">
 			<arg type="animation_graph" />
 			<arg type="string_id" />
 			<arg type="boolean" />
 			<arg type="point_reference" />
-		</function>              
+		</function>
 		<function opcode="0x2D4" name="vs_custom_animation_loop" returnType="void" argc="5">
-			<arg type="ai" />    
+			<arg type="ai" />
 			<arg type="animation_graph" />
 			<arg type="string_id" />
 			<arg type="boolean" />
 			<arg type="point_reference" />
-		</function>              
+		</function>
 		<function opcode="0x2D5" name="cs_play_line" returnType="void" flags="1" argc="1">
 			<arg type="ai_line" />
-		</function>              
+		</function>
 		<function opcode="0x2D6" name="vs_play_line" returnType="void" argc="3">
-			<arg type="ai" />    
+			<arg type="ai" />
 			<arg type="boolean" />
 			<arg type="ai_line" />
-		</function>              
+		</function>
 		<function opcode="0x2D7" name="cs_die" returnType="void" flags="1" argc="1">
 			<arg type="short" /> 
-		</function>              
+		</function>
 		<function opcode="0x2D8" name="vs_die" returnType="void" argc="3">
-			<arg type="ai" />    
+			<arg type="ai" />
 			<arg type="boolean" />
 			<arg type="short" /> 
-		</function>              
+		</function>
 		<function opcode="0x2D9" name="cs_deploy_turret" returnType="void" flags="1" argc="1">
 			<arg type="point_reference" />
-		</function>              
+		</function>
 		<function opcode="0x2DA" name="vs_deploy_turret" returnType="void" argc="3">
-			<arg type="ai" />    
+			<arg type="ai" />
 			<arg type="boolean" />
 			<arg type="point_reference" />
-		</function>              
+		</function>
 		<function opcode="0x2DB" name="cs_approach" returnType="void" flags="1" argc="4">
 			<arg type="object" />
-			<arg type="real" />  
-			<arg type="real" />  
-			<arg type="real" />  
-		</function>              
+			<arg type="real" />
+			<arg type="real" />
+			<arg type="real" />
+		</function>
 		<function opcode="0x2DC" name="vs_approach" returnType="void" argc="6">
-			<arg type="ai" />    
+			<arg type="ai" />
 			<arg type="boolean" />
 			<arg type="object" />
-			<arg type="real" />  
-			<arg type="real" />  
-			<arg type="real" />  
-		</function>              
+			<arg type="real" />
+			<arg type="real" />
+			<arg type="real" />
+		</function>
 		<function opcode="0x2DD" name="cs_approach_player" returnType="void" flags="1" argc="3">
-			<arg type="real" />  
-			<arg type="real" />  
-			<arg type="real" />  
-		</function>              
+			<arg type="real" />
+			<arg type="real" />
+			<arg type="real" />
+		</function>
 		<function opcode="0x2DE" name="vs_approach_player" returnType="void" argc="5">
-			<arg type="ai" />    
+			<arg type="ai" />
 			<arg type="boolean" />
-			<arg type="real" />  
-			<arg type="real" />  
-			<arg type="real" />  
-		</function>              
+			<arg type="real" />
+			<arg type="real" />
+			<arg type="real" />
+		</function>
 		<function opcode="0x2DF" name="cs_go_to_vehicle" returnType="void" flags="1" argc="1">
 			<arg type="vehicle" />
-		</function>              
+		</function>
 		<function opcode="0x2E0" name="vs_go_to_vehicle" returnType="void" argc="3">
-			<arg type="ai" />    
+			<arg type="ai" />
 			<arg type="boolean" />
 			<arg type="vehicle" />
-		</function>              
+		</function>
 		<function opcode="0x2E1" name="cs_go_to_vehicle" returnType="void" flags="1" argc="2">
 			<arg type="vehicle" />
 			<arg type="unit_seat_mapping" />
-		</function>              
+		</function>
 		<function opcode="0x2E2" name="vs_go_to_vehicle" returnType="void" argc="4">
-			<arg type="ai" />    
+			<arg type="ai" />
 			<arg type="boolean" />
 			<arg type="vehicle" />
 			<arg type="unit_seat_mapping" />
-		</function>              
+		</function>
 		<function opcode="0x2E3" name="cs_set_style" returnType="void" flags="1" argc="1">
 			<arg type="style" /> 
-		</function>              
+		</function>
 		<function opcode="0x2E4" name="vs_set_style" returnType="void" argc="2">
-			<arg type="ai" />    
+			<arg type="ai" />
 			<arg type="style" /> 
-		</function>              
+		</function>
 		<function opcode="0x2E5" name="cs_force_combat_status" returnType="void" flags="1" argc="1">
 			<arg type="short" /> 
-		</function>              
+		</function>
 		<function opcode="0x2E6" name="cs_force_combat_status" returnType="void" argc="2">
-			<arg type="ai" />    
+			<arg type="ai" />
 			<arg type="short" /> 
-		</function>              
+		</function>
 		<function opcode="0x2E7" name="cs_enable_targeting" returnType="void" flags="1" argc="1">
 			<arg type="boolean" />
-		</function>              
+		</function>
 		<function opcode="0x2E8" name="cs_enable_targeting" returnType="void" argc="2">
-			<arg type="ai" />    
+			<arg type="ai" />
 			<arg type="boolean" />
-		</function>              
+		</function>
 		<function opcode="0x2E9" name="cs_enable_looking" returnType="void" flags="1" argc="1">
 			<arg type="boolean" />
-		</function>              
+		</function>
 		<function opcode="0x2EA" name="cs_enable_looking" returnType="void" argc="2">
-			<arg type="ai" />    
+			<arg type="ai" />
 			<arg type="boolean" />
-		</function>              
+		</function>
 		<function opcode="0x2EB" name="cs_enable_moving" returnType="void" flags="1" argc="1">
 			<arg type="boolean" />
-		</function>              
+		</function>
 		<function opcode="0x2EC" name="cs_enable_moving" returnType="void" argc="2">
-			<arg type="ai" />    
+			<arg type="ai" />
 			<arg type="boolean" />
-		</function>              
+		</function>
 		<function opcode="0x2ED" name="cs_enable_dialogue" returnType="void" flags="1" argc="1">
 			<arg type="boolean" />
-		</function>              
+		</function>
 		<function opcode="0x2EE" name="cs_enable_dialogue" returnType="void" argc="2">
-			<arg type="ai" />    
+			<arg type="ai" />
 			<arg type="boolean" />
-		</function>              
+		</function>
 		<function opcode="0x2EF" name="cs_suppress_activity_termination" returnType="void" flags="1" argc="1">
 			<arg type="boolean" />
-		</function>              
+		</function>
 		<function opcode="0x2F0" name="vs_suppress_activity_termination" returnType="void" argc="2">
-			<arg type="ai" />    
+			<arg type="ai" />
 			<arg type="boolean" />
-		</function>              
+		</function>
 		<function opcode="0x2F1" name="cs_suppress_dialogue_global" returnType="void" flags="1" argc="1">
 			<arg type="boolean" />
-		</function>              
+		</function>
 		<function opcode="0x2F2" name="vs_suppress_dialogue_global" returnType="void" argc="2">
-			<arg type="ai" />    
+			<arg type="ai" />
 			<arg type="boolean" />
-		</function>              
+		</function>
 		<function opcode="0x2F3" name="cs_look" returnType="void" flags="1" argc="2">
 			<arg type="boolean" />
 			<arg type="point_reference" />
-		</function>              
+		</function>
 		<function opcode="0x2F4" name="vs_look" returnType="void" argc="3">
-			<arg type="ai" />    
+			<arg type="ai" />
 			<arg type="boolean" />
 			<arg type="point_reference" />
-		</function>              
+		</function>
 		<function opcode="0x2F5" name="cs_look_player" returnType="void" flags="1" argc="1">
 			<arg type="boolean" />
-		</function>              
+		</function>
 		<function opcode="0x2F6" name="vs_look_player" returnType="void" argc="2">
-			<arg type="ai" />    
+			<arg type="ai" />
 			<arg type="boolean" />
-		</function>              
+		</function>
 		<function opcode="0x2F7" name="cs_look_object" returnType="void" flags="1" argc="2">
 			<arg type="boolean" />
 			<arg type="object" />
-		</function>              
+		</function>
 		<function opcode="0x2F8" name="vs_look_object" returnType="void" argc="3">
-			<arg type="ai" />    
+			<arg type="ai" />
 			<arg type="boolean" />
 			<arg type="object" />
-		</function>              
+		</function>
 		<function opcode="0x2F9" name="cs_aim" returnType="void" flags="1" argc="2">
 			<arg type="boolean" />
 			<arg type="point_reference" />
-		</function>              
+		</function>
 		<function opcode="0x2FA" name="vs_aim" returnType="void" argc="3">
-			<arg type="ai" />    
+			<arg type="ai" />
 			<arg type="boolean" />
 			<arg type="point_reference" />
-		</function>              
+		</function>
 		<function opcode="0x2FB" name="cs_aim_player" returnType="void" flags="1" argc="1">
 			<arg type="boolean" />
-		</function>              
+		</function>
 		<function opcode="0x2FC" name="vs_aim_player" returnType="void" argc="2">
-			<arg type="ai" />    
+			<arg type="ai" />
 			<arg type="boolean" />
-		</function>              
+		</function>
 		<function opcode="0x2FD" name="cs_aim_object" returnType="void" flags="1" argc="2">
 			<arg type="boolean" />
 			<arg type="object" />
-		</function>              
+		</function>
 		<function opcode="0x2FE" name="vs_aim_object" returnType="void" argc="3">
-			<arg type="ai" />    
+			<arg type="ai" />
 			<arg type="boolean" />
 			<arg type="object" />
-		</function>              
+		</function>
 		<function opcode="0x2FF" name="cs_face" returnType="void" flags="1" argc="2">
 			<arg type="boolean" />
 			<arg type="point_reference" />
-		</function>              
+		</function>
 		<function opcode="0x300" name="vs_face" returnType="void" argc="3">
-			<arg type="ai" />    
+			<arg type="ai" />
 			<arg type="boolean" />
 			<arg type="point_reference" />
-		</function>              
+		</function>
 		<function opcode="0x301" name="cs_face_player" returnType="void" flags="1" argc="1">
 			<arg type="boolean" />
-		</function>              
+		</function>
 		<function opcode="0x302" name="vs_face_player" returnType="void" argc="2">
-			<arg type="ai" />    
+			<arg type="ai" />
 			<arg type="boolean" />
-		</function>              
+		</function>
 		<function opcode="0x303" name="cs_face_object" returnType="void" flags="1" argc="2">
 			<arg type="boolean" />
 			<arg type="object" />
-		</function>              
+		</function>
 		<function opcode="0x304" name="vs_face_object" returnType="void" argc="3">
-			<arg type="ai" />    
+			<arg type="ai" />
 			<arg type="boolean" />
 			<arg type="object" />
-		</function>              
+		</function>
 		<function opcode="0x305" name="cs_shoot" returnType="void" flags="1" argc="1">
 			<arg type="boolean" />
-		</function>              
+		</function>
 		<function opcode="0x306" name="vs_shoot" returnType="void" argc="2">
-			<arg type="ai" />    
+			<arg type="ai" />
 			<arg type="boolean" />
-		</function>              
+		</function>
 		<function opcode="0x307" name="cs_shoot" returnType="void" flags="1" argc="2">
 			<arg type="boolean" />
 			<arg type="object" />
-		</function>              
+		</function>
 		<function opcode="0x308" name="vs_shoot" returnType="void" argc="3">
-			<arg type="ai" />    
+			<arg type="ai" />
 			<arg type="boolean" />
 			<arg type="object" />
-		</function>              
+		</function>
 		<function opcode="0x309" name="cs_shoot_point" returnType="void" flags="1" argc="2">
 			<arg type="boolean" />
 			<arg type="point_reference" />
-		</function>              
+		</function>
 		<function opcode="0x30A" name="vs_shoot_point" returnType="void" argc="3">
-			<arg type="ai" />    
+			<arg type="ai" />
 			<arg type="boolean" />
 			<arg type="point_reference" />
-		</function>              
+		</function>
 		<function opcode="0x30B" name="cs_shoot_secondary_trigger" returnType="void" flags="1" argc="1">
 			<arg type="boolean" />
-		</function>              
+		</function>
 		<function opcode="0x30C" name="vs_shoot_secondary_trigger" returnType="void" argc="2">
-			<arg type="ai" />    
+			<arg type="ai" />
 			<arg type="boolean" />
-		</function>              
+		</function>
 		<function opcode="0x30D" name="cs_lower_weapon" returnType="void" flags="1" argc="1">
 			<arg type="boolean" />
-		</function>              
+		</function>
 		<function opcode="0x30E" name="cs_lower_weapon" returnType="void" argc="2">
-			<arg type="ai" />    
+			<arg type="ai" />
 			<arg type="boolean" />
-		</function>              
+		</function>
 		<function opcode="0x30F" name="cs_vehicle_speed" returnType="void" flags="1" argc="1">
-			<arg type="real" />  
-		</function>              
+			<arg type="real" />
+		</function>
 		<function opcode="0x310" name="vs_vehicle_speed" returnType="void" argc="2">
-			<arg type="ai" />    
-			<arg type="real" />  
-		</function>              
+			<arg type="ai" />
+			<arg type="real" />
+		</function>
 		<function opcode="0x311" name="cs_vehicle_speed_instantaneous" returnType="void" flags="1" argc="1">
-			<arg type="real" />  
-		</function>              
+			<arg type="real" />
+		</function>
 		<function opcode="0x312" name="vs_vehicle_speed_instantaneous" returnType="void" argc="2">
-			<arg type="ai" />    
-			<arg type="real" />  
-		</function>              
+			<arg type="ai" />
+			<arg type="real" />
+		</function>
 		<function opcode="0x313" name="cs_vehicle_boost" returnType="void" flags="1" argc="1">
 			<arg type="boolean" />
-		</function>              
+		</function>
 		<function opcode="0x314" name="vs_vehicle_boost" returnType="void" argc="2">
-			<arg type="ai" />    
+			<arg type="ai" />
 			<arg type="boolean" />
-		</function>              
+		</function>
 		<function opcode="0x315" name="cs_turn_sharpness" returnType="void" flags="1" argc="2">
 			<arg type="boolean" />
-			<arg type="real" />  
-		</function>              
+			<arg type="real" />
+		</function>
 		<function opcode="0x316" name="vs_turn_sharpness" returnType="void" argc="3">
-			<arg type="ai" />    
+			<arg type="ai" />
 			<arg type="boolean" />
-			<arg type="real" />  
-		</function>              
+			<arg type="real" />
+		</function>
 		<function opcode="0x317" name="cs_enable_pathfinding_failsafe" returnType="void" flags="1" argc="1">
 			<arg type="boolean" />
-		</function>              
+		</function>
 		<function opcode="0x318" name="vs_enable_pathfinding_failsafe" returnType="void" argc="2">
-			<arg type="ai" />    
+			<arg type="ai" />
 			<arg type="boolean" />
-		</function>              
+		</function>
 		<function opcode="0x319" name="cs_set_pathfinding_radius" returnType="void" flags="1" argc="1">
-			<arg type="real" />  
-		</function>              
+			<arg type="real" />
+		</function>
 		<function opcode="0x31A" name="vs_set_pathfinding_radius" returnType="void" argc="2">
-			<arg type="ai" />    
-			<arg type="real" />  
-		</function>              
+			<arg type="ai" />
+			<arg type="real" />
+		</function>
 		<function opcode="0x31B" name="cs_ignore_obstacles" returnType="void" flags="1" argc="1">
 			<arg type="boolean" />
-		</function>              
+		</function>
 		<function opcode="0x31C" name="cs_ignore_obstacles" returnType="void" argc="2">
-			<arg type="ai" />    
+			<arg type="ai" />
 			<arg type="boolean" />
-		</function>              
+		</function>
 		<function opcode="0x31D" name="cs_approach_stop" returnType="void" flags="1" />
 		<function opcode="0x31E" name="vs_approach_stop" returnType="void" argc="1">
-			<arg type="ai" />    
-		</function>              
+			<arg type="ai" />
+		</function>
 		<function opcode="0x31F" name="cs_push_stance" returnType="void" flags="1" argc="1">
 			<arg type="string_id" />
-		</function>              
+		</function>
 		<function opcode="0x320" name="vs_push_stance" returnType="void" argc="2">
-			<arg type="ai" />    
+			<arg type="ai" />
 			<arg type="string_id" />
-		</function>              
+		</function>
 		<function opcode="0x321" name="cs_crouch" returnType="void" flags="1" argc="1">
 			<arg type="boolean" />
-		</function>              
+		</function>
 		<function opcode="0x322" name="cs_crouch" returnType="void" argc="2">
-			<arg type="ai" />    
+			<arg type="ai" />
 			<arg type="boolean" />
-		</function>              
+		</function>
 		<function opcode="0x323" name="cs_crouch" returnType="void" flags="1" argc="2">
 			<arg type="boolean" />
-			<arg type="real" />  
-		</function>              
+			<arg type="real" />
+		</function>
 		<function opcode="0x324" name="vs_crouch" returnType="void" argc="3">
-			<arg type="ai" />    
+			<arg type="ai" />
 			<arg type="boolean" />
-			<arg type="real" />  
-		</function>              
+			<arg type="real" />
+		</function>
 		<function opcode="0x325" name="cs_walk" returnType="void" flags="1" argc="1">
 			<arg type="boolean" />
-		</function>              
+		</function>
 		<function opcode="0x326" name="vs_walk" returnType="void" argc="2">
-			<arg type="ai" />    
+			<arg type="ai" />
 			<arg type="boolean" />
-		</function>              
+		</function>
 		<function opcode="0x327" name="cs_posture_set" returnType="void" flags="1" argc="2">
 			<arg type="string_id" />
 			<arg type="boolean" />
-		</function>              
+		</function>
 		<function opcode="0x328" name="vs_posture_set" returnType="void" argc="3">
-			<arg type="ai" />    
+			<arg type="ai" />
 			<arg type="string_id" />
 			<arg type="boolean" />
-		</function>              
+		</function>
 		<function opcode="0x329" name="cs_posture_exit" returnType="void" flags="1" />
 		<function opcode="0x32A" name="vs_posture_exit" returnType="void" argc="1">
-			<arg type="ai" />    
-		</function>              
+			<arg type="ai" />
+		</function>
 		<function opcode="0x32B" name="cs_stow" returnType="void" flags="1" argc="1">
 			<arg type="boolean" />
-		</function>              
+		</function>
 		<function opcode="0x32C" name="cs_stow" returnType="void" argc="2">
-			<arg type="ai" />    
+			<arg type="ai" />
 			<arg type="boolean" />
-		</function>              
+		</function>
 		<function opcode="0x32D" name="cs_teleport" returnType="void" flags="1" argc="2">
 			<arg type="point_reference" />
 			<arg type="point_reference" />
-		</function>              
+		</function>
 		<function opcode="0x32E" name="vs_teleport" returnType="void" argc="3">
-			<arg type="ai" />    
+			<arg type="ai" />
 			<arg type="point_reference" />
 			<arg type="point_reference" />
-		</function>              
+		</function>
 		<function opcode="0x32F" name="cs_stop_custom_animation" returnType="void" flags="1" />
 		<function opcode="0x330" name="vs_stop_custom_animation" returnType="void" argc="1">
-			<arg type="ai" />    
-		</function>              
+			<arg type="ai" />
+		</function>
 		<function opcode="0x331" name="cs_stop_sound" returnType="void" flags="1" argc="1">
 			<arg type="sound" /> 
-		</function>              
+		</function>
 		<function opcode="0x332" name="vs_stop_sound" returnType="void" argc="2">
-			<arg type="ai" />    
+			<arg type="ai" />
 			<arg type="sound" /> 
-		</function>              
+		</function>
 		<function opcode="0x333" name="cs_player_melee" returnType="void" flags="1" argc="1">
-			<arg type="long" />  
-		</function>              
+			<arg type="long" />
+		</function>
 		<function opcode="0x334" name="vs_player_melee" returnType="void" argc="3">
-			<arg type="ai" />    
+			<arg type="ai" />
 			<arg type="boolean" />
-			<arg type="long" />  
-		</function>              
+			<arg type="long" />
+		</function>
 		<function opcode="0x335" name="cs_melee_direction" returnType="void" flags="1" argc="1">
-			<arg type="long" />  
-		</function>              
+			<arg type="long" />
+		</function>
 		<function opcode="0x336" name="vs_melee_direction" returnType="void" argc="3">
-			<arg type="ai" />    
+			<arg type="ai" />
 			<arg type="boolean" />
-			<arg type="long" />  
-		</function>              
+			<arg type="long" />
+		</function>
 		<function opcode="0x337" name="cs_smash_direction" returnType="void" flags="1" argc="1">
-			<arg type="long" />  
-		</function>              
+			<arg type="long" />
+		</function>
 		<function opcode="0x338" name="vs_smash_direction" returnType="void" argc="3">
 			<arg type="ai" />
 			<arg type="boolean" />

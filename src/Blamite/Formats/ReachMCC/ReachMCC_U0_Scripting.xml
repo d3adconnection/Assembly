@@ -4227,46 +4227,46 @@
 		</function>
 		<function opcode="0x456" name="achievements_enable" returnType="void" null="true" argc="1">
 			<arg type="boolean" />
-		</function>              
+		</function>
 		<function opcode="0x457" name="achievements_skip_validation_checks" returnType="void" null="true" argc="1">
 			<arg type="boolean" />
-		</function>              
+		</function>
 		<function opcode="0x458" name="debug_spawning_influencers" returnType="void" null="true" argc="1">
 			<arg type="boolean" />
-		</function>              
+		</function>
 		<function opcode="0x459" name="debug_spawning_respawn_zones" returnType="void" null="true" argc="1">
 			<arg type="boolean" />
-		</function>              
+		</function>
 		<function opcode="0x45A" name="debug_spawning_proximity_forbid" returnType="void" null="true" argc="1">
 			<arg type="boolean" />
-		</function>              
+		</function>
 		<function opcode="0x45B" name="debug_spawning_moving_vehicle" returnType="void" null="true" argc="1">
 			<arg type="boolean" />
-		</function>              
+		</function>
 		<function opcode="0x45C" name="debug_spawning_weapon_influences" returnType="void" null="true" argc="1">
 			<arg type="boolean" />
-		</function>              
+		</function>
 		<function opcode="0x45D" name="debug_spawning_dangerous_projectiles" returnType="void" null="true" argc="1">
 			<arg type="boolean" />
-		</function>              
+		</function>
 		<function opcode="0x45E" name="debug_spawning_deployed_equipment" returnType="void" null="true" argc="1">
 			<arg type="boolean" />
-		</function>              
+		</function>
 		<function opcode="0x45F" name="debug_spawning_proximity_enemy" returnType="void" null="true" argc="1">
 			<arg type="boolean" />
-		</function>              
+		</function>
 		<function opcode="0x460" name="debug_spawning_teammates" returnType="void" null="true" argc="1">
 			<arg type="boolean" />
-		</function>              
+		</function>
 		<function opcode="0x461" name="debug_spawning_dead_teammates" returnType="void" null="true" argc="1">
 			<arg type="boolean" />
-		</function>              
+		</function>
 		<function opcode="0x462" name="debug_spawning_random_influence" returnType="void" null="true" argc="1">
 			<arg type="boolean" />
-		</function>              
+		</function>
 		<function opcode="0x463" name="debug_spawning_nominal_weight" returnType="void" null="true" argc="1">
 			<arg type="boolean" />
-		</function>              
+		</function>
 		<function opcode="0x464" name="debug_spawning_natural_weight" returnType="void" null="true" argc="1">
 			<arg type="boolean" />
 		</function>

@@ -3918,64 +3918,64 @@
 		</function>
 		<function opcode="0x404" name="achievements_skip_validation_checks" returnType="void" null="true" argc="1">
 			<arg type="boolean" />
-		</function>              
+		</function>
 		<function opcode="0x405" name="debug_spawning_influencers" returnType="void" null="true" argc="1">
 			<arg type="boolean" />
-		</function>              
+		</function>
 		<function opcode="0x406" name="debug_spawning_respawn_zones" returnType="void" null="true" argc="1">
 			<arg type="boolean" />
-		</function>              
+		</function>
 		<function opcode="0x407" name="debug_spawning_proximity_forbid" returnType="void" null="true" argc="1">
 			<arg type="boolean" />
-		</function>              
+		</function>
 		<function opcode="0x408" name="debug_spawning_moving_vehicle" returnType="void" null="true" argc="1">
 			<arg type="boolean" />
-		</function>              
+		</function>
 		<function opcode="0x409" name="debug_spawning_weapon_influences" returnType="void" null="true" argc="1">
 			<arg type="boolean" />
-		</function>              
+		</function>
 		<function opcode="0x40A" name="debug_spawning_dangerous_projectiles" returnType="void" null="true" argc="1">
 			<arg type="boolean" />
-		</function>              
+		</function>
 		<function opcode="0x40B" name="debug_spawning_deployed_equipment" returnType="void" null="true" argc="1">
 			<arg type="boolean" />
-		</function>              
+		</function>
 		<function opcode="0x40C" name="debug_spawning_proximity_enemy" returnType="void" null="true" argc="1">
 			<arg type="boolean" />
-		</function>              
+		</function>
 		<function opcode="0x40D" name="debug_spawning_teammates" returnType="void" null="true" argc="1">
 			<arg type="boolean" />
-		</function>              
+		</function>
 		<function opcode="0x40E" name="debug_spawning_dead_teammates" returnType="void" null="true" argc="1">
 			<arg type="boolean" />
-		</function>              
+		</function>
 		<function opcode="0x40F" name="debug_spawning_random_influence" returnType="void" null="true" argc="1">
 			<arg type="boolean" />
-		</function>              
+		</function>
 		<function opcode="0x410" name="debug_spawning_nominal_weight" returnType="void" null="true" argc="1">
 			<arg type="boolean" />
-		</function>              
+		</function>
 		<function opcode="0x411" name="debug_spawning_natural_weight" returnType="void" null="true" argc="1">
 			<arg type="boolean" />
-		</function>              
+		</function>
 		<function opcode="0x412" name="debug_spawning_target" returnType="void" null="true" argc="1">
 			<arg type="string" />
-		</function>              
+		</function>
 		<function opcode="0x413" name="debug_spawning_use_history" returnType="void" null="true" argc="1">
-			<arg type="long" />  
-		</function>              
+			<arg type="long" />
+		</function>
 		<function opcode="0x414" name="debug_initial_spawn_point_objects" returnType="void" null="true" argc="1">
 			<arg type="boolean" />
-		</function>              
+		</function>
 		<function opcode="0x415" name="debug_respawn_point_objects" returnType="void" null="true" argc="1">
 			<arg type="boolean" />
-		</function>              
+		</function>
 		<function opcode="0x416" name="game_export_variant_settings" returnType="void" null="true" argc="1">
 			<arg type="string" />
-		</function>              
+		</function>
 		<function opcode="0x417" name="game_engine_event_test_general" returnType="void" null="true" argc="1">
-			<arg type="long" />  
-		</function>              
+			<arg type="long" />
+		</function>
 		<function opcode="0x418" name="game_engine_event_test_flavor" returnType="void" null="true" argc="1">
 			<arg type="long" />
 		</function>

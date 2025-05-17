@@ -400,7 +400,6 @@ namespace Blamite.Blam.ThirdGen
 			ITag playTag = _tags.GetGlobalTag(CharConstant.FromString("play"));
 			bool haveZoneLayout = _buildInfo.Layouts.HasLayout("resource gestalt");
 			bool havePlayLayout = _buildInfo.Layouts.HasLayout("resource layout table");
-			bool haveAltPlayLayout = _buildInfo.Layouts.HasLayout("resource layout table alt");
 			bool canLoadZone = zoneTag != null && zoneTag.MetaLocation != null && haveZoneLayout;
 			bool canLoadPlay = playTag != null && playTag.MetaLocation != null && havePlayLayout;
 			if (canLoadZone || canLoadPlay)
@@ -412,13 +411,12 @@ namespace Blamite.Blam.ThirdGen
 
 				if (canLoadPlay)
 					layoutTable = new ThirdGenResourceLayoutTable(playTag, MetaArea, Allocator, _buildInfo, _expander);
-				else if (canLoadZone && haveAltPlayLayout)
+				else if (canLoadZone)
 				{
 					layoutTable = new ThirdGenResourceLayoutTable(zoneTag, MetaArea, Allocator, _buildInfo, _expander);
 					_zoneOnly = true;
 				}
 					
-
 				_resources = new ThirdGenResourceManager(gestalt, layoutTable, _tags, MetaArea, Allocator, _buildInfo, _expander);
 			}
 		}
