@@ -509,6 +509,9 @@ namespace Assembly.Metro.Controls.PageTemplates.Games.Components
 						writer.WritePropertyName("TagName");
 						writer.WriteValue(_tag.TagFileName);
 
+						writer.WritePropertyName("TagGroup");
+						writer.WriteValue(_tag.GroupName);
+
 						writer.WritePropertyName("Data");
 						DumpFieldsToJSON(writer, fields);
 
