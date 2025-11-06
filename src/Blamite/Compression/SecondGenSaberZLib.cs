@@ -116,7 +116,7 @@ namespace Blamite.Compression
 
 							short flags = (short)headerValues.GetInteger("flags");
 							flags |= 1;
-							headerValues.SetInteger("flags", (ulong)chunkcount);
+							headerValues.SetInteger("flags", (ulong)flags);
 
 							ewOutput.SeekTo(0);
 							StructureWriter.WriteStructure(headerValues, headerLayout, ewOutput);
