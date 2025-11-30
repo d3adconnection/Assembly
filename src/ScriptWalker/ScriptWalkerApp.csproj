@@ -30,10 +30,4 @@
     <ProjectReference Include="..\Blamite\Blamite.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Reference Include="System.Text.Encoding.CodePages">
-      <HintPath>bin\Debug\netcoreapp3.1\System.Text.Encoding.CodePages.dll</HintPath>
-    </Reference>
-  </ItemGroup>
-
 </Project>
