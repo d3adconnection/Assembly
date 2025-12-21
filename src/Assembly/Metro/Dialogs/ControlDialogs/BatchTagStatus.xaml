@@ -1,0 +1,82 @@
+<Window x:Class="Assembly.Metro.Dialogs.ControlDialogs.BatchTagStatus"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:n="clr-namespace:Assembly.Helpers.Native"
+        AllowsTransparency="True" ResizeMode="NoResize" WindowStyle="None" WindowStartupLocation="CenterOwner"
+        SnapsToDevicePixels="True"
+        Width="500" Height="200"
+        ShowInTaskbar="False"
+        n:WindowMovement.IsDraggable="True">
+	<Window.Resources>
+		<Style x:Key="SolidProgressBar" TargetType="ProgressBar">
+			<Setter Property="Template">
+				<Setter.Value>
+					<ControlTemplate TargetType="ProgressBar">
+						<Grid>
+							<Border Background="{TemplateBinding Background}" 
+							        BorderBrush="{TemplateBinding BorderBrush}" 
+							        BorderThickness="{TemplateBinding BorderThickness}" 
+							        CornerRadius="0"/>
+							<Border Name="PART_Track" BorderThickness="0">
+								<Grid>
+									<Border Name="PART_Indicator" 
+									        Background="{DynamicResource ExtryzeAccentBrush}" 
+									        HorizontalAlignment="Left"/>
+								</Grid>
+							</Border>
+						</Grid>
+					</ControlTemplate>
+				</Setter.Value>
+			</Setter>
+		</Style>
+	</Window.Resources>
+	<Border Background="#FF2E2E31" BorderThickness="1,1,1,5" BorderBrush="{DynamicResource ExtryzeAccentBrush}">
+		<Grid>
+			<Grid.RowDefinitions>
+				<RowDefinition Height="60px" />
+				<RowDefinition Height="*" />
+				<RowDefinition Height="36px" />
+			</Grid.RowDefinitions>
+
+			<Path Style="{StaticResource AsmLogo}" Margin="6,15,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="34" />
+			<TextBlock Grid.Row="0" x:Name="lblTitle" Text="Batch Tag Processing" Foreground="#989898" VerticalAlignment="Top"
+			           HorizontalAlignment="Stretch" FontSize="15" Margin="45,12,20,0"
+			           FontFamily="{DynamicResource MetroFontLight}" TextTrimming="CharacterEllipsis" />
+
+			<Grid
+				Grid.Row="0"
+				x:Name="headerThumb"
+				Opacity="0"
+				Background="Transparent"
+				Margin="0,0,0,0" Height="53.5" VerticalAlignment="Top"
+				n:WindowMovement.DragsWindow="True" />
+
+			<Grid Grid.Row="1" Margin="20,12,20,12">
+				<Grid.RowDefinitions>
+					<RowDefinition Height="60" />
+					<RowDefinition Height="24" />
+				</Grid.RowDefinitions>
+				
+				<!-- Tag Progress Text with fixed height and scrolling -->
+				<ScrollViewer Grid.Row="0" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
+					<TextBlock x:Name="txtTagStatus" Text="Processing tags..." 
+					           FontSize="11" Foreground="White" 
+					           FontFamily="{DynamicResource MetroFontRegular}" 
+					           TextWrapping="Wrap"
+					           Margin="0,0,0,0" />
+				</ScrollViewer>
+				
+				<!-- Progress Bar (fixed position) -->
+				<ProgressBar Grid.Row="1" x:Name="pbTagProgress" 
+				             Height="24" 
+				             Minimum="0" Maximum="100" Value="0"
+				             Background="#FF3A3A3A"
+				             Style="{StaticResource SolidProgressBar}"
+				             VerticalAlignment="Top"
+				             Margin="0,0,0,0" />
+			</Grid>
+
+			<Grid Grid.Row="2" VerticalAlignment="Bottom" HorizontalAlignment="Stretch" Height="36" Background="#FF424244" />
+		</Grid>
+	</Border>
+</Window>

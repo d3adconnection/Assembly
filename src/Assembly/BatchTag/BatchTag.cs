@@ -1,4 +1,4 @@
-﻿// All code credits go to palesius (original Assembly fork: https://github.com/palesius/Assembly)
+// All code credits go to palesius (original Assembly fork: https://github.com/palesius/Assembly)
 // A gigantic thank you for making this possible in Assembly.
 
 using System;
@@ -119,12 +119,22 @@ namespace Assembly.Windows
         public float valFloatx;
         public float valFloaty;
         public float valFloatz;
+        public float valFloatw;
         public int valInt;
+        public short valInt16;
+        public short valInt16Min;
+        public short valInt16Max;
         public byte valUInt8;
+        public UInt16 valUInt16;
         public UInt32 valUInt;
+        public UInt64 valUInt64;
         public Int32 valInt32;
+        public Int64 valInt64;
         public bool valFlagType;
         public string valString;
+        public string valTagGroup;
+        public string valTagPath;
+        
         public enum tfType : int
         {
             unknown = -1,
@@ -142,7 +152,18 @@ namespace Assembly.Windows
             uint8 = 11,
             int32 = 12,
             enum16 = 13,
-            colorf = 14
+            colorf = 14,
+            vector2 = 15,
+            vector4 = 16,
+            point2 = 17,
+            point3 = 18,
+            degree2 = 19,
+            degree3 = 20,
+            uint16 = 21,
+            int64 = 22,
+            uint64 = 23,
+            rangeint16 = 24,
+            tagref = 25
         }
 
         public static BatchTagField.tfType nameToEnum(String name)
@@ -164,6 +185,17 @@ namespace Assembly.Windows
                 case "uint8": return tfType.uint8;
                 case "uint32": return tfType.uint32;
                 case "colorf": return tfType.colorf;
+                case "vector2": return tfType.vector2;
+                case "vector4": return tfType.vector4;
+                case "point2": return tfType.point2;
+                case "point3": return tfType.point3;
+                case "degree2": return tfType.degree2;
+                case "degree3": return tfType.degree3;
+                case "uint16": return tfType.uint16;
+                case "int64": return tfType.int64;
+                case "uint64": return tfType.uint64;
+                case "rangeint16": return tfType.rangeint16;
+                case "tagref": return tfType.tagref;
             }
             return tfType.unknown;
         }
@@ -178,7 +210,7 @@ namespace Assembly.Windows
                 case tfType.int16: return "Int16Data";
                 case tfType.int32: return "Int32Data";
                 case tfType.enum8: return "EnumData";
-                case tfType.enum16: return "Enum16Data";
+                case tfType.enum16: return "EnumData";
                 case tfType.rangeFloat32: return "RangeFloat32Data";
                 case tfType.ranged: return "RangeDegreeData";
                 case tfType.stringid: return "StringIDData";
@@ -187,6 +219,17 @@ namespace Assembly.Windows
                 case tfType.uint8: return "Uint8Data";
                 case tfType.uint32: return "Uint32Data";
                 case tfType.colorf: return "ColorFData";
+                case tfType.vector2: return "Vector2Data";
+                case tfType.vector4: return "Vector4Data";
+                case tfType.point2: return "Point2Data";
+                case tfType.point3: return "Point3Data";
+                case tfType.degree2: return "Degree2Data";
+                case tfType.degree3: return "Degree3Data";
+                case tfType.uint16: return "Uint16Data";
+                case tfType.int64: return "Int64Data";
+                case tfType.uint64: return "Uint64Data";
+                case tfType.rangeint16: return "RangeInt16Data";
+                case tfType.tagref: return "TagRefData";
             }
             return null;
         }
@@ -254,6 +297,51 @@ namespace Assembly.Windows
                 case tfType.colorf:
                     valString = toks[3];
                     break;
+                case tfType.vector2:
+                    valFloatx = float.Parse(toks[3]);
+                    valFloaty = float.Parse(toks[4]);
+                    break;
+                case tfType.vector4:
+                    valFloatx = float.Parse(toks[3]);
+                    valFloaty = float.Parse(toks[4]);
+                    valFloatz = float.Parse(toks[5]);
+                    valFloatw = float.Parse(toks[6]);
+                    break;
+                case tfType.point2:
+                    valFloatx = float.Parse(toks[3]);
+                    valFloaty = float.Parse(toks[4]);
+                    break;
+                case tfType.point3:
+                    valFloatx = float.Parse(toks[3]);
+                    valFloaty = float.Parse(toks[4]);
+                    valFloatz = float.Parse(toks[5]);
+                    break;
+                case tfType.degree2:
+                    valFloatx = float.Parse(toks[3]);
+                    valFloaty = float.Parse(toks[4]);
+                    break;
+                case tfType.degree3:
+                    valFloatx = float.Parse(toks[3]);
+                    valFloaty = float.Parse(toks[4]);
+                    valFloatz = float.Parse(toks[5]);
+                    break;
+                case tfType.uint16:
+                    valUInt16 = UInt16.Parse(toks[3]);
+                    break;
+                case tfType.int64:
+                    valInt64 = Int64.Parse(toks[3]);
+                    break;
+                case tfType.uint64:
+                    valUInt64 = UInt64.Parse(toks[3]);
+                    break;
+                case tfType.rangeint16:
+                    valInt16Min = short.Parse(toks[3]);
+                    valInt16Max = short.Parse(toks[4]);
+                    break;
+                case tfType.tagref:
+                    valTagGroup = toks[3];
+                    valTagPath = toks[4];
+                    break;
                 default:
                     break;
             }
@@ -319,17 +407,16 @@ namespace Assembly.Windows
             var OpenTemplateDialog = new OpenFileDialog
             {
                 Title = "Select template file",
-                // InitialDirectory = "",
                 Multiselect = false,
                 Filter = "All files (*.*)|*.*"
             };
 
             if (!(bool)OpenTemplateDialog.ShowDialog(this)) return;
-            StatusUpdater.Update("Applying batch tag template...");
+            
             genPath = string.Format(OpenTemplateDialog.FileName);
-            frmStatus frmStat = new frmStatus();
-            frmStat.Show();
-            processTask(genPath, false, frmStat);
+            var statusDialog = MetroBatchTagStatus.Show();
+            StatusUpdater.Update("Applying batch tag template...");
+            processTask(genPath, false, statusDialog);
         }
 
         private void menuBatchTag_Folder_Click(object sender, RoutedEventArgs e)
@@ -337,20 +424,20 @@ namespace Assembly.Windows
             var OpenTemplateDialog = new CommonOpenFileDialog
             {
                 Title = "Select folder with batch template files",
-                // InitialDirectory = "",
                 Multiselect = false,
                 IsFolderPicker = true,
                 EnsurePathExists = true
             };
 
             if (!(OpenTemplateDialog.ShowDialog() == CommonFileDialogResult.Ok)) return;
-            StatusUpdater.Update("Applying batch tag template...");
+            
             genPath = string.Format(OpenTemplateDialog.FileName);
-            frmStatus frmStat = new frmStatus();
-            frmStat.Show();
-            processTask(genPath, true, frmStat);
+            var statusDialog = MetroBatchTagStatus.Show();
+            StatusUpdater.Update("Applying batch tag template...");
+            processTask(genPath, true, statusDialog);
         }
-        private async void processTask(string genPath, bool IsFolder, frmStatus frmStat)
+
+        private async void processTask(string genPath, bool IsFolder, Metro.Dialogs.ControlDialogs.BatchTagStatus statusDialog)
         {
             List<String> lstIssues = new List<String>();
 
@@ -361,13 +448,13 @@ namespace Assembly.Windows
             {
                 if (ld.Content.GetType().Name == "HaloMap") { mapCnt++; }
             }
+            
             foreach (LayoutDocument ld in documentManager.Children)
             {
                 if (ld.Content.GetType().Name == "HaloMap")
                 {
                     HaloMap map = (HaloMap)ld.Content;
                     mapIdx++;
-                    String mapMsg;
                     String mapPath = map.GetCacheLocation();
 
                     string[] files = new string[] { };
@@ -380,17 +467,54 @@ namespace Assembly.Windows
                         if (System.IO.File.Exists(genFile))
                         {
                             Dictionary<String, BatchTagGroup> wsDict = loadBatchTagSettings(map);
-                            mapMsg = string.Format("({0}/{1}) {2} - Scanning Groups", mapIdx, mapCnt, map.GetCacheFile().InternalName);
-                            frmStat.UpdateMapStatus(mapIdx, mapCnt, mapMsg);
+                            
+                            // Count total tags to process for this map
+                            int totalTagsForMap = 0;
                             foreach (TagGroup tg in map.tvTagList.Items)
                             {
                                 BatchTagGroup wstg = null;
                                 if (wsDict.TryGetValue(tg.TagGroupMagic, out wstg))
                                 {
-                                    mapMsg = string.Format("({0}/{1}) {2} - Processing {3}", mapIdx, mapCnt, map.GetCacheFile().InternalName, tg.TagGroupMagic);
-                                    frmStat.UpdateMapStatus(mapIdx, mapCnt, mapMsg);
+                                    foreach (TagEntry te in tg.Children)
+                                    {
+                                        BatchTagEntry wste = null;
+                                        if (wstg.entries.TryGetValue(te.TagFileName, out wste))
+                                        {
+                                            totalTagsForMap++;
+                                        }
+                                        else
+                                        {
+                                            // Check for wildcard matches
+                                            int prefPos = 0;
+                                            while (prefPos < te.TagFileName.Length && prefPos >= 0)
+                                            {
+                                                BatchTagEntry tryWste = null;
+                                                if (wstg.entries.TryGetValue(te.TagFileName.Substring(0, prefPos) + "*", out tryWste))
+                                                {
+                                                    totalTagsForMap++;
+                                                    break;
+                                                }
+                                                prefPos = te.TagFileName.IndexOf('\\', prefPos);
+                                                if (prefPos > 0) prefPos++;
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                            
+                            int processedTags = 0;
+                            
+                            statusDialog.UpdateTagStatus(0, totalTagsForMap, 
+                                string.Format("Processing map {0}/{1}: {2}", mapIdx, mapCnt, map.GetCacheFile().InternalName));
+                            
+                            foreach (TagGroup tg in map.tvTagList.Items)
+                            {
+                                BatchTagGroup wstg = null;
+                                if (wsDict.TryGetValue(tg.TagGroupMagic, out wstg))
+                                {
                                     int tagCnt = tg.Children.Count;
                                     int tagIdx = 0;
+                                    
                                     foreach (TagEntry te in tg.Children)
                                     {
                                         tagIdx++;
@@ -414,8 +538,10 @@ namespace Assembly.Windows
                                         }
                                         if (wste != null)
                                         {
-                                            String tagMsg = string.Format("({0}/{1}) {2}", tagIdx, tagCnt, te.TagFileName);
-                                            frmStat.UpdateTagStatus(tagIdx, tagCnt, tagMsg);
+                                            processedTags++;
+                                            String tagMsg = string.Format("({0}/{1}) {2}\n{3}.{4}", 
+                                                mapIdx, mapCnt, map.GetCacheFile().InternalName, te.TagFileName, te.GroupName);
+                                            statusDialog.UpdateTagStatus(processedTags, totalTagsForMap, tagMsg);
                                             processTagEntry(te, wste, map, lstIssues);
                                         }
                                         await Dispatcher.Yield();
@@ -448,7 +574,7 @@ namespace Assembly.Windows
                 await Dispatcher.Yield();
             }
             await Dispatcher.Yield();
-            frmStat.Close();
+            MetroBatchTagStatus.Close(statusDialog);
 
             if (lstIssues.Count > 0)
             {
@@ -456,17 +582,14 @@ namespace Assembly.Windows
                 foreach (String curIssue in lstIssues) { sbIssues.AppendLine(curIssue); }
                 Clipboard.SetText(sbIssues.ToString());
                 System.Media.SystemSounds.Beep.Play();
-                //MetroMessageBox.Show("Process complete","Some tags could not be updated. Results have been copied to clipboard.");
                 StatusUpdater.Update("Some tags could not be updated. Results have been copied to clipboard.");
             }
             else
             {
                 System.Media.SystemSounds.Beep.Play();
-                //MetroMessageBox.Show("Process complete","All tags have been updated.");
                 StatusUpdater.Update("All tags have been updated successfully.");
             }
             lstIssues.Clear();
-            //GC.Collect();
         }
         private void processTagEntry(TagEntry te, BatchTagEntry wste, HaloMap map, List<string> lstIssues)
         {
@@ -601,16 +724,16 @@ namespace Assembly.Windows
                                 }
                                 break;
                             case BatchTagField.tfType.vector3:
-                                Vector3Data dVector3Float32 = (Vector3Data)mf;
-                                if (dVector3Float32.Name == wstf.name)
+                                Vector3Data dVector3 = (Vector3Data)mf;
+                                if (dVector3.Name == wstf.name)
                                 {
                                     wstf.hits += 1;
-                                    if (dVector3Float32.A != wstf.valFloatx || dVector3Float32.B != wstf.valFloaty || dVector3Float32.C != wstf.valFloatz)
+                                    if (dVector3.A != wstf.valFloatx || dVector3.B != wstf.valFloaty || dVector3.C != wstf.valFloatz)
                                     {
                                         dirty = true;
-                                        dVector3Float32.A = wstf.valFloatx;
-                                        dVector3Float32.B = wstf.valFloaty;
-                                        dVector3Float32.C = wstf.valFloatz;
+                                        dVector3.A = wstf.valFloatx;
+                                        dVector3.B = wstf.valFloaty;
+                                        dVector3.C = wstf.valFloatz;
                                     }
                                 }
                                 break;
@@ -646,7 +769,7 @@ namespace Assembly.Windows
                                     if (dInt32.Value != wstf.valInt32)
                                     {
                                         dirty = true;
-                                        dInt32.Value = (short)wstf.valInt32;
+                                        dInt32.Value = wstf.valInt32;
                                     }
                                 }
                                 break;
@@ -664,11 +787,9 @@ namespace Assembly.Windows
                                 break;
                             case BatchTagField.tfType.colorf:
                                 ColorData dcolorf = (ColorData)mf;
-
                                 if (dcolorf.Name == wstf.name)
                                 {
                                     if (wstf.valString.StartsWith("#")) { wstf.valString = wstf.valString.Substring(1); }
-
                                     if (wstf.valString.Length != 6) throw new Exception("Color not valid");
                                     Color colorf = Color.FromArgb(255, byte.Parse(wstf.valString.Substring(0, 2), System.Globalization.NumberStyles.HexNumber), byte.Parse(wstf.valString.Substring(2, 2), System.Globalization.NumberStyles.HexNumber), byte.Parse(wstf.valString.Substring(4, 2), System.Globalization.NumberStyles.HexNumber));
                                     if (dcolorf.Value != colorf)
@@ -676,126 +797,205 @@ namespace Assembly.Windows
                                         wstf.hits += 1;
                                         dirty = true;
                                         dcolorf.Value = colorf;
-
+                                    }
+                                }
+                                break;
+                            case BatchTagField.tfType.vector2:
+                                Vector2Data dVector2 = (Vector2Data)mf;
+                                if (dVector2.Name == wstf.name)
+                                {
+                                    wstf.hits += 1;
+                                    if (dVector2.A != wstf.valFloatx || dVector2.B != wstf.valFloaty)
+                                    {
+                                        dirty = true;
+                                        dVector2.A = wstf.valFloatx;
+                                        dVector2.B = wstf.valFloaty;
+                                    }
+                                }
+                                break;
+                            case BatchTagField.tfType.vector4:
+                                Vector4Data dVector4 = (Vector4Data)mf;
+                                if (dVector4.Name == wstf.name)
+                                {
+                                    wstf.hits += 1;
+                                    if (dVector4.A != wstf.valFloatx || dVector4.B != wstf.valFloaty || dVector4.C != wstf.valFloatz || dVector4.D != wstf.valFloatw)
+                                    {
+                                        dirty = true;
+                                        dVector4.A = wstf.valFloatx;
+                                        dVector4.B = wstf.valFloaty;
+                                        dVector4.C = wstf.valFloatz;
+                                        dVector4.D = wstf.valFloatw;
+                                    }
+                                }
+                                break;
+                            case BatchTagField.tfType.point2:
+                                Point2Data dPoint2 = (Point2Data)mf;
+                                if (dPoint2.Name == wstf.name)
+                                {
+                                    wstf.hits += 1;
+                                    if (dPoint2.A != wstf.valFloatx || dPoint2.B != wstf.valFloaty)
+                                    {
+                                        dirty = true;
+                                        dPoint2.A = wstf.valFloatx;
+                                        dPoint2.B = wstf.valFloaty;
+                                    }
+                                }
+                                break;
+                            case BatchTagField.tfType.point3:
+                                Point3Data dPoint3 = (Point3Data)mf;
+                                if (dPoint3.Name == wstf.name)
+                                {
+                                    wstf.hits += 1;
+                                    if (dPoint3.A != wstf.valFloatx || dPoint3.B != wstf.valFloaty || dPoint3.C != wstf.valFloatz)
+                                    {
+                                        dirty = true;
+                                        dPoint3.A = wstf.valFloatx;
+                                        dPoint3.B = wstf.valFloaty;
+                                        dPoint3.C = wstf.valFloatz;
+                                    }
+                                }
+                                break;
+                            case BatchTagField.tfType.degree2:
+                                Degree2Data dDegree2 = (Degree2Data)mf;
+                                if (dDegree2.Name == wstf.name)
+                                {
+                                    wstf.hits += 1;
+                                    if (dDegree2.A != wstf.valFloatx || dDegree2.B != wstf.valFloaty)
+                                    {
+                                        dirty = true;
+                                        dDegree2.A = wstf.valFloatx;
+                                        dDegree2.B = wstf.valFloaty;
+                                    }
+                                }
+                                break;
+                            case BatchTagField.tfType.degree3:
+                                Degree3Data dDegree3 = (Degree3Data)mf;
+                                if (dDegree3.Name == wstf.name)
+                                {
+                                    wstf.hits += 1;
+                                    if (dDegree3.A != wstf.valFloatx || dDegree3.B != wstf.valFloaty || dDegree3.C != wstf.valFloatz)
+                                    {
+                                        dirty = true;
+                                        dDegree3.A = wstf.valFloatx;
+                                        dDegree3.B = wstf.valFloaty;
+                                        dDegree3.C = wstf.valFloatz;
+                                    }
+                                }
+                                break;
+                            case BatchTagField.tfType.uint16:
+                                Uint16Data dUInt16 = (Uint16Data)mf;
+                                if (dUInt16.Name == wstf.name)
+                                {
+                                    wstf.hits += 1;
+                                    if (dUInt16.Value != wstf.valUInt16)
+                                    {
+                                        dirty = true;
+                                        dUInt16.Value = wstf.valUInt16;
+                                    }
+                                }
+                                break;
+                            case BatchTagField.tfType.int64:
+                                Int64Data dInt64 = (Int64Data)mf;
+                                if (dInt64.Name == wstf.name)
+                                {
+                                    wstf.hits += 1;
+                                    if (dInt64.Value != wstf.valInt64)
+                                    {
+                                        dirty = true;
+                                        dInt64.Value = wstf.valInt64;
+                                    }
+                                }
+                                break;
+                            case BatchTagField.tfType.uint64:
+                                Uint64Data dUInt64 = (Uint64Data)mf;
+                                if (dUInt64.Name == wstf.name)
+                                {
+                                    wstf.hits += 1;
+                                    if (dUInt64.Value != wstf.valUInt64)
+                                    {
+                                        dirty = true;
+                                        dUInt64.Value = wstf.valUInt64;
+                                    }
+                                }
+                                break;
+                            case BatchTagField.tfType.rangeint16:
+                                RangeInt16Data dRangeInt16 = (RangeInt16Data)mf;
+                                if (dRangeInt16.Name == wstf.name)
+                                {
+                                    wstf.hits += 1;
+                                    if (dRangeInt16.Min != wstf.valInt16Min || dRangeInt16.Max != wstf.valInt16Max)
+                                    {
+                                        dirty = true;
+                                        dRangeInt16.Min = wstf.valInt16Min;
+                                        dRangeInt16.Max = wstf.valInt16Max;
+                                    }
+                                }
+                                break;
+                            case BatchTagField.tfType.tagref:
+                                TagRefData dTagRef = (TagRefData)mf;
+                                if (dTagRef.Name == wstf.name)
+                                {
+                                    wstf.hits += 1;
+                                    TagEntry foundTag = null;
+                                    
+                                    // Try to find the tag by group and path
+                                    if (!string.IsNullOrEmpty(wstf.valTagGroup) && !string.IsNullOrEmpty(wstf.valTagPath))
+                                    {
+                                        // Search for matching tag in hierarchy
+                                        foreach (TagGroup tagGroup in dTagRef.Tags.Groups)
+                                        {
+                                            if (tagGroup.TagGroupMagic == wstf.valTagGroup)
+                                            {
+                                                foreach (TagEntry tagEntry in tagGroup.Children)
+                                                {
+                                                    if (tagEntry.TagFileName == wstf.valTagPath)
+                                                    {
+                                                        foundTag = tagEntry;
+                                                        break;
+                                                    }
+                                                }
+                                            }
+                                            if (foundTag != null) break;
+                                        }
+                                    }
+                                    
+                                    // Check if value needs updating
+                                    bool needsUpdate = false;
+                                    if (foundTag != null)
+                                    {
+                                        if (dTagRef.Value == null || dTagRef.Value.TagFileName != foundTag.TagFileName)
+                                        {
+                                            needsUpdate = true;
+                                        }
+                                    }
+                                    else if (wstf.valTagPath == "null" && dTagRef.Value != null)
+                                    {
+                                        needsUpdate = true;
+                                        foundTag = null;
+                                    }
+                                    
+                                    if (needsUpdate)
+                                    {
+                                        dirty = true;
+                                        dTagRef.Value = foundTag;
+                                        if (foundTag != null && dTagRef.Tags.Groups != null)
+                                        {
+                                            dTagRef.Group = dTagRef.Tags.Groups.FirstOrDefault(g => g.TagGroupMagic == wstf.valTagGroup);
+                                        }
                                     }
                                 }
                                 break;
                         }
-
-
-
                     }
                 }
             }
             if (dirty)
             {
                 Debug.Print("Updated [" + te.GroupName + "]:" + te.TagFileName + ".");
-               me.PublicSave();
+                me.PublicSave();
             }
             RaiseEvent(new RoutedEventArgs(CloseableTabItem.CloseTabEvent, cti));
             map.contentTabs.Items.Remove(cti);
-        }
-
-        private class PathProcess
-        {
-            public enum ppStatus : int
-            {
-                ppsIdle = 1,
-                ppsStarted = 2,
-                ppsComplete = 3
-            }
-            public Process p;
-            public String mapPath;
-            public String bakPath;
-            public String patPath;
-
-            public ppStatus status;
-            public PathProcess(String _mapPath)
-            {
-                mapPath = (String)_mapPath.Clone();
-                bakPath = mapPath.Substring(0, mapPath.Length - 4) + ".bak";
-                patPath = mapPath.Substring(0, mapPath.Length - 4) + ".pat";
-                status = ppStatus.ppsIdle;
-                p = new System.Diagnostics.Process();
-                p.StartInfo.FileName = "g:\\th\\reach\\VPatch32\\GenPat.exe";
-                p.StartInfo.Arguments = "\"" + bakPath + "\" \"" + mapPath + "\" \"" + patPath + "\" /b=16";
-                p.StartInfo.UseShellExecute = false;
-                p.StartInfo.WindowStyle = System.Diagnostics.ProcessWindowStyle.Hidden;
-                p.StartInfo.CreateNoWindow = true;
-            }
-
-            public void Start()
-            {
-                p.Start();
-                status = ppStatus.ppsStarted;
-            }
-
-            public void Complete()
-            {
-                p.Dispose();
-                System.IO.File.Delete(mapPath);
-                System.IO.File.Move(bakPath, mapPath);
-                status = ppStatus.ppsComplete;
-            }
-        }
-        private void menuWSComplete_Click(object sender, RoutedEventArgs e)
-        {
-            int mapCnt = 0;
-            int mapIdx = 0;
-            foreach (LayoutDocument ld in documentManager.Children)
-            {
-                if (ld.Content.GetType().Name == "HaloMap") { mapCnt++; }
-            }
-            frmStatus frmStat = new frmStatus();
-            frmStat.Show();
-            List<PathProcess> mapProcesses = new List<PathProcess>();
-            foreach (LayoutDocument ld in documentManager.Children)
-            {
-                if (ld.Content.GetType().Name == "HaloMap")
-                {
-                    mapIdx++;
-                    HaloMap map = (HaloMap)ld.Content;
-                    PathProcess p = new PathProcess(map.GetCacheLocation());
-                    mapProcesses.Add(p);
-                }
-            }
-            int inactiveCount = mapProcesses.Count;
-            int activeCount = 0;
-            int maxActive = 4;
-            String statString;
-
-            while (inactiveCount > 0 || activeCount > 0)
-            {
-                statString = "Generating Patches: ";
-                foreach (PathProcess p in mapProcesses)
-                {
-                    statString += ((int)p.status).ToString();
-                    switch (p.status)
-                    {
-                        case PathProcess.ppStatus.ppsIdle:
-                            if (activeCount < maxActive)
-                            {
-                                p.Start();
-                                activeCount += 1;
-                                inactiveCount -= 1;
-                            }
-                            break;
-                        case PathProcess.ppStatus.ppsStarted:
-                            if (p.p.HasExited)
-                            {
-                                p.Complete();
-                                activeCount -= 1;
-                            }
-                            break;
-                        case PathProcess.ppStatus.ppsComplete:
-                            break;
-                    }
-                }
-                frmStat.UpdateMapStatus(0, 1, statString);
-                System.Threading.Thread.Sleep(500);
-            }
-
-            frmStat.Close();
         }
     }
 }
