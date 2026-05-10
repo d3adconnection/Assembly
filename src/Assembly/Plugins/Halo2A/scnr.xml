@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<plugin game="Halo4" baseSize="0x98C">
+<plugin game="Halo2A" baseSize="0x98C">
 	<revisions>
-		<revision author="Lord Zedd" version="1">Portin without generation</revision>
+		<revision author="Lord Zedd" version="1">Yee</revision>
 	</revisions>
 	<uint32 name="block here" offset="0x0" visible="false" />
 	<uint32 name="block here" offset="0x4" visible="false" />
@@ -923,7 +923,7 @@ Non-cloned bsps cannot split decorators this way - the decorator will be given t
 		</enum16>
 		<int16 name="Placement Index" offset="0x6" visible="true" />
 	</tagblock>
-	<tagblock name="Scenery" offset="0x164" visible="true" elementSize="0x17C">
+	<tagblock name="Scenery" offset="0x164" visible="true" elementSize="0x180">
 		<int16 name="Palette Index" offset="0x0" visible="true" />
 		<int16 name="Name Index" offset="0x2" visible="true" />
 		<flags32 name="Placement Flags" offset="0x4" visible="true">
@@ -1322,11 +1322,15 @@ DO NOT USE THE BLOCK REALLOCATOR ON THE [READABLE] BLOCKS!</comment>
 		<int16 name="Parent Object Index" offset="0x172" visible="true" tooltip="if an object with this name exists, we attach to it as a child" />
 		<stringid name="Parent Marker" offset="0x174" visible="true" />
 		<stringid name="Connection Marker" offset="0x178" visible="true" />
+		<int8 name="Unknown" offset="0x17C" visible="true" />
+		<int8 name="Unknown" offset="0x17D" visible="true" />
+		<int8 name="Unknown" offset="0x17E" visible="true" />
+		<int8 name="Unknown" offset="0x17F" visible="false" />
 	</tagblock>
 	<tagblock name="Scenery Palette" offset="0x170" visible="true" elementSize="0x10">
 		<tagRef name="Scenery" offset="0x0" visible="true" />
 	</tagblock>
-	<tagblock name="Bipeds" offset="0x17C" visible="true" elementSize="0x170">
+	<tagblock name="Bipeds" offset="0x17C" visible="true" elementSize="0x174">
 		<int16 name="Palette Index" offset="0x0" visible="true" />
 		<int16 name="Name Index" offset="0x2" visible="true" />
 		<flags32 name="Placement Flags" offset="0x4" visible="true">
@@ -1713,11 +1717,15 @@ DO NOT USE THE BLOCK REALLOCATOR ON THE [READABLE] BLOCKS!</comment>
 		<int16 name="Parent Object Index" offset="0x166" visible="true" tooltip="if an object with this name exists, we attach to it as a child" />
 		<stringid name="Parent Marker" offset="0x168" visible="true" />
 		<stringid name="Connection Marker" offset="0x16C" visible="true" />
+		<int8 name="Unknown" offset="0x170" visible="true" />
+		<int8 name="Unknown" offset="0x171" visible="true" />
+		<int8 name="Unknown" offset="0x172" visible="true" />
+		<int8 name="Unknown" offset="0x173" visible="false" />
 	</tagblock>
 	<tagblock name="Biped Palette" offset="0x188" visible="true" elementSize="0x10">
 		<tagRef name="Biped" offset="0x0" visible="true" />
 	</tagblock>
-	<tagblock name="Vehicles" offset="0x194" visible="true" elementSize="0x180">
+	<tagblock name="Vehicles" offset="0x194" visible="true" elementSize="0x184">
 		<int16 name="Palette Index" offset="0x0" visible="true" />
 		<int16 name="Name Index" offset="0x2" visible="true" />
 		<flags32 name="Placement Flags" offset="0x4" visible="true">
@@ -2104,16 +2112,20 @@ DO NOT USE THE BLOCK REALLOCATOR ON THE [READABLE] BLOCKS!</comment>
 		<int16 name="Parent Object Index" offset="0x166" visible="true" tooltip="if an object with this name exists, we attach to it as a child" />
 		<stringid name="Parent Marker" offset="0x168" visible="true" />
 		<stringid name="Connection Marker" offset="0x16C" visible="true" />
+		<int8 name="Unknown" offset="0x170" visible="true" />
+		<int8 name="Unknown" offset="0x171" visible="true" />
+		<int8 name="Unknown" offset="0x172" visible="true" />
+		<int8 name="Unknown" offset="0x173" visible="false" />
 		<comment title="Vehicle Data" />
-		<enum16 name="Pathfinding Policy" offset="0x170" visible="true">
+		<enum16 name="Pathfinding Policy" offset="0x174" visible="true">
 			<option name="Tag Default" value="0x0" />
 			<option name="Dynamic" value="0x1" />
 			<option name="Cut-Out" value="0x2" />
 			<option name="Standard" value="0x3" />
 			<option name="None" value="0x4" />
 		</enum16>
-		<int16 name="Unknown" offset="0x172" visible="false" />
-		<tagblock name="Pathfinding References" offset="0x174" visible="true" elementSize="0x4">
+		<int16 name="Unknown" offset="0x176" visible="false" />
+		<tagblock name="Pathfinding References" offset="0x178" visible="true" elementSize="0x4">
 			<int16 name="BSP Index" offset="0x0" visible="true" />
 			<int16 name="Pathfinding Object Index" offset="0x2" visible="true" />
 		</tagblock>
@@ -2121,7 +2133,7 @@ DO NOT USE THE BLOCK REALLOCATOR ON THE [READABLE] BLOCKS!</comment>
 	<tagblock name="Vehicle Palette" offset="0x1A0" visible="true" elementSize="0x10">
 		<tagRef name="Vehicle" offset="0x0" visible="true" />
 	</tagblock>
-	<tagblock name="Equipment" offset="0x1AC" visible="true" elementSize="0x154">
+	<tagblock name="Equipment" offset="0x1AC" visible="true" elementSize="0x158">
 		<int16 name="Palette Index" offset="0x0" visible="true" />
 		<int16 name="Name Index" offset="0x2" visible="true" />
 		<flags32 name="Placement Flags" offset="0x4" visible="true">
@@ -2493,11 +2505,15 @@ DO NOT USE THE BLOCK REALLOCATOR ON THE [READABLE] BLOCKS!</comment>
 		<int16 name="Parent Object Index" offset="0x14A" visible="true" tooltip="if an object with this name exists, we attach to it as a child" />
 		<stringid name="Parent Marker" offset="0x14C" visible="true" />
 		<stringid name="Connection Marker" offset="0x150" visible="true" />
+		<int8 name="Unknown" offset="0x154" visible="true" />
+		<int8 name="Unknown" offset="0x155" visible="true" />
+		<int8 name="Unknown" offset="0x156" visible="true" />
+		<int8 name="Unknown" offset="0x157" visible="false" />
 	</tagblock>
 	<tagblock name="Equipment Palette" offset="0x1B8" visible="true" elementSize="0x10">
 		<tagRef name="Equipment" offset="0x0" visible="true" />
 	</tagblock>
-	<tagblock name="Weapons" offset="0x1C4" visible="true" elementSize="0x170">
+	<tagblock name="Weapons" offset="0x1C4" visible="true" elementSize="0x174">
 		<int16 name="Palette Index" offset="0x0" visible="true" />
 		<int16 name="Name Index" offset="0x2" visible="true" />
 		<flags32 name="Placement Flags" offset="0x4" visible="true">
@@ -2885,6 +2901,10 @@ DO NOT USE THE BLOCK REALLOCATOR ON THE [READABLE] BLOCKS!</comment>
 		<int16 name="Parent Object Index" offset="0x166" visible="true" tooltip="if an object with this name exists, we attach to it as a child" />
 		<stringid name="Parent Marker" offset="0x168" visible="true" />
 		<stringid name="Connection Marker" offset="0x16C" visible="true" />
+		<int8 name="Unknown" offset="0x170" visible="true" />
+		<int8 name="Unknown" offset="0x171" visible="true" />
+		<int8 name="Unknown" offset="0x172" visible="true" />
+		<int8 name="Unknown" offset="0x173" visible="false" />
 	</tagblock>
 	<tagblock name="Weapon Palette" offset="0x1D0" visible="true" elementSize="0x10">
 		<tagRef name="Weapon" offset="0x0" visible="true" />
@@ -2898,7 +2918,7 @@ DO NOT USE THE BLOCK REALLOCATOR ON THE [READABLE] BLOCKS!</comment>
 		<int16 name="Editor Folder Index" offset="0x28" visible="true" />
 		<int16 name="Unknown" offset="0x2A" visible="false" />
 	</tagblock>
-	<tagblock name="Machines" offset="0x1E8" visible="true" elementSize="0x184">
+	<tagblock name="Machines" offset="0x1E8" visible="true" elementSize="0x188">
 		<int16 name="Palette Index" offset="0x0" visible="true" />
 		<int16 name="Name Index" offset="0x2" visible="true" />
 		<flags32 name="Placement Flags" offset="0x4" visible="true">
@@ -3312,6 +3332,10 @@ DO NOT USE THE BLOCK REALLOCATOR ON THE [READABLE] BLOCKS!</comment>
 		<int16 name="Parent Object Index" offset="0x17A" visible="true" tooltip="if an object with this name exists, we attach to it as a child" />
 		<stringid name="Parent Marker" offset="0x17C" visible="true" />
 		<stringid name="Connection Marker" offset="0x180" visible="true" />
+		<int8 name="Unknown" offset="0x184" visible="true" />
+		<int8 name="Unknown" offset="0x185" visible="true" />
+		<int8 name="Unknown" offset="0x186" visible="true" />
+		<int8 name="Unknown" offset="0x187" visible="false" />
 	</tagblock>
 	<tagblock name="Machine Palette" offset="0x1F4" visible="true" elementSize="0x10">
 		<tagRef name="Machine" offset="0x0" visible="true" />
@@ -3638,7 +3662,7 @@ DO NOT USE THE BLOCK REALLOCATOR ON THE [READABLE] BLOCKS!</comment>
 	<tagblock name="Terminal Palette" offset="0x20C" visible="true" elementSize="0x10">
 		<tagRef name="Terminal" offset="0x0" visible="true" />
 	</tagblock>
-	<tagblock name="Controls" offset="0x218" visible="true" elementSize="0x17C">
+	<tagblock name="Controls" offset="0x218" visible="true" elementSize="0x180">
 		<int16 name="Palette Index" offset="0x0" visible="true" />
 		<int16 name="Name Index" offset="0x2" visible="true" />
 		<flags32 name="Placement Flags" offset="0x4" visible="true">
@@ -4041,11 +4065,15 @@ DO NOT USE THE BLOCK REALLOCATOR ON THE [READABLE] BLOCKS!</comment>
 		<int16 name="Parent Object Index" offset="0x172" visible="true" tooltip="if an object with this name exists, we attach to it as a child" />
 		<stringid name="Parent Marker" offset="0x174" visible="true" />
 		<stringid name="Connection Marker" offset="0x178" visible="true" />
+		<int8 name="Unknown" offset="0x17C" visible="true" />
+		<int8 name="Unknown" offset="0x17D" visible="true" />
+		<int8 name="Unknown" offset="0x17E" visible="true" />
+		<int8 name="Unknown" offset="0x17F" visible="false" />
 	</tagblock>
 	<tagblock name="Control Palette" offset="0x224" visible="true" elementSize="0x10">
 		<tagRef name="Control" offset="0x0" visible="true" />
 	</tagblock>
-	<tagblock name="Dispensers" offset="0x230" visible="true" elementSize="0x174">
+	<tagblock name="Dispensers" offset="0x230" visible="true" elementSize="0x178">
 		<int16 name="Palette Index" offset="0x0" visible="true" />
 		<int16 name="Name Index" offset="0x2" visible="true" />
 		<flags32 name="Placement Flags" offset="0x4" visible="true">
@@ -4442,6 +4470,10 @@ DO NOT USE THE BLOCK REALLOCATOR ON THE [READABLE] BLOCKS!</comment>
 		<int16 name="Parent Object Index" offset="0x16A" visible="true" tooltip="if an object with this name exists, we attach to it as a child" />
 		<stringid name="Parent Marker" offset="0x16C" visible="true" />
 		<stringid name="Connection Marker" offset="0x170" visible="true" />
+		<int8 name="Unknown" offset="0x174" visible="true" />
+		<int8 name="Unknown" offset="0x175" visible="true" />
+		<int8 name="Unknown" offset="0x176" visible="true" />
+		<int8 name="Unknown" offset="0x177" visible="false" />
 	</tagblock>
 	<tagblock name="Dispenser Palette" offset="0x23C" visible="true" elementSize="0x10">
 		<tagRef name="Dispenser" offset="0x0" visible="true" />
@@ -5088,7 +5120,7 @@ DO NOT USE THE BLOCK REALLOCATOR ON THE [READABLE] BLOCKS!</comment>
 	<tagblock name="Giant Palette" offset="0x26C" visible="true" elementSize="0x10">
 		<tagRef name="Giant" offset="0x0" visible="true" />
 	</tagblock>
-	<tagblock name="Effect Scenery" offset="0x278" visible="true" elementSize="0x154">
+	<tagblock name="Effect Scenery" offset="0x278" visible="true" elementSize="0x158">
 		<int16 name="Palette Index" offset="0x0" visible="true" />
 		<int16 name="Name Index" offset="0x2" visible="true" />
 		<flags32 name="Placement Flags" offset="0x4" visible="true">
@@ -5456,6 +5488,10 @@ DO NOT USE THE BLOCK REALLOCATOR ON THE [READABLE] BLOCKS!</comment>
 		<int16 name="Parent Object Index" offset="0x14A" visible="true" tooltip="if an object with this name exists, we attach to it as a child" />
 		<stringid name="Parent Marker" offset="0x14C" visible="true" />
 		<stringid name="Connection Marker" offset="0x150" visible="true" />
+		<int8 name="Unknown" offset="0x154" visible="true" />
+		<int8 name="Unknown" offset="0x155" visible="true" />
+		<int8 name="Unknown" offset="0x156" visible="true" />
+		<int8 name="Unknown" offset="0x157" visible="false" />
 	</tagblock>
 	<tagblock name="Effect Scenery Palette" offset="0x284" visible="true" elementSize="0x10">
 		<tagRef name="Effect Scenery" offset="0x0" visible="true" />
@@ -7298,7 +7334,7 @@ append ':*' to zone set names to allow vehicles to teleport along with their pla
 		<float32 name="Game Object Reset Height" offset="0x0" visible="true" />
 	</tagblock>
 	<tagref name="Sound Effect Collection" offset="0x640" visible="true" />
-	<tagblock name="Crates" offset="0x650" visible="true" elementSize="0x178">
+	<tagblock name="Crates" offset="0x650" visible="true" elementSize="0x17C">
 		<int16 name="Palette Index" offset="0x0" visible="true" />
 		<int16 name="Name Index" offset="0x2" visible="true" />
 		<flags32 name="Placement Flags" offset="0x4" visible="true">
@@ -7691,6 +7727,10 @@ DO NOT USE THE BLOCK REALLOCATOR ON THE [READABLE] BLOCKS!</comment>
 		<int16 name="Parent Object Index" offset="0x16E" visible="true" tooltip="if an object with this name exists, we attach to it as a child" />
 		<stringid name="Parent Marker" offset="0x170" visible="true" />
 		<stringid name="Connection Marker" offset="0x174" visible="true" />
+		<int8 name="Unknown" offset="0x178" visible="true" />
+		<int8 name="Unknown" offset="0x179" visible="true" />
+		<int8 name="Unknown" offset="0x17A" visible="true" />
+		<int8 name="Unknown" offset="0x17B" visible="false" />
 	</tagblock>
 	<tagblock name="Crates Palette" offset="0x65C" visible="true" elementSize="0x10">
 		<tagRef name="Crate" offset="0x0" visible="true" />

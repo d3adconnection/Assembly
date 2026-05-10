@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<plugin game="ReachPreAlpha" baseSize="0xD0">
+<plugin game="ReachPreAlpha" baseSize="0xC4">
 	<!-- Automatically generated plugin -->
 	<revisions>
 		<revision author="-DeToX-" version="1">Mapped plugin structure a new.</revision>

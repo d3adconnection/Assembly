@@ -52,6 +52,8 @@
 		<array name="compressed section types" offset="0x2AF4" count="4" entrySize="0x1">
 			<byte name="type" offset="0x0" />
 		</array>
+		
+		<int32 name="footer magic" offset="0x2FF8" />
 	</layout>
 
 	<!-- Index table header -->

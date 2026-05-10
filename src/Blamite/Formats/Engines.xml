@@ -794,6 +794,12 @@
 		</databases>
 	</engine>
 
+	<engine name="Halo 4 16611" version="12" build="16611.12.07.07.0201.main" inherits="Halo 4 E3 Keynote">
+		<databases>
+			<stringIds type="stringIds" path="Formats/Halo4E3/H4_16611_StringIDs.xml" />
+		</databases>
+	</engine>
+
 	<!-- Halo 4 builds -->
 	<engine name="Halo 4" version="12" build="20810.12.09.22.1647.main">
 		<shortName>Halo4</shortName>
@@ -822,13 +828,39 @@
 		</databases>
 	</engine>
 
-	<engine name="Halo 4 Prerelease" version="12" build="19057.12.08.19.0400.main" inherits="Halo 4">
+	<engine name="Halo 4 19057" version="12" build="19057.12.08.19.0400.main" inherits="Halo 4">
 		<shortName>Halo4Pre</shortName>
 		<databases>
-			<stringIds type="stringIds" path="Formats/Halo4/H4Pre_StringIDs.xml" />
+			<stringIds type="stringIds" path="Formats/Halo4/H4_19057_StringIDs.xml" />
+		</databases>
+	</engine>
+	
+	<engine name="Halo 4 19558" version="12" build="19558.12.08.26.2152.de" inherits="Halo 4">
+		<shortName>Halo4Pre</shortName>
+		<databases>
+			<stringIds type="stringIds" path="Formats/Halo4/H4_19558_StringIDs.xml" />
 		</databases>
 	</engine>
 
+	<engine name="Halo 4 20589" version="12" build="20589.12.09.12.0200.main" inherits="Halo 4">
+		<shortName>Halo4Pre</shortName>
+		<databases>
+			<stringIds type="stringIds" path="Formats/Halo4/H4_20589_StringIDs.xml" />
+		</databases>
+	</engine>
+	<engine name="Halo 4 20613" version="12" build="20613.12.09.13.0200.main" inherits="Halo 4">
+		<shortName>Halo4Pre</shortName>
+		<databases>
+			<stringIds type="stringIds" path="Formats/Halo4/H4_20589_StringIDs.xml" />
+		</databases>
+	</engine>
+	<engine name="Halo 4 20656" version="12" build="20656.12.09.14.0200.main" inherits="Halo 4">
+		<shortName>Halo4Pre</shortName>
+		<databases>
+			<stringIds type="stringIds" path="Formats/Halo4/H4_20656_StringIDs.xml" />
+		</databases>
+	</engine>
+	
 	<engine name="Halo 4 TU2" version="12" build="21122.12.11.21.0101.main" inherits="Halo 4" />
 	<engine name="Halo 4 TU3" version="12" build="21165.12.12.12.0112.main" inherits="Halo 4" />
 	<engine name="Halo 4 TU4" version="12" build="21339.13.02.05.0117.main" inherits="Halo 4" />
@@ -836,6 +868,13 @@
 	<engine name="Halo 4 TU6" version="12" build="21401.13.04.23.1849.main" inherits="Halo 4" />
 	<engine name="Halo 4 TU7" version="12" build="21501.13.08.06.2311.main" inherits="Halo 4" />
 	<engine name="Halo 4 TU8" version="12" build="21522.13.10.17.1936.main" inherits="Halo 4" />
+
+	<engine name="Halo 4 21117" version="12" build="21117.12.11.19.2343.main" inherits="Halo 4" />
+	<engine name="Halo 4 21184" version="12" build="21184.12.12.31.1438.main" inherits="Halo 4" />
+	<engine name="Halo 4 21198" version="12" build="21198.13.01.08.1052.main" inherits="Halo 4" />
+	<engine name="Halo 4 21208" version="12" build="21208.13.01.10.1649.ca" inherits="Halo 4" />
+	<engine name="Halo 4 21252" version="12" build="21252.13.01.17.1751.main" inherits="Halo 4" />
+	<engine name="Halo 4 21267" version="12" build="21267.13.01.18.1247.main" inherits="Halo 4" />
 
 	<!-- Halo 4 Testchambers -->
 	<engine name="Halo 4 TC 16316" version="12" build="16316.12.06.29.0200.main" inherits="Halo 4 E3 Keynote" />
@@ -848,6 +887,63 @@
 	<engine name="Halo 4 TC 20190" version="12" build="20190.12.09.05.0200.main" inherits="Halo 4" />
 	<engine name="Halo 4 TC 20703" version="12" build="20703.12.09.16.0400.main" inherits="Halo 4" />
 	<engine name="Halo 4 TC 20744" version="12" build="20744.12.09.18.0100.main" inherits="Halo 4" />
+
+	<!-- Groundhog builds -->
+	<engine name="Halo 2A 21646" version="12" build="21646.14.03.21.0841.ca">
+		<shortName>H2A_646</shortName>
+		<plugins>Halo2A</plugins>
+		<fallbackPlugins>Halo4</fallbackPlugins>
+		<engineInfo>
+			<generation>third</generation>
+			<endian>big</endian>
+			<segmentAlignment>0x1000</segmentAlignment>
+			<encryption>
+				<tagNameKey>LetsAllPlayNice!</tagNameKey>
+				<stringIdKey>ILikeSafeStrings</stringIdKey>
+				<localeKey>BungieHaloReach!</localeKey>
+				<!-- 343.jpg -->
+			</encryption>
+			<sortLocalesByStringId>true</sortLocalesByStringId>
+			<optimizedShaders>true</optimizedShaders>
+		</engineInfo>
+		<pokingInfo>
+			<platform>xbox360</platform>
+		</pokingInfo>
+		<databases>
+			<localeSymbols type="localeSymbols" path="Formats/Halo2A/H2A_LocaleSymbols.xml" />
+			<stringIds type="stringIds" path="Formats/Halo2A/H2A_21646_StringIDs.xml" />
+			<scripting type="scripting" path="Formats/Halo4/H4_Scripting.xml" />
+			<layouts type="layouts" path="Formats/Halo4/Layouts" />
+		</databases>
+	</engine>
+
+	<engine name="Halo 2A 21651" version="12" build="21651.14.03.28.1525.ca" inherits="Halo 2A 21646">
+		<shortName>H2A_651</shortName>
+		<databases>
+			<stringIds type="stringIds" path="Formats/Halo2A/H2A_21651_StringIDs.xml" />
+		</databases>
+	</engine>
+
+	<engine name="Halo 2A 21652" version="12" build="21652.14.04.04.1153.ca" inherits="Halo 2A 21646">
+		<shortName>H2A_652</shortName>
+		<databases>
+			<stringIds type="stringIds" path="Formats/Halo2A/H2A_21651_StringIDs.xml" />
+		</databases>
+	</engine>
+
+	<engine name="Halo 2A 21655" version="12" build="21655.14.04.10.1321.ca" inherits="Halo 2A 21646">
+		<shortName>H2A_655</shortName>
+		<databases>
+			<stringIds type="stringIds" path="Formats/Halo2A/H2A_21655_StringIDs.xml" />
+		</databases>
+	</engine>
+	
+	<engine name="Halo 2A 21659" version="12" build="21659.14.04.17.1655.ca" inherits="Halo 2A 21646">
+		<shortName>H2A_659</shortName>
+		<databases>
+			<stringIds type="stringIds" path="Formats/Halo2A/H2A_21659_StringIDs.xml" />
+		</databases>
+	</engine>
 
 	<!-- Reach MCC -->
 	<engine name="Halo: Reach MCC Flight 1" version="12" build="Jun 24 2019 00:36:03">
