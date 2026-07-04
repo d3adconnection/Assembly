@@ -475,15 +475,15 @@
 	<float32 name="Danger Radius" offset="0x1A8" visible="true" />
 	<tagRef name="Effect" offset="0x1AC" visible="true" />
 	<rangef name="Timer" offset="0x1BC" visible="true" tooltip="detonation countdown (zero is untimed)" />
-	<float32 name="Minimum Velocity" offset="0x1C4" visible="true" tooltip="detonates when slowed below this velocity" />
+	<float32 name="Minimum Velocity" offset="0x1C4" visible="true" tooltip="detonates when slowed below this velocity. multiply by 30 (tick rate) to match guerilla" />
 	<float32 name="Maximum Range" offset="0x1C8" visible="true" tooltip="detonates after travelling this distance" />
 	<comment title="Physics" />
 	<float32 name="Air Gravity Scale" offset="0x1CC" visible="true" tooltip="the proportion of normal gravity applied to the projectile when in air." />
 	<rangef name="Air Damage Range" offset="0x1D0" visible="true" tooltip="the range over which damage is scaled when the projectile is in air." />
 	<float32 name="Water Gravity Scale" offset="0x1D8" visible="true" tooltip="the proportion of normal gravity applied to the projectile when in water." />
 	<rangef name="Water Damage Range" offset="0x1DC" visible="true" tooltip="the range over which damage is scaled when the projectile is in water." />
-	<float32 name="Initial Velocity" offset="0x1E4" visible="true" tooltip="bullet's velocity when inflicting maximum damage" />
-	<float32 name="Final Velocity" offset="0x1E8" visible="true" tooltip="bullet's velocity when inflicting minimum damage" />
+	<float32 name="Initial Velocity" offset="0x1E4" visible="true" tooltip="bullet's velocity when inflicting maximum damage. multiply by 30 (tick rate) to match guerilla" />
+	<float32 name="Final Velocity" offset="0x1E8" visible="true" tooltip="bullet's velocity when inflicting minimum damage. multiply by 30 (tick rate) to match guerilla" />
 	<degree name="Guided Angular Velocity" offset="0x1EC" visible="true" />
 	<enum16 name="Detonation Noise" offset="0x1F0" visible="true">
 		<option name="Silent" value="0x0" />
