@@ -58,17 +58,37 @@
 				</Grid.ColumnDefinitions>
 				<StackPanel Orientation="Horizontal" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Left"
 				            Margin="10,0,0,0">
-					<Button x:Name="btnExport" Content="Export" Width="72" VerticalAlignment="Center" HorizontalAlignment="Left"
-					        Click="btnExport_Click" />
+					
 					<TextBlock Text="Filter:" Grid.Column="0" Margin="10,0,0,0" Style="{DynamicResource GenericTextblock}"
 					           VerticalAlignment="Center" HorizontalAlignment="Left" />
 				</StackPanel>
 
 				<TextBox x:Name="txtFilter" Grid.Column="1" Margin="10,0,5,0" VerticalAlignment="Center"
 				         HorizontalAlignment="Stretch" TextChanged="txtFilter_TextChanged" />
+				<Button Name="btnResetFilter" Grid.Column="1" Margin="0,0,6,0" Padding="0,0,0,4" Height="20" Width="14" Content="x" BorderThickness="0"
+							HorizontalAlignment="Right" Background="Transparent" Click="btnReset_Click" Visibility="Visible" />
 
 				<StackPanel Orientation="Horizontal" Grid.Column="2">
-					<Button x:Name="btnReset" Content="Reset" Click="btnReset_Click" Margin="5,0,0,0" Width="60" />
+					<ToggleButton x:Name="btnExport" Width="56" Margin="0,0,5,0" IsChecked="False" HorizontalContentAlignment="Stretch" Style="{DynamicResource OptionsToggleButton}">
+						<Grid>
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition Width="*"/>
+								<ColumnDefinition Width="Auto"/>
+							</Grid.ColumnDefinitions>
+
+							<TextBlock Text="Export" Grid.Column="0" HorizontalAlignment="Center"/>
+							<Path x:Name="TagArrow" Grid.Column="1" Data="M0,0L4,4 8,0z" Margin="0,0,4,0" HorizontalAlignment="Right" VerticalAlignment="Center" Fill="#989898" Width="8"/>
+						</Grid>
+					</ToggleButton>
+					<Popup x:Name="popExport" IsOpen="{Binding IsChecked, ElementName=btnExport}" PlacementTarget="{x:Reference btnExport}" StaysOpen="False" >
+						<Border BorderThickness="1" Background="#1b1b1c" BorderBrush="#333337">
+							<StackPanel>
+								<MenuItem x:Name="menuExport" Header="Export With Keys" ToolTip="Export the currently loaded string list to an HEK-friendly format using the engine's &amp; keys." Click="menuExport_Click" />
+								<MenuItem x:Name="menuExportUnicode" IsEnabled="False" Header="Export With Unicode" ToolTip="Export the currently loaded string list to an HEK-friendly format using raw unicode instead of the engine's &amp; keys." Click="menuExportUnicode_Click" />
+
+							</StackPanel>
+						</Border>
+					</Popup>
 					<TextBlock Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="10,0,10,0"
 					           Text="Double-click on a string to copy it." Style="{DynamicResource GenericTextblock}" />
 				</StackPanel>

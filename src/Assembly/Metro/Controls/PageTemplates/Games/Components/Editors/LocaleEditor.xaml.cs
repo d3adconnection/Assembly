@@ -14,6 +14,8 @@ using Blamite.Blam.Localization;
 using Blamite.Serialization;
 using Blamite.IO;
 using Blamite.Util;
+using System.IO;
+using Microsoft.Win32;
 
 namespace Assembly.Metro.Controls.PageTemplates.Games.Components.Editors
 {
@@ -34,6 +36,18 @@ namespace Assembly.Metro.Controls.PageTemplates.Games.Components.Editors
 		private string _searchText;
 		private LocalizedStringTableView _stringView;
 		private List<StringEntry> _strings;
+
+		private Dictionary<string, string> _escapeChars = new Dictionary<string, string>()
+		{
+			{ "\"", "\\\"" },
+
+			{ "'",  @"\'" },
+			{ "?",  "\\?" },
+			{ ";",  "\\;" },
+
+			{ "\r",  "\\r" },
+			{ "\n",  "\\n" },
+		};
 
 		public LocaleEditor(GameLanguage language, ICacheFile cache, IStreamManager streamManager, Trie stringIdTrie,
 			LocaleSymbolCollection symbols)
@@ -180,7 +194,6 @@ namespace Assembly.Metro.Controls.PageTemplates.Games.Components.Editors
 			else
 				_searchText = null;
 
-			btnReset.IsEnabled = !string.IsNullOrEmpty(filter);
 			_stringView.Refresh();
 			ShowCurrentItem();
 		}
@@ -296,18 +309,60 @@ namespace Assembly.Metro.Controls.PageTemplates.Games.Components.Editors
 				lvLocales.ScrollIntoView(lvLocales.SelectedItem);
 		}
 
+		private void GenerateHEKText(bool replaceKeys)
+		{
+			if (_stringView.CurrentGroup == null)
+				return;
+
+			var sfd = new SaveFileDialog
+			{
+				Title = "Save Strings",
+				Filter = "Text Files|*.txt"
+			};
+			bool? result = sfd.ShowDialog();
+			if (!result.Value)
+				return;
+
+			using (StringWriter sw = new StringWriter())
+			{
+				sw.WriteLine("[Strings]");
+				foreach (var s in _stringView.CurrentGroup.Strings)
+				{
+					string sid = _cache.StringIDs.GetString(s.Key);
+					string val = replaceKeys ? ReplaceSymbols(s.Value) : s.Value;
+
+					sw.WriteLine($"{sid} = \"{EscapeString(val)}\"");
+				}
+
+				File.WriteAllText(sfd.FileName, sw.ToString());
+				MetroMessageBox.Show("Strings Exported", "Strings exported successfully.");
+			}
+		}
+
+		private string EscapeString(string value)
+		{
+			string result = value;
+			foreach (string k in _escapeChars.Keys)
+			{
+				if (result.Contains(k))
+					result.Replace(k, _escapeChars[k]);
+			}
+
+			return result;
+		}
+
 		#endregion
 
 		#region Event Handlers
 
-		private void txtFilter_KeyDown(object sender, KeyEventArgs e)
+		private void txtFilter_TextChanged(object sender, TextChangedEventArgs e)
 		{
-			if (e.Key == Key.Return || e.Key == Key.Enter)
-				SetSearchText(txtFilter.Text);
-		}
+			// Clear button control
+			if (txtFilter.Text.Length > 0)
+				btnResetFilter.Visibility = Visibility.Visible;
+			else
+				btnResetFilter.Visibility = Visibility.Hidden;
 
-		private void btnFilter_Click(object sender, RoutedEventArgs e)
-		{
 			SetSearchText(txtFilter.Text);
 		}
 
@@ -342,6 +397,7 @@ namespace Assembly.Metro.Controls.PageTemplates.Games.Components.Editors
 		{
 			txtFilter.Text = "";
 			SetSearchText(null);
+			txtFilter.Focus();
 		}
 
 		private void cbLocaleGroups_SelectionChanged_1(object sender, SelectionChangedEventArgs e)
@@ -354,6 +410,11 @@ namespace Assembly.Metro.Controls.PageTemplates.Games.Components.Editors
 				_stringView.Refresh();
 				lvLocales.CanUserAddRows = (group.Base != null);
 				ShowCurrentItem();
+
+				if (group.Base != null)
+					btnExport.IsEnabled = true;
+				else
+					btnExport.IsEnabled = false;
 			}
 		}
 
@@ -375,6 +436,16 @@ namespace Assembly.Metro.Controls.PageTemplates.Games.Components.Editors
 			// Hack to make the stringID textbox get focus
 			var control = (FrameworkElement) sender;
 			control.MoveFocus(new TraversalRequest(FocusNavigationDirection.Next));
+		}
+
+		private void menuExport_Click(object sender, RoutedEventArgs e)
+		{
+			GenerateHEKText(true);
+		}
+
+		private void menuExportUnicode_Click(object sender, RoutedEventArgs e)
+		{
+			GenerateHEKText(false);
 		}
 
 		#endregion
